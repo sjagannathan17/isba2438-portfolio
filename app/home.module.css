@@ -1,16 +1,19 @@
 .hero {
-  padding: 2.5rem 0 1rem;
+  padding: 4.5rem 0 2rem;
 }
 
 .heroName {
-  font-size: clamp(2.2rem, 5vw, 3.2rem);
+  font-family: var(--font-heading), Georgia, serif;
+  font-size: clamp(2.4rem, 5.5vw, 3.4rem);
+  font-weight: 600;
+  letter-spacing: -0.01em;
 }
 
 .heroIntro {
   font-size: 1.2rem;
   color: var(--ink-soft);
-  margin: 0.75rem 0 1.5rem;
-  max-width: 46rem;
+  margin: 1rem 0 2rem;
+  max-width: 34rem;
 }
 
 .heroActions {
@@ -20,16 +23,17 @@
 }
 
 .sectionHeading {
-  font-size: 1.6rem;
+  font-size: 1.75rem;
+  font-weight: 700;
   margin-bottom: 0.5rem;
 }
 
 .journey {
-  padding: 2.5rem 0 0;
+  padding: 4rem 0 0;
 }
 
 .featured {
-  padding: 3rem 0 0;
+  padding: 4.5rem 0 0;
 }
 
 .grid {
