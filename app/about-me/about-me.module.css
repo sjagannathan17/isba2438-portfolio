@@ -1,65 +1,132 @@
 .intro {
   font-size: 1.15rem;
-  max-width: 46rem;
+  max-width: 34rem;
   margin-top: 0.75rem;
 }
 
 .section {
-  margin-top: 2.5rem;
+  margin-top: 3.5rem;
 }
 
 .section h2 {
-  font-size: 1.5rem;
+  font-family: var(--font-body), system-ui, sans-serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
   margin-bottom: 1.25rem;
-  padding-bottom: 0.4rem;
-  border-bottom: 1px solid var(--line);
 }
 
-.entry {
-  margin-bottom: 1.5rem;
+.section h2::before {
+  content: "";
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  background: var(--red);
+  transform: rotate(45deg);
+  margin-right: 0.55rem;
+  vertical-align: 1px;
 }
 
-.entry h3 {
-  font-size: 1.15rem;
-  margin-bottom: 0.15rem;
+.timeline {
+  display: flex;
+  flex-direction: column;
+}
+
+.item {
+  position: relative;
+  padding: 0 0 2.25rem 1.75rem;
+}
+
+.item::before {
+  content: "";
+  position: absolute;
+  left: 5px;
+  top: 16px;
+  bottom: 0;
+  width: 1px;
+  background: var(--line);
+}
+
+.item:last-child {
+  padding-bottom: 0;
+}
+
+.item:last-child::before {
+  display: none;
+}
+
+.dot {
+  position: absolute;
+  left: 0;
+  top: 5px;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: var(--red);
+  border: 2px solid #fff;
+  box-shadow: 0 0 0 1px var(--red);
+}
+
+.period {
+  margin: 0 0 0.1rem;
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+.item h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 0.1rem;
 }
 
 .org {
   color: var(--ink-soft);
   font-size: 0.95rem;
-  margin-bottom: 0.4rem;
+  margin-bottom: 0.35rem;
 }
 
-.entry p:last-child {
-  max-width: 46rem;
+.detail {
+  max-width: 34rem;
 }
 
 .skillGroup {
-  margin-bottom: 1.25rem;
+  border-top: 1px solid var(--line);
+  padding: 0.7rem 0;
+}
+
+.skillGroup:first-of-type {
+  border-top: none;
+  padding-top: 0;
 }
 
 .skillGroup h3 {
-  font-size: 1.05rem;
-  margin-bottom: 0.6rem;
-}
-
-.chips {
-  list-style: none;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-}
-
-.chip {
-  background: var(--panel);
-  border: 1px solid var(--line);
-  border-radius: 999px;
-  padding: 0.15rem 0.85rem;
+  font-family: var(--font-body), system-ui, sans-serif;
   font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.skillGroup p {
+  color: var(--ink-soft);
+  font-size: 0.95rem;
+  max-width: 34rem;
+}
+
+@media (min-width: 640px) {
+  .skillGroup {
+    display: grid;
+    grid-template-columns: 11rem 1fr;
+    gap: 0 1.5rem;
+    align-items: baseline;
+  }
 }
 
 .section:last-child p {
-  max-width: 46rem;
+  max-width: 34rem;
 }
 
 .section:last-child .button {

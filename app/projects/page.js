@@ -14,7 +14,7 @@ export default function Projects() {
         <CompassIcon />
       </p>
       <h1>Projects</h1>
-      <p className={styles.lede}>
+      <p className="lede">
         Selected work in AI products and applied machine learning.
       </p>
       <div className={styles.grid}>

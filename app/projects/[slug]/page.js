@@ -29,9 +29,9 @@ export default async function ProjectPage({ params }) {
       </p>
       <p className={styles.tag}>{project.tag}</p>
       <h1>{project.name}</h1>
-      <div className={styles.panel} aria-hidden="true">
-        <span className={styles.panelLabel}>Project visual placeholder</span>
-      </div>
+      <p className={styles.coords}>
+        {project.place} · {project.coords}
+      </p>
 
       <section className={styles.section}>
         <h2>What it does</h2>
@@ -50,13 +50,7 @@ export default async function ProjectPage({ params }) {
 
       <section className={styles.section}>
         <h2>Tech</h2>
-        <ul className={styles.chips}>
-          {project.tech.map((item) => (
-            <li key={item} className={styles.chip}>
-              {item}
-            </li>
-          ))}
-        </ul>
+        <p className={styles.techLine}>{project.tech.join(", ")}</p>
       </section>
 
       <p className={styles.repoLink}>
