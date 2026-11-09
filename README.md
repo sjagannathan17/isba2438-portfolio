@@ -1,36 +1,40 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Assignment 2 - Portfolio
 
-## Getting Started
+Personal portfolio website for Srinidhi Jagannathan, AI builder and product manager and MS Business Analytics student at Santa Clara University.
 
-First, run the development server:
+Built with Next.js (App Router, JavaScript) and plain CSS (global styles plus CSS modules). The home page shows a dotted world atlas with pins for the places in my journey, connected by a dashed route in the order they happened. The contact form is validated on the server and messages are saved to a local JSON file.
 
-```bash
+## Run it
+
+```
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Then open http://localhost:3000.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+```
+npm test
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Runs the unit tests for the contact form validation rules (Node's built-in test runner, no extra packages).
 
-## Learn More
+## Pages
 
-To learn more about Next.js, take a look at the following resources:
+| Page | Address |
+|---|---|
+| Home (hero, journey map, featured projects) | `/` |
+| About Me (journey timeline, skills) | `/about-me` |
+| Projects index | `/projects` |
+| Project detail (one per project) | `/projects/flex-competitive-intelligence`, `/projects/agri-intelligence-platform` |
+| Contact Me (server-validated form) | `/contact-me-server-form` |
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Unknown project addresses show a friendly "Project not found" page with a link back to Projects.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Contact form
 
-## Deploy on Vercel
+Messages are checked on the server: name and message can't be blank, and the email needs one @, text before it, a valid domain, and no whitespace. Valid messages are saved to `data/contact-submissions.json`, which is git-ignored and created automatically on the first save.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## License
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+MIT
