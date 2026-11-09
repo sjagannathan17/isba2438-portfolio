@@ -1,0 +1,69 @@
+:root {
+  --paper: #faf6ee;
+  --paper-soft: #f3ecdd;
+  --panel: #f6f0e2;
+  --ink: #211e1b;
+  --ink-soft: #6b6357;
+  --red: #a63a2b;
+  --red-dark: #872c20;
+  --line: #e3dac6;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  color-scheme: light;
+}
+
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body), system-ui, -apple-system, sans-serif;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-heading), Georgia, serif;
+  line-height: 1.2;
+  color: var(--ink);
+}
+
+a {
+  color: var(--red);
+}
+
+a:hover {
+  color: var(--red-dark);
+}
+
+.page {
+  flex: 1;
+  width: 100%;
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: 3rem 1.25rem 4rem;
+}
+
+.pageIcon {
+  margin: 0 0 1rem;
+  color: var(--ink-soft);
+}
