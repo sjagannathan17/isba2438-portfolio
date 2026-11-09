@@ -1,0 +1,29 @@
+.button {
+  display: inline-block;
+  padding: 0.55rem 1.5rem;
+  border-radius: 999px;
+  font-size: 1rem;
+  text-decoration: none;
+  border: 1.5px solid var(--red);
+}
+
+.primary {
+  background: var(--red);
+  color: var(--paper);
+}
+
+.primary:hover {
+  background: var(--red-dark);
+  border-color: var(--red-dark);
+  color: var(--paper);
+}
+
+.secondary {
+  background: transparent;
+  color: var(--red);
+}
+
+.secondary:hover {
+  background: var(--panel);
+  color: var(--red-dark);
+}
