@@ -1,0 +1,133 @@
+.mapWrap {
+  position: relative;
+  max-width: 960px;
+  margin: 2rem auto 0;
+}
+
+.map {
+  display: block;
+  width: 100%;
+  height: auto;
+  background: var(--paper-soft);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+}
+
+.graticule line {
+  stroke: var(--line);
+  stroke-width: 0.4;
+}
+
+.graticule .equator {
+  stroke: #d8c9a5;
+  stroke-width: 0.6;
+}
+
+.land path {
+  fill: #ece1c6;
+  stroke: #cdbb92;
+  stroke-width: 0.6;
+  stroke-linejoin: round;
+}
+
+.pinAnchor {
+  position: absolute;
+  transform: translate(-50%, -50%);
+}
+
+.pinButton {
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+.pinDot {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: var(--red);
+  border: 2px solid #fff;
+  box-shadow: 0 0 0 1px var(--red);
+}
+
+.pinButton:hover .pinDot,
+.pinButton:focus-visible .pinDot {
+  background: var(--red-dark);
+  transform: scale(1.25);
+}
+
+.pinActive .pinDot {
+  background: var(--red-dark);
+  transform: scale(1.25);
+}
+
+.pinLabel {
+  position: absolute;
+  left: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+  white-space: nowrap;
+  font-size: 0.8rem;
+  color: var(--ink);
+  background: rgba(250, 246, 238, 0.85);
+  padding: 0 0.2rem;
+  border-radius: 4px;
+  pointer-events: none;
+}
+
+.labelLeft {
+  left: auto;
+  right: 18px;
+}
+
+.card {
+  position: absolute;
+  bottom: 24px;
+  width: 240px;
+  background: #fffdf8;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 0.9rem 1rem;
+  box-shadow: 0 6px 18px rgba(33, 30, 27, 0.12);
+  z-index: 2;
+}
+
+.cardCenter {
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.cardLeft {
+  left: -6px;
+}
+
+.cardRight {
+  right: -6px;
+}
+
+.cardPlace {
+  font-family: var(--font-heading), Georgia, serif;
+  font-size: 1.05rem;
+}
+
+.cardDates {
+  color: var(--red);
+  font-size: 0.85rem;
+  margin-bottom: 0.4rem;
+}
+
+.cardText {
+  font-size: 0.92rem;
+  margin-bottom: 0.6rem;
+}
+
+.cardLink {
+  font-size: 0.92rem;
+  font-weight: 500;
+}

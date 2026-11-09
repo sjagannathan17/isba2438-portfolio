@@ -2,6 +2,7 @@
 const nextConfig = {
   cacheComponents: false,
   agentRules: false,
+  devIndicators: false,
 };
 
 export default nextConfig;
