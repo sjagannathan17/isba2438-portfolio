@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import PinGlyph from "@/components/PinGlyph";
 import styles from "./NavBar.module.css";
 
 const links = [
@@ -28,6 +29,7 @@ export default function NavBar() {
     <header className={styles.header}>
       <nav className={styles.nav} aria-label="Main navigation">
         <Link href="/" className={styles.brand}>
+          <PinGlyph />
           Srinidhi Jagannathan
         </Link>
         <ul className={styles.links}>

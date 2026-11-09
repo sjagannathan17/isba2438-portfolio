@@ -4,7 +4,10 @@ export default function Footer() {
   return (
     <footer className={styles.footer}>
       <div className={styles.inner}>
-        <p className={styles.name}>Srinidhi Jagannathan</p>
+        <div>
+          <p className={styles.name}>Srinidhi Jagannathan</p>
+          <p className={styles.coords}>37.35° N, 121.96° W · Santa Clara, CA</p>
+        </div>
         <ul className={styles.links}>
           <li>
             <a

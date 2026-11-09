@@ -4,42 +4,80 @@
   margin: 2rem auto 0;
 }
 
-.map {
+.mapCanvas {
+  position: relative;
+}
+
+.mapSvg svg {
   display: block;
   width: 100%;
   height: auto;
-  background: var(--paper-soft);
-  border: 1px solid var(--line);
-  border-radius: 12px;
 }
 
-.graticule line {
-  stroke: var(--line);
-  stroke-width: 0.4;
+.journeyPath {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
 }
 
-.graticule .equator {
-  stroke: #d8c9a5;
-  stroke-width: 0.6;
+.journeyPath path {
+  fill: none;
+  stroke: var(--red);
+  stroke-width: 0.55;
+  stroke-dasharray: 2.2 2.2;
+  stroke-linecap: round;
+  opacity: 0.65;
 }
 
-.land path {
-  fill: #ece1c6;
-  stroke: #cdbb92;
-  stroke-width: 0.6;
-  stroke-linejoin: round;
+.drawMask {
+  fill: none;
+  stroke: #fff;
+  stroke-width: 2;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: drawJourney 2.2s ease-out forwards 0.3s;
+}
+
+@keyframes drawJourney {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.mapCaption {
+  margin-top: 0.75rem;
+  text-align: center;
+  color: var(--ink-soft);
+  font-size: 0.9rem;
 }
 
 .pinAnchor {
   position: absolute;
   transform: translate(-50%, -50%);
+  animation: pinPop 0.45s ease backwards;
+  animation-delay: var(--pin-delay, 0s);
+  z-index: 1;
+}
+
+@keyframes pinPop {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.3);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
 }
 
 .pinButton {
+  position: relative;
   display: grid;
   place-items: center;
-  width: 28px;
-  height: 28px;
+  width: 26px;
+  height: 26px;
   padding: 0;
   border: none;
   background: transparent;
@@ -54,36 +92,47 @@
   background: var(--red);
   border: 2px solid #fff;
   box-shadow: 0 0 0 1px var(--red);
+  transition: transform 0.15s ease, background 0.15s ease;
 }
 
 .pinButton:hover .pinDot,
 .pinButton:focus-visible .pinDot {
   background: var(--red-dark);
-  transform: scale(1.25);
+  transform: scale(1.3);
 }
 
 .pinActive .pinDot {
   background: var(--red-dark);
-  transform: scale(1.25);
+  transform: scale(1.3);
 }
 
-.pinLabel {
+.tooltip {
   position: absolute;
-  left: 18px;
-  top: 50%;
-  transform: translateY(-50%);
+  bottom: calc(100% + 6px);
+  left: 50%;
+  transform: translateX(-50%);
   white-space: nowrap;
   font-size: 0.8rem;
   color: var(--ink);
-  background: rgba(250, 246, 238, 0.85);
-  padding: 0 0.2rem;
-  border-radius: 4px;
+  background: #fffdf8;
+  border: 1px solid var(--line);
+  padding: 0.1rem 0.5rem;
+  border-radius: 6px;
   pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.15s ease;
+  z-index: 3;
 }
 
-.labelLeft {
+.tooltipLeft {
   left: auto;
-  right: 18px;
+  right: 0;
+  transform: none;
+}
+
+.pinButton:hover .tooltip,
+.pinButton:focus-visible .tooltip {
+  opacity: 1;
 }
 
 .card {
@@ -112,14 +161,17 @@
 }
 
 .cardPlace {
-  font-family: var(--font-heading), Georgia, serif;
-  font-size: 1.05rem;
+  font-weight: 650;
+  letter-spacing: -0.01em;
+  margin-bottom: 0.1rem;
 }
 
 .cardDates {
   color: var(--red);
-  font-size: 0.85rem;
-  margin-bottom: 0.4rem;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+  margin-bottom: 0.5rem;
 }
 
 .cardText {
@@ -130,4 +182,15 @@
 .cardLink {
   font-size: 0.92rem;
   font-weight: 500;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .drawMask {
+    animation: none;
+    stroke-dashoffset: 0;
+  }
+
+  .pinAnchor {
+    animation: none;
+  }
 }

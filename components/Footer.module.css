@@ -18,6 +18,11 @@
   font-family: var(--font-heading), Georgia, serif;
 }
 
+.coords {
+  color: var(--ink-soft);
+  font-size: 0.82rem;
+}
+
 .links {
   list-style: none;
   display: flex;

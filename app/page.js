@@ -3,7 +3,18 @@ import ButtonLink from "@/components/ButtonLink";
 import ProjectCard from "@/components/ProjectCard";
 import WorldMap from "@/components/WorldMap";
 import { projects } from "@/lib/projects";
+import { pins } from "@/lib/journeyPins";
+import { dottedMapSvg, getPinPosition, getJourneyPathD, mapViewBox } from "@/lib/dottedMap";
 import styles from "./home.module.css";
+
+const pinsWithPositions = pins.map((pin) => ({
+  ...pin,
+  position: getPinPosition(pin.lat + (pin.nudgeLat ?? 0), pin.lon + (pin.nudgeLon ?? 0)),
+}));
+
+const journeyPathD = getJourneyPathD(
+  pins.map((pin) => ({ lat: pin.lat + (pin.nudgeLat ?? 0), lng: pin.lon + (pin.nudgeLon ?? 0) }))
+);
 
 export default function Home() {
   return (
@@ -26,7 +37,7 @@ export default function Home() {
 
       <section className={styles.journey}>
         <h2 className={styles.sectionHeading}>My journey</h2>
-        <WorldMap />
+        <WorldMap mapSvg={dottedMapSvg} pins={pinsWithPositions} pathD={journeyPathD} viewBox={mapViewBox} />
       </section>
 
       <section className={styles.featured}>
