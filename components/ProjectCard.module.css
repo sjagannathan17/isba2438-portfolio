@@ -1,0 +1,37 @@
+.card {
+  display: block;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 1.5rem;
+  text-decoration: none;
+  color: var(--ink);
+}
+
+.card:hover {
+  border-color: var(--red);
+  color: var(--ink);
+}
+
+.tag {
+  color: var(--red);
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  margin-bottom: 0.6rem;
+}
+
+.name {
+  font-size: 1.35rem;
+  margin-bottom: 0.5rem;
+}
+
+.blurb {
+  color: var(--ink-soft);
+}
+
+.more {
+  margin-top: 0.9rem;
+  color: var(--red);
+  font-weight: 500;
+}

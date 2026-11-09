@@ -1,20 +1,69 @@
 import CompassIcon from "@/components/CompassIcon";
+import { projects, getProject } from "@/lib/projects";
+import { notFound } from "next/navigation";
+import styles from "./project.module.css";
 
-export const metadata = {
-  title: "Project",
-};
+export async function generateStaticParams() {
+  return projects.map((project) => ({ slug: project.slug }));
+}
 
-export default function ProjectPage() {
+export async function generateMetadata({ params }) {
+  const { slug } = await params;
+  const project = getProject(slug);
+  return {
+    title: project ? project.name : "Project not found",
+  };
+}
+
+export default async function ProjectPage({ params }) {
+  const { slug } = await params;
+  const project = getProject(slug);
+  if (!project) {
+    notFound();
+  }
+
   return (
-    <section>
+    <article>
       <p className="pageIcon">
         <CompassIcon />
       </p>
-      <h1>Project</h1>
-      <p>
-        Placeholder detail page. Project data from lib/projects.js, notFound() handling,
-        and the friendly not-found page arrive in a later step.
+      <p className={styles.tag}>{project.tag}</p>
+      <h1>{project.name}</h1>
+      <div className={styles.panel} aria-hidden="true">
+        <span className={styles.panelLabel}>Project visual placeholder</span>
+      </div>
+
+      <section className={styles.section}>
+        <h2>What it does</h2>
+        <p>{project.summary}</p>
+      </section>
+
+      <section className={styles.section}>
+        <h2>Why it matters</h2>
+        <p>{project.why}</p>
+      </section>
+
+      <section className={styles.section}>
+        <h2>{project.roleLabel}</h2>
+        <p>{project.role}</p>
+      </section>
+
+      <section className={styles.section}>
+        <h2>Tech</h2>
+        <ul className={styles.chips}>
+          {project.tech.map((item) => (
+            <li key={item} className={styles.chip}>
+              {item}
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      <p className={styles.repoLink}>
+        <a href={project.link.url} target="_blank" rel="noreferrer">
+          {project.link.label}
+        </a>
       </p>
-    </section>
+    </article>
   );
 }

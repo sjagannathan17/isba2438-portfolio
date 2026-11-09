@@ -1,0 +1,13 @@
+.wrap h1 {
+  margin-bottom: 0.75rem;
+}
+
+.wrap p {
+  max-width: 46rem;
+}
+
+.back {
+  display: inline-block;
+  margin-top: 1.25rem;
+  font-weight: 500;
+}
