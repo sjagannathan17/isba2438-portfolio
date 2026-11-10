@@ -5,7 +5,7 @@ import { useState } from "react";
 import styles from "./WorldMap.module.css";
 
 function cardSide(xPercent) {
-  if (xPercent > 75) {
+  if (xPercent >= 70) {
     return styles.cardRight;
   }
   if (xPercent < 25) {
