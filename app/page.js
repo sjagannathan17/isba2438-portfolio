@@ -1,4 +1,8 @@
+"use client";
+
+import { useState } from "react";
 import ButtonLink from "@/components/ButtonLink";
+import CareerScrubber from "@/components/CareerScrubber";
 import ProjectCard from "@/components/ProjectCard";
 import WorldMap from "@/components/WorldMap";
 import { projects } from "@/lib/projects";
@@ -16,15 +20,27 @@ const journeyPathD = getJourneyPathD(
 );
 
 const stats = [
-  { value: "2.5 years", label: "in fintech payments" },
+  {
+    value: "2.5 years",
+    label: "in fintech payments",
+    relatedPins: ["bengaluru", "singapore", "australia"],
+  },
   {
     value: "3 countries",
     label: "where I helped launch RTGS and ACH payment systems (Fiji, Samoa, Vanuatu)",
+    relatedPins: ["pacific"],
   },
-  { value: "60+ graduate students", label: "mentored as a TA" },
+  {
+    value: "60+ graduate students",
+    label: "mentored as a TA",
+    relatedPins: ["santa-clara"],
+  },
 ];
 
 export default function Home() {
+  const [year, setYear] = useState("all");
+  const [highlight, setHighlight] = useState(null);
+
   return (
     <article>
       <section className={styles.hero}>
@@ -42,9 +58,17 @@ export default function Home() {
           </ButtonLink>
         </div>
         <div className={styles.journeyMap}>
-          <WorldMap mapSvg={dottedMapSvg} pins={pinsWithPositions} pathD={journeyPathD} viewBox={mapViewBox} />
+          <WorldMap
+            mapSvg={dottedMapSvg}
+            pins={pinsWithPositions}
+            pathD={journeyPathD}
+            viewBox={mapViewBox}
+            activeYear={year}
+            highlightIds={highlight}
+          />
         </div>
         <p className={styles.mapCue}>Click a pin to see what I did there.</p>
+        <CareerScrubber pins={pins} value={year} onChange={setYear} />
       </section>
 
       <section className={styles.proof} aria-label="At a glance">
@@ -54,7 +78,15 @@ export default function Home() {
         </h2>
         <div className={styles.stats}>
           {stats.map((stat) => (
-            <p key={stat.label} className={styles.stat}>
+            <p
+              key={stat.label}
+              className={styles.stat}
+              tabIndex={0}
+              onMouseEnter={() => setHighlight(stat.relatedPins)}
+              onMouseLeave={() => setHighlight(null)}
+              onFocus={() => setHighlight(stat.relatedPins)}
+              onBlur={() => setHighlight(null)}
+            >
               <span className={styles.statValue}>{stat.value}</span>
               <span className={styles.statLabel}>{stat.label}</span>
             </p>
@@ -69,7 +101,15 @@ export default function Home() {
         </h2>
         <div className={styles.grid}>
           {projects.map((project) => (
-            <ProjectCard key={project.slug} project={project} />
+            <div
+              key={project.slug}
+              onMouseEnter={() => setHighlight(project.relatedPins)}
+              onMouseLeave={() => setHighlight(null)}
+              onFocusCapture={() => setHighlight(project.relatedPins)}
+              onBlurCapture={() => setHighlight(null)}
+            >
+              <ProjectCard project={project} />
+            </div>
           ))}
         </div>
       </section>

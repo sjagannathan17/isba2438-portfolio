@@ -36,18 +36,11 @@
   stroke: #fff;
   stroke-width: 2;
   stroke-dasharray: 1;
-  stroke-dashoffset: 1;
-  animation: drawJourney 2.2s ease-out forwards 0.3s;
+  transition: stroke-dashoffset 2.2s ease-out;
 }
 
-.routePaused .drawMask {
-  animation-play-state: paused;
-}
-
-@keyframes drawJourney {
-  to {
-    stroke-dashoffset: 0;
-  }
+.drawLoaded {
+  transition-duration: 0.6s;
 }
 
 .crosshair {
@@ -99,7 +92,13 @@
   transform: translate(-10px, -30px) translateX(-100%);
 }
 
+.pinDimmed {
+  opacity: 0.25;
+}
+
 .pinAnchor {
+  transition: opacity 0.3s ease;
+
   position: absolute;
   transform: translate(-50%, -50%);
   animation: pinPop 0.45s ease backwards;
@@ -234,12 +233,16 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .drawMask {
-    animation: none;
-    stroke-dashoffset: 0;
+  .drawMask,
+  .drawLoaded {
+    transition: none;
   }
 
   .pinAnchor {
+    transition: none;
+  }
+
+  .pinButton {
     animation: none;
   }
 }

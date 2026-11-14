@@ -1,8 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
-import { getLatLngFromPosition } from "@/lib/dottedMap";
+import { useEffect, useMemo, useRef, useState } from "react";
+import { getJourneyFractions, getLatLngFromPosition } from "@/lib/dottedMap";
 import styles from "./WorldMap.module.css";
 
 function cardSide(xPercent) {
@@ -15,11 +15,12 @@ function cardSide(xPercent) {
   return styles.cardCenter;
 }
 
-export default function WorldMap({ mapSvg, pins, pathD, viewBox }) {
+export default function WorldMap({ mapSvg, pins, pathD, viewBox, activeYear = "all", highlightIds = null }) {
   const [activeId, setActiveId] = useState(null);
-  const [routePaused, setRoutePaused] = useState(false);
   const [hoverFine, setHoverFine] = useState(false);
   const [cursor, setCursor] = useState(null);
+  const [revealed, setRevealed] = useState(false);
+  const [loaded, setLoaded] = useState(false);
   const mapRef = useRef(null);
   const active = pins.find((pin) => pin.id === activeId);
 
@@ -31,6 +32,22 @@ export default function WorldMap({ mapSvg, pins, pathD, viewBox }) {
     return () => query.removeEventListener("change", update);
   }, []);
 
+  useEffect(() => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      setRevealed(true);
+      setLoaded(true);
+      return;
+    }
+    const raf = requestAnimationFrame(() => {
+      requestAnimationFrame(() => setRevealed(true));
+    });
+    const timer = setTimeout(() => setLoaded(true), 2600);
+    return () => {
+      cancelAnimationFrame(raf);
+      clearTimeout(timer);
+    };
+  }, []);
+
   function handleMove(event) {
     const rect = event.currentTarget.getBoundingClientRect();
     const xPercent = ((event.clientX - rect.left) / rect.width) * 100;
@@ -38,25 +55,52 @@ export default function WorldMap({ mapSvg, pins, pathD, viewBox }) {
     setCursor({ xPercent, yPercent, ...getLatLngFromPosition(xPercent, yPercent) });
   }
 
-  useEffect(() => {
-    const node = mapRef.current;
-    if (!node || typeof IntersectionObserver === "undefined") {
-      return;
+  const fractions = useMemo(
+    () =>
+      getJourneyFractions(
+        pins.map((pin) => ({
+          lat: pin.lat + (pin.nudgeLat ?? 0),
+          lng: pin.lon + (pin.nudgeLon ?? 0),
+        }))
+      ),
+    [pins]
+  );
+
+  const activeIds = useMemo(() => {
+    if (highlightIds) {
+      return new Set(highlightIds);
     }
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (entries.some((entry) => entry.isIntersecting)) {
-          setRoutePaused(false);
-          observer.disconnect();
-        } else {
-          setRoutePaused(true);
-        }
-      },
-      { threshold: 0.35 }
-    );
-    observer.observe(node);
-    return () => observer.disconnect();
-  }, []);
+    if (activeYear === "all") {
+      return null;
+    }
+    const set = new Set();
+    for (const pin of pins) {
+      if (pin.years && pin.years.start <= activeYear && activeYear <= pin.years.end) {
+        set.add(pin.id);
+      }
+    }
+    return set;
+  }, [pins, activeYear, highlightIds]);
+
+  const lastActiveIndex = useMemo(() => {
+    if (activeYear === "all") {
+      return pins.length - 1;
+    }
+    let index = -1;
+    for (let i = 0; i < pins.length; i++) {
+      const { start, end } = pins[i].years ?? {};
+      if (start != null && start <= activeYear && activeYear <= end) {
+        index = i;
+      }
+    }
+    return index;
+  }, [pins, activeYear]);
+
+  const routeOffset = !revealed
+    ? 1
+    : lastActiveIndex < 0
+      ? 1
+      : 1 - fractions[lastActiveIndex];
 
   function toggle(id) {
     setActiveId((current) => (current === id ? null : id));
@@ -69,11 +113,7 @@ export default function WorldMap({ mapSvg, pins, pathD, viewBox }) {
   }
 
   return (
-    <figure
-      ref={mapRef}
-      className={`${styles.mapWrap} ${routePaused ? styles.routePaused : ""}`}
-      onKeyDown={handleKeyDown}
-    >
+    <figure ref={mapRef} className={styles.mapWrap} onKeyDown={handleKeyDown}>
       <div
         className={styles.mapCanvas}
         onMouseMove={hoverFine ? handleMove : undefined}
@@ -87,7 +127,12 @@ export default function WorldMap({ mapSvg, pins, pathD, viewBox }) {
         />
         <svg className={styles.journeyPath} viewBox={viewBox} aria-hidden="true">
           <mask id="journey-draw-mask">
-            <path d={pathD} pathLength="1" className={styles.drawMask} />
+            <path
+              d={pathD}
+              pathLength="1"
+              className={`${styles.drawMask} ${loaded ? styles.drawLoaded : ""}`}
+              style={{ strokeDashoffset: routeOffset }}
+            />
           </mask>
           <path d={pathD} mask="url(#journey-draw-mask)" />
         </svg>
@@ -111,10 +156,11 @@ export default function WorldMap({ mapSvg, pins, pathD, viewBox }) {
 
         {pins.map((pin, index) => {
           const isActive = pin.id === activeId;
+          const dimmed = activeIds ? !activeIds.has(pin.id) : false;
           return (
             <div
               key={pin.id}
-              className={styles.pinAnchor}
+              className={`${styles.pinAnchor} ${dimmed ? styles.pinDimmed : ""}`}
               style={{
                 left: `${pin.position.xPercent}%`,
                 top: `${pin.position.yPercent}%`,
