@@ -7,7 +7,7 @@
   padding: var(--space-3);
   text-decoration: none;
   color: var(--ink);
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  transition: transform 0.15s ease;
   overflow: hidden;
 }
 
@@ -31,17 +31,6 @@
 .card:focus-visible {
   color: var(--ink);
   transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(43, 42, 51, 0.1);
-}
-
-.wash {
-  position: absolute;
-  top: -0.6rem;
-  right: -0.6rem;
-  width: 170px;
-  height: 72px;
-  opacity: 0.32;
-  pointer-events: none;
 }
 
 .impact {
