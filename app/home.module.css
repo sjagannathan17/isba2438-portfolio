@@ -7,10 +7,10 @@
 
 .heroName {
   font-family: var(--font-heading), Georgia, serif;
-  font-size: clamp(var(--text-3xl), 5.5vw, var(--text-4xl));
+  font-size: clamp(var(--text-3xl), 6vw, 5rem);
   font-weight: 600;
-  line-height: 1.05;
-  letter-spacing: -0.015em;
+  line-height: 1.02;
+  letter-spacing: -0.025em;
   max-width: var(--text-max);
 }
 
@@ -28,7 +28,7 @@
 }
 
 .proof {
-  margin-top: var(--space-6);
+  margin-top: var(--space-5);
 }
 
 .label {
@@ -83,7 +83,14 @@
 }
 
 .journeyMap {
-  max-width: 800px;
+  width: 100%;
+  margin-top: var(--space-5);
+}
+
+.mapCue {
+  margin-top: var(--space-2);
+  font-size: var(--text-s);
+  color: var(--ink-soft);
 }
 
 .grid {

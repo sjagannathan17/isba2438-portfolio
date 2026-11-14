@@ -30,7 +30,8 @@ export default function Home() {
       <section className={styles.hero}>
         <h1 className={styles.heroName}>Srinidhi Jagannathan</h1>
         <p className={styles.heroIntro}>
-          I build AI products and take them from prototype to launch.
+          I have shipped payment systems across three island nations and AI products
+          from prototype to launch.
         </p>
         <div className={styles.heroActions}>
           <ButtonLink href="/projects" variant="primary">
@@ -40,6 +41,10 @@ export default function Home() {
             Get in touch
           </ButtonLink>
         </div>
+        <div className={styles.journeyMap}>
+          <WorldMap mapSvg={dottedMapSvg} pins={pinsWithPositions} pathD={journeyPathD} viewBox={mapViewBox} />
+        </div>
+        <p className={styles.mapCue}>Click a pin to see what I did there.</p>
       </section>
 
       <section className={styles.proof} aria-label="At a glance">
@@ -66,16 +71,6 @@ export default function Home() {
           {projects.map((project) => (
             <ProjectCard key={project.slug} project={project} />
           ))}
-        </div>
-      </section>
-
-      <section className={styles.section}>
-        <p className={styles.label}>Journey</p>
-        <h2 className={styles.sectionHeading}>
-          Seven places, one journey
-        </h2>
-        <div className={styles.journeyMap}>
-          <WorldMap mapSvg={dottedMapSvg} pins={pinsWithPositions} pathD={journeyPathD} viewBox={mapViewBox} />
         </div>
       </section>
 
