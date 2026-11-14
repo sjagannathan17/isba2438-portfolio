@@ -1,5 +1,9 @@
 .hero {
-  padding: 4.5rem 0 2rem;
+  padding: 3rem 0 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  align-items: center;
 }
 
 .heroName {
@@ -22,14 +26,50 @@
   gap: 0.75rem;
 }
 
+.heroCopy {
+  min-width: 0;
+}
+
+.heroMap {
+  min-width: 0;
+}
+
+.heroMap figure {
+  margin-top: 0;
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding: 1.5rem 0;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.statValue {
+  font-size: 1.35rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+}
+
+.statLabel {
+  font-size: 0.9rem;
+  color: var(--ink-soft);
+}
+
 .sectionHeading {
   font-size: 1.75rem;
   font-weight: 700;
   margin-bottom: 0.5rem;
-}
-
-.journey {
-  padding: 4rem 0 0;
 }
 
 .featured {
@@ -46,4 +86,19 @@
 .seeAll {
   margin-top: 1.5rem;
   font-weight: 500;
+}
+
+@media (min-width: 640px) {
+  .stats {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+}
+
+@media (min-width: 900px) {
+  .hero {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+    gap: 3rem;
+    padding-top: 4.5rem;
+  }
 }
