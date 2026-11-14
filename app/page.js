@@ -1,5 +1,4 @@
 import ButtonLink from "@/components/ButtonLink";
-import HeroPainting from "@/components/HeroPainting";
 import ProjectCard from "@/components/ProjectCard";
 import PaintedStroke from "@/components/PaintedStroke";
 import WorldMap from "@/components/WorldMap";
@@ -30,22 +29,17 @@ export default function Home() {
   return (
     <article>
       <section className={styles.hero}>
-        <div className={styles.heroCopy}>
-          <h1 className={styles.heroName}>Srinidhi Jagannathan</h1>
-          <p className={styles.heroIntro}>
-            I build AI products and take them from prototype to launch.
-          </p>
-          <div className={styles.heroActions}>
-            <ButtonLink href="/projects" variant="primary">
-              View work
-            </ButtonLink>
-            <ButtonLink href="/contact-me-server-form" variant="secondary">
-              Get in touch
-            </ButtonLink>
-          </div>
-        </div>
-        <div className={styles.heroPainting}>
-          <HeroPainting />
+        <h1 className={styles.heroName}>Srinidhi Jagannathan</h1>
+        <p className={styles.heroIntro}>
+          I build AI products and take them from prototype to launch.
+        </p>
+        <div className={styles.heroActions}>
+          <ButtonLink href="/projects" variant="primary">
+            View work
+          </ButtonLink>
+          <ButtonLink href="/contact-me-server-form" variant="secondary">
+            Get in touch
+          </ButtonLink>
         </div>
       </section>
 
