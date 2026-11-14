@@ -1,49 +1,46 @@
 .hero {
-  padding: 4rem var(--page-pad) 3rem;
-  margin-inline: calc(var(--page-pad) * -1);
+  padding: 3rem 0 0;
   display: grid;
   grid-template-columns: 1fr;
-  gap: 2.5rem;
+  gap: 2rem;
   align-items: center;
   position: relative;
-  background: linear-gradient(180deg, rgba(21, 29, 46, 0.55), transparent);
 }
 
 .hero::before {
   content: "";
   position: absolute;
   inset: 0;
-  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 600 600' fill='none' stroke='%23e8b75a' stroke-opacity='0.08' stroke-width='1.2'%3E%3Cpath d='M300 80 C 430 90 520 200 500 320 C 480 440 360 530 250 510 C 140 490 70 380 90 260 C 110 150 190 72 300 80 Z'/%3E%3Cpath d='M300 140 C 390 150 460 230 445 320 C 430 410 340 470 260 455 C 180 440 130 360 145 275 C 160 195 220 132 300 140 Z'/%3E%3Cpath d='M300 200 C 355 208 405 260 395 320 C 385 385 320 420 268 410 C 216 400 185 345 195 288 C 205 232 245 194 300 200 Z'/%3E%3Cpath d='M300 260 C 330 265 355 292 350 322 C 345 355 312 370 285 364 C 258 358 240 330 246 300 C 252 272 272 257 300 260 Z'/%3E%3C/svg%3E")
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 600 600' fill='none' stroke='%23c2af87' stroke-opacity='0.45' stroke-width='1.2'%3E%3Cpath d='M300 80 C 430 90 520 200 500 320 C 480 440 360 530 250 510 C 140 490 70 380 90 260 C 110 150 190 72 300 80 Z'/%3E%3Cpath d='M300 140 C 390 150 460 230 445 320 C 430 410 340 470 260 455 C 180 440 130 360 145 275 C 160 195 220 132 300 140 Z'/%3E%3Cpath d='M300 200 C 355 208 405 260 395 320 C 385 385 320 420 268 410 C 216 400 185 345 195 288 C 205 232 245 194 300 200 Z'/%3E%3Cpath d='M300 260 C 330 265 355 292 350 322 C 345 355 312 370 285 364 C 258 358 240 330 246 300 C 252 272 272 257 300 260 Z'/%3E%3C/svg%3E")
     no-repeat right -60px top -30px;
-  background-size: 680px auto;
-  opacity: 0.7;
+  background-size: 620px auto;
+  opacity: 0.5;
   pointer-events: none;
-}
-
-.heroCopy {
-  min-width: 0;
-  position: relative;
 }
 
 .heroName {
   font-family: var(--font-heading), Georgia, serif;
-  font-size: clamp(2.9rem, 6.5vw, 6rem);
+  font-size: clamp(2.4rem, 5.5vw, 3.4rem);
   font-weight: 600;
-  line-height: 1.02;
-  letter-spacing: -0.015em;
+  letter-spacing: -0.01em;
 }
 
 .heroIntro {
-  font-size: 1.25rem;
-  color: var(--text-muted);
-  margin: 1.25rem 0 0.75rem;
-  max-width: 36rem;
+  font-size: 1.2rem;
+  color: var(--ink-soft);
+  margin: 1rem 0 0.75rem;
+  max-width: 34rem;
 }
 
 .heroActions {
   display: flex;
   flex-wrap: wrap;
   gap: 0.75rem;
+}
+
+.heroCopy {
+  min-width: 0;
+  position: relative;
 }
 
 .heroMap {
@@ -58,13 +55,12 @@
   display: grid;
   grid-template-columns: 1fr;
   gap: 1.25rem;
-  margin-top: 4rem;
-  padding: 2.25rem 1.75rem;
-  background: var(--panel-deep);
-  background-image: radial-gradient(rgba(232, 183, 90, 0.13) 1px, transparent 1px);
-  background-size: 17px 17px;
-  border: 1px solid var(--line);
-  border-radius: 14px;
+  margin-top: 3rem;
+  padding: 2rem 1.5rem;
+  background: var(--ink);
+  background-image: radial-gradient(rgba(250, 246, 238, 0.09) 1px, transparent 1px);
+  background-size: 16px 16px;
+  border-radius: 12px;
 }
 
 .stat {
@@ -74,26 +70,25 @@
 }
 
 .statValue {
-  font-size: 1.45rem;
+  font-size: 1.35rem;
   font-weight: 700;
   letter-spacing: -0.01em;
-  color: var(--text);
+  color: #faf6ee;
 }
 
 .statLabel {
   font-size: 0.9rem;
-  color: var(--text-muted);
+  color: rgba(250, 246, 238, 0.66);
 }
 
 .sectionHeading {
-  font-family: var(--font-heading), Georgia, serif;
-  font-size: clamp(2rem, 3.4vw, 2.75rem);
-  font-weight: 600;
-  margin-bottom: 0.75rem;
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
 }
 
 .journey {
-  padding: 6rem 0 0;
+  padding: 4.5rem 0 0;
 }
 
 .journey .sectionHeading {
@@ -101,18 +96,18 @@
 }
 
 .featured {
-  padding: 6rem 0 0;
+  padding: 4.5rem 0 0;
 }
 
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 1.5rem;
-  margin-top: 1.75rem;
+  margin-top: 1.25rem;
 }
 
 .seeAll {
-  margin-top: 1.75rem;
+  margin-top: 1.5rem;
   font-weight: 500;
 }
 
@@ -125,9 +120,8 @@
 
 @media (min-width: 900px) {
   .hero {
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
-    gap: 3.5rem;
-    padding-top: 5.5rem;
-    padding-bottom: 4.5rem;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+    gap: 3rem;
+    padding-top: 4.5rem;
   }
 }

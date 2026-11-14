@@ -13,31 +13,7 @@
   height: 100%;
 }
 
-.dial {
-  fill: rgba(21, 29, 46, 0.7);
-  stroke: var(--line);
-  stroke-width: 1;
-}
-
-.tick {
-  stroke: var(--text-muted);
-  stroke-width: 1;
-}
-
 .needle {
   transform-box: view-box;
   transform-origin: 20px 20px;
-}
-
-.needleNorth {
-  fill: var(--accent);
-}
-
-.needleSouth {
-  fill: var(--text-muted);
-  opacity: 0.5;
-}
-
-.hub {
-  fill: var(--accent-strong);
 }

@@ -1,23 +1,21 @@
 .card {
   display: block;
   position: relative;
-  background: var(--surface-glass);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
+  background: #fffdf8;
   border: 1px solid var(--line);
-  border-radius: 14px;
-  padding: 1.6rem;
+  border-radius: 12px;
+  padding: 1.5rem;
   text-decoration: none;
-  color: var(--text);
-  transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+  color: var(--ink);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
 
 .card::after {
   content: "";
   position: absolute;
   inset: 7px;
-  border: 1.5px dashed rgba(232, 183, 90, 0.35);
-  border-radius: 9px;
+  border: 1.5px dashed rgba(166, 58, 43, 0.35);
+  border-radius: 8px;
   pointer-events: none;
 }
 
@@ -30,29 +28,20 @@
   font-weight: 600;
   letter-spacing: 0.07em;
   text-transform: uppercase;
-  color: var(--accent);
-  background: rgba(13, 19, 33, 0.9);
-  border: 1.5px solid rgba(232, 183, 90, 0.55);
+  color: var(--red-dark);
+  background: #fffdf8;
+  border: 1.5px solid rgba(166, 58, 43, 0.5);
   border-radius: 4px;
   padding: 0.12rem 0.5rem;
   transform: rotate(2.5deg);
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 1px 4px rgba(33, 30, 27, 0.08);
 }
 
 .card:hover,
 .card:focus-visible {
-  color: var(--text);
-  transform: translateY(-3px);
-  border-color: rgba(232, 183, 90, 0.45);
-  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.45), 0 0 24px rgba(232, 183, 90, 0.12);
-}
-
-.tag {
-  color: var(--text-muted);
-  font-size: 0.8rem;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  margin-bottom: 0.6rem;
+  color: var(--ink);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(33, 30, 27, 0.08);
 }
 
 .impact {
@@ -61,7 +50,14 @@
   letter-spacing: -0.01em;
   margin-bottom: 0.75rem;
   padding-right: 3.75rem;
-  color: var(--accent);
+}
+
+.tag {
+  color: var(--ink-soft);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 0.6rem;
 }
 
 .name {
@@ -70,22 +66,11 @@
 }
 
 .blurb {
-  color: var(--text-muted);
+  color: var(--ink-soft);
 }
 
 .more {
   margin-top: 0.9rem;
-  color: var(--accent);
+  color: var(--red);
   font-weight: 500;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .card {
-    transition: none;
-  }
-
-  .card:hover,
-  .card:focus-visible {
-    transform: none;
-  }
 }

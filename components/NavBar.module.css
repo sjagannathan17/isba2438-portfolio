@@ -1,8 +1,6 @@
 .header {
   border-bottom: 1px solid var(--line);
-  background: rgba(13, 19, 33, 0.82);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  background: var(--paper);
 }
 
 .nav {
@@ -22,12 +20,12 @@
   font-family: var(--font-heading), Georgia, serif;
   font-size: 1.15rem;
   font-weight: 600;
-  color: var(--text);
+  color: var(--ink);
   text-decoration: none;
 }
 
 .brand:hover {
-  color: var(--accent);
+  color: var(--red);
 }
 
 .links {
@@ -43,7 +41,7 @@
   left: 0;
   top: 0;
   height: 2px;
-  background: var(--accent);
+  background: var(--red);
   border-radius: 1px;
   pointer-events: none;
 }
@@ -60,17 +58,17 @@
   display: inline-block;
   padding: 0.25rem 0;
   border-bottom: 2px solid transparent;
-  color: var(--text-muted);
+  color: var(--ink-soft);
   text-decoration: none;
 }
 
 .link:hover {
-  color: var(--accent);
+  color: var(--red);
 }
 
 .active {
-  color: var(--text);
-  border-bottom-color: var(--accent);
+  color: var(--ink);
+  border-bottom-color: var(--red);
 }
 
 @media (prefers-reduced-motion: reduce) {

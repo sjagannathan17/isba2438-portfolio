@@ -1,5 +1,5 @@
 import { Suspense } from "react";
-import { Fraunces, Inter } from "next/font/google";
+import { Inter, Playfair_Display } from "next/font/google";
 import NavBar from "@/components/NavBar";
 import Footer from "@/components/Footer";
 import "./globals.css";
@@ -10,7 +10,7 @@ const inter = Inter({
   display: "swap",
 });
 
-const fraunces = Fraunces({
+const playfair = Playfair_Display({
   variable: "--font-heading",
   subsets: ["latin"],
   display: "swap",
@@ -27,7 +27,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={`${inter.variable} ${fraunces.variable}`}>
+    <html lang="en" className={`${inter.variable} ${playfair.variable}`}>
       <body>
         <Suspense>
           <NavBar />

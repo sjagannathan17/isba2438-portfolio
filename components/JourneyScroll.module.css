@@ -13,20 +13,7 @@
   overflow: hidden;
   border: 1px solid var(--line);
   border-radius: 12px;
-  background: var(--panel-deep);
-}
-
-.mapStage::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(
-    120% 120% at 50% 45%,
-    transparent 55%,
-    rgba(4, 7, 14, 0.6) 100%
-  );
-  pointer-events: none;
-  z-index: 1;
+  background: #f3ecdd;
 }
 
 .mapLayer {
@@ -43,10 +30,6 @@
   height: 100%;
 }
 
-.mapArt svg {
-  filter: drop-shadow(0 0 2px rgba(120, 143, 187, 0.4));
-}
-
 .route {
   position: absolute;
   inset: 0;
@@ -57,7 +40,7 @@
 
 .route path {
   fill: none;
-  stroke: var(--accent);
+  stroke: var(--red);
   stroke-width: 0.55;
   stroke-linecap: round;
   opacity: 0.65;
@@ -67,7 +50,6 @@
 .pinLayer {
   position: absolute;
   inset: 0;
-  z-index: 2;
   transition: transform 0.8s ease;
 }
 
@@ -89,9 +71,9 @@
   width: 11px;
   height: 11px;
   border-radius: 50%;
-  background: var(--accent);
-  border: 2px solid var(--bg);
-  box-shadow: 0 0 0 1px var(--accent);
+  background: var(--red);
+  border: 2px solid #fff;
+  box-shadow: 0 0 0 1px var(--red);
   transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
@@ -107,7 +89,7 @@
 .pinActive .pinDot,
 .pinButton:hover .pinDot,
 .pinButton:focus-visible .pinDot {
-  background: var(--accent-strong);
+  background: var(--red-dark);
   transform: scale(1.35);
 }
 
@@ -125,7 +107,7 @@
   aspect-ratio: 5 / 2;
   border: 1px solid var(--line);
   border-radius: 10px;
-  background-color: var(--panel-deep);
+  background-color: #f3ecdd;
   background-repeat: no-repeat;
   margin-bottom: 1rem;
 }
@@ -138,9 +120,9 @@
   width: 11px;
   height: 11px;
   border-radius: 50%;
-  background: var(--accent);
-  border: 2px solid var(--bg);
-  box-shadow: 0 0 0 1px var(--accent);
+  background: var(--red);
+  border: 2px solid #fff;
+  box-shadow: 0 0 0 1px var(--red);
   transform: translate(-50%, -50%);
 }
 
@@ -148,7 +130,7 @@
   font-size: 0.8rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--text-muted);
+  color: var(--ink-soft);
   margin-bottom: 0.1rem;
 }
 
@@ -162,7 +144,7 @@
   font-size: 0.8rem;
   letter-spacing: 0.09em;
   text-transform: uppercase;
-  color: var(--accent);
+  color: var(--red);
   margin-bottom: 0.5rem;
 }
 
