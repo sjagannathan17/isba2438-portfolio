@@ -110,7 +110,7 @@ export default function AboutMe() {
         <h2>
           What I&rsquo;m looking for
         </h2>
-        <p>
+        <p className={styles.detail}>
           Associate or early-career Product Manager roles in AI and fintech, full-time,
           starting after December 2026. Open to relocating anywhere in the US.
         </p>
