@@ -1,9 +1,9 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import ButtonLink from "@/components/ButtonLink";
 import CareerScrubber from "@/components/CareerScrubber";
-import ProjectCard from "@/components/ProjectCard";
 import WorldMap from "@/components/WorldMap";
 import { projects } from "@/lib/projects";
 import { pins } from "@/lib/journeyPins";
@@ -18,6 +18,8 @@ const pinsWithPositions = pins.map((pin) => ({
 const journeyPathD = getJourneyPathD(
   pins.map((pin) => ({ lat: pin.lat + (pin.nudgeLat ?? 0), lng: pin.lon + (pin.nudgeLon ?? 0) }))
 );
+
+const firstSentence = (text) => `${text.split(". ")[0]}.`;
 
 const stats = [
   {
@@ -44,20 +46,23 @@ export default function Home() {
   return (
     <article>
       <section className={styles.hero}>
-        <h1 className={styles.heroName}>Srinidhi Jagannathan</h1>
-        <p className={styles.heroIntro}>
-          I have shipped payment systems across three island nations and AI products
-          from prototype to launch.
-        </p>
-        <div className={styles.heroActions}>
-          <ButtonLink href="/projects" variant="primary">
-            View work
-          </ButtonLink>
-          <ButtonLink href="/contact-me-server-form" variant="secondary">
-            Get in touch
-          </ButtonLink>
+        <div className={styles.heroText}>
+          <p className={styles.eyebrow}>Srinidhi Jagannathan</p>
+          <h1 className={styles.headline}>From complex systems to products people can use.</h1>
+          <p className={styles.heroIntro}>
+            I have shipped payment systems across three island nations and AI products
+            from prototype to launch.
+          </p>
+          <div className={styles.heroActions}>
+            <ButtonLink href="/projects" variant="primary">
+              Explore my work
+            </ButtonLink>
+            <ButtonLink href="/contact-me-server-form" variant="secondary">
+              Get in touch
+            </ButtonLink>
+          </div>
         </div>
-        <div className={styles.journeyMap}>
+        <div className={styles.heroMap}>
           <WorldMap
             mapSvg={dottedMapSvg}
             pins={pinsWithPositions}
@@ -66,16 +71,51 @@ export default function Home() {
             activeYear={year}
             highlightIds={highlight}
           />
+          <p className={styles.mapCue}>Click a pin to see what I did there.</p>
+          <CareerScrubber pins={pins} value={year} onChange={setYear} />
         </div>
-        <p className={styles.mapCue}>Click a pin to see what I did there.</p>
-        <CareerScrubber pins={pins} value={year} onChange={setYear} />
       </section>
 
-      <section className={styles.proof} aria-label="At a glance">
+      <section className={styles.work} aria-label="Selected work">
+        <p className={styles.label}>Selected work</p>
+        {projects.map((project, index) => (
+          <Link
+            key={project.slug}
+            href={`/projects/${project.slug}`}
+            className={`${styles.feature} ${index % 2 === 1 ? styles.featureFlip : ""}`}
+            onMouseEnter={() => setHighlight(project.relatedPins)}
+            onMouseLeave={() => setHighlight(null)}
+            onFocus={() => setHighlight(project.relatedPins)}
+            onBlur={() => setHighlight(null)}
+          >
+            <div className={styles.featurePanel} aria-hidden="true">
+              <span className={styles.featureImpact}>{project.impact}</span>
+            </div>
+            <div className={styles.featureBody}>
+              <h2 className={styles.featureName}>{project.name}</h2>
+              <p className={styles.featureRow}>
+                <span className={styles.featureLabel}>The problem</span>
+                {firstSentence(project.why)}
+              </p>
+              <p className={styles.featureRow}>
+                <span className={styles.featureLabel}>My role</span>
+                {firstSentence(project.role)}
+              </p>
+              <p className={styles.featureRow}>
+                <span className={styles.featureLabel}>Result</span>
+                {project.impact}
+              </p>
+              <span className={styles.featureLink}>
+                Explore case study{" "}
+                <span className={styles.arrow} aria-hidden="true">&rarr;</span>
+              </span>
+            </div>
+          </Link>
+        ))}
+      </section>
+
+      <section className={styles.impactBand} aria-label="At a glance">
         <p className={styles.label}>At a glance</p>
-        <h2 className={styles.sectionHeading}>
-          In numbers
-        </h2>
         <div className={styles.stats}>
           {stats.map((stat) => (
             <p
@@ -90,26 +130,6 @@ export default function Home() {
               <span className={styles.statValue}>{stat.value}</span>
               <span className={styles.statLabel}>{stat.label}</span>
             </p>
-          ))}
-        </div>
-      </section>
-
-      <section className={styles.section}>
-        <p className={styles.label}>Work</p>
-        <h2 className={styles.sectionHeading}>
-          Selected work
-        </h2>
-        <div className={styles.grid}>
-          {projects.map((project) => (
-            <div
-              key={project.slug}
-              onMouseEnter={() => setHighlight(project.relatedPins)}
-              onMouseLeave={() => setHighlight(null)}
-              onFocusCapture={() => setHighlight(project.relatedPins)}
-              onBlurCapture={() => setHighlight(null)}
-            >
-              <ProjectCard project={project} />
-            </div>
           ))}
         </div>
       </section>
