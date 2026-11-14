@@ -1,6 +1,6 @@
 .footer {
   border-top: 1px solid var(--line);
-  background: var(--paper-soft);
+  background: var(--bg-soft);
 }
 
 .inner {
@@ -19,7 +19,7 @@
 }
 
 .coords {
-  color: var(--ink-soft);
+  color: var(--text-muted);
   font-size: 0.82rem;
 }
 

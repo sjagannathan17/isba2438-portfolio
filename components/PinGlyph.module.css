@@ -1,0 +1,7 @@
+.glyphPin {
+  fill: var(--accent);
+}
+
+.glyphHole {
+  fill: var(--bg);
+}

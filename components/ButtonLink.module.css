@@ -1,47 +1,47 @@
 .button {
   display: inline-block;
-  padding: 0.55rem 1.5rem;
-  border-radius: 8px;
+  padding: 0.6rem 1.6rem;
+  border-radius: 10px;
   font-size: 1rem;
   text-decoration: none;
-  border: 1.5px solid var(--red);
+  border: 1.5px solid var(--accent);
   transition: transform 0.15s ease, background 0.15s ease, color 0.15s ease,
     border-color 0.15s ease, box-shadow 0.15s ease;
 }
 
 .primary {
-  background: var(--red);
-  color: var(--paper);
+  background: var(--accent);
+  color: var(--bg);
 }
 
 .primary:hover {
-  background: var(--red-dark);
-  border-color: var(--red-dark);
-  color: var(--paper);
+  background: var(--accent-strong);
+  border-color: var(--accent-strong);
+  color: var(--bg);
   transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(166, 58, 43, 0.25);
+  box-shadow: 0 6px 18px rgba(232, 183, 90, 0.3);
 }
 
 .primary:active {
   transform: translateY(1px);
   box-shadow: none;
-  background: var(--red-dark);
+  background: var(--accent-strong);
 }
 
 .secondary {
   background: transparent;
-  color: var(--red);
+  color: var(--accent);
 }
 
 .secondary:hover {
-  background: var(--panel);
-  color: var(--red-dark);
+  background: rgba(232, 183, 90, 0.1);
+  color: var(--accent);
   transform: translateY(-1px);
 }
 
 .secondary:active {
   transform: translateY(1px);
-  background: var(--paper-soft);
+  background: rgba(232, 183, 90, 0.16);
 }
 
 @media (prefers-reduced-motion: reduce) {

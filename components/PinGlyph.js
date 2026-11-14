@@ -1,3 +1,5 @@
+import styles from "./PinGlyph.module.css";
+
 export default function PinGlyph() {
   return (
     <svg
@@ -10,9 +12,9 @@ export default function PinGlyph() {
     >
       <path
         d="M8 1a5 5 0 0 0-5 5c0 3.8 5 9 5 9s5-5.2 5-9a5 5 0 0 0-5-5z"
-        fill="var(--red)"
+        className={styles.glyphPin}
       />
-      <circle cx="8" cy="6" r="1.8" fill="#faf6ee" />
+      <circle cx="8" cy="6" r="1.8" className={styles.glyphHole} />
     </svg>
   );
 }

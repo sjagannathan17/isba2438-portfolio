@@ -1,5 +1,5 @@
 .tag {
-  color: var(--ink-soft);
+  color: var(--text-muted);
   font-size: 0.8rem;
   text-transform: uppercase;
   letter-spacing: 0.08em;
@@ -12,34 +12,33 @@
 }
 
 .section h2 {
-  font-family: var(--font-body), system-ui, sans-serif;
-  font-size: 0.8rem;
+  font-family: var(--font-heading), Georgia, serif;
+  font-size: clamp(1.8rem, 2.6vw, 2.25rem);
   font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--ink-soft);
-  margin-bottom: 0.5rem;
+  letter-spacing: -0.01em;
+  color: var(--text);
+  margin-bottom: 0.75rem;
 }
 
 .section h2::before {
   content: "";
   display: inline-block;
-  width: 7px;
-  height: 7px;
-  background: var(--red);
+  width: 9px;
+  height: 9px;
+  background: var(--accent);
   transform: rotate(45deg);
-  margin-right: 0.55rem;
-  vertical-align: 1px;
+  margin-right: 0.6rem;
+  vertical-align: 2px;
 }
 
 .coords {
-  color: var(--ink-soft);
+  color: var(--text-muted);
   font-size: 0.9rem;
   margin-top: 0.4rem;
 }
 
 .techLine {
-  color: var(--ink);
+  color: var(--text);
   max-width: 46rem;
 }
 

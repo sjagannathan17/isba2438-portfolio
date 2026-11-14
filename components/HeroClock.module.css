@@ -2,6 +2,6 @@
   font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
   font-size: 0.8rem;
   letter-spacing: 0.02em;
-  color: var(--ink-soft);
+  color: var(--text-muted);
   margin: 0 0 2rem;
 }
