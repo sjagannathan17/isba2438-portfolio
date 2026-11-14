@@ -1,4 +1,5 @@
-import CompassIcon from "@/components/CompassIcon";
+import NextStep from "@/components/NextStep";
+import PageHeader from "@/components/PageHeader";
 import { projects, getProject } from "@/lib/projects";
 import { notFound } from "next/navigation";
 import styles from "./project.module.css";
@@ -21,17 +22,13 @@ export default async function ProjectPage({ params }) {
   if (!project) {
     notFound();
   }
+  const other = projects.find((candidate) => candidate.slug !== project.slug);
 
   return (
     <article>
-      <p className="pageIcon">
-        <CompassIcon />
-      </p>
-      <p className={styles.tag}>{project.tag}</p>
-      <h1>{project.name}</h1>
-      <p className={styles.coords}>
+      <PageHeader label={project.tag} title={project.name}>
         {project.place} · {project.coords}
-      </p>
+      </PageHeader>
 
       <section className={styles.section}>
         <h2>What it does</h2>
@@ -58,6 +55,9 @@ export default async function ProjectPage({ params }) {
           {project.link.label}
         </a>
       </p>
+
+      <NextStep href={`/projects/${other.slug}`}>Next project: {other.name}</NextStep>
+      <NextStep href="/projects">All projects</NextStep>
     </article>
   );
 }

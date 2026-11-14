@@ -1,32 +1,12 @@
-.intro {
-  font-size: 1.15rem;
-  max-width: 34rem;
-  margin-top: 0.75rem;
-}
-
 .section {
-  margin-top: 3.5rem;
+  margin-top: var(--space-5);
 }
 
 .section h2 {
-  font-family: var(--font-body), system-ui, sans-serif;
-  font-size: 0.8rem;
+  font-family: var(--font-heading), Georgia, serif;
+  font-size: var(--text-l);
   font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--ink-soft);
-  margin-bottom: 1.25rem;
-}
-
-.section h2::before {
-  content: "";
-  display: inline-block;
-  width: 7px;
-  height: 7px;
-  background: var(--red);
-  transform: rotate(45deg);
-  margin-right: 0.55rem;
-  vertical-align: 1px;
+  margin-bottom: var(--space-3);
 }
 
 .timeline {
@@ -36,7 +16,7 @@
 
 .item {
   position: relative;
-  padding: 0 0 2.25rem 1.75rem;
+  padding: 0 0 var(--space-4) var(--space-3);
 }
 
 .item::before {
@@ -71,31 +51,31 @@
 
 .period {
   margin: 0 0 0.1rem;
-  font-size: 0.8rem;
+  font-size: var(--text-xs);
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--ink-soft);
 }
 
 .item h3 {
-  font-size: 1.1rem;
+  font-size: var(--text-m);
   font-weight: 600;
   margin-bottom: 0.1rem;
 }
 
 .org {
   color: var(--ink-soft);
-  font-size: 0.95rem;
-  margin-bottom: 0.35rem;
+  font-size: var(--text-s);
+  margin-bottom: var(--space-1);
 }
 
 .detail {
-  max-width: 34rem;
+  max-width: var(--text-max);
 }
 
 .skillGroup {
   border-top: 1px solid var(--line);
-  padding: 0.7rem 0;
+  padding: var(--space-2) 0;
 }
 
 .skillGroup:first-of-type {
@@ -104,31 +84,30 @@
 }
 
 .skillGroup h3 {
-  font-family: var(--font-body), system-ui, sans-serif;
-  font-size: 0.9rem;
+  font-size: var(--text-s);
   font-weight: 600;
   color: var(--ink);
 }
 
 .skillGroup p {
   color: var(--ink-soft);
-  font-size: 0.95rem;
-  max-width: 34rem;
+  font-size: var(--text-s);
+  max-width: var(--text-max);
 }
 
 @media (min-width: 640px) {
   .skillGroup {
     display: grid;
     grid-template-columns: 11rem 1fr;
-    gap: 0 1.5rem;
+    gap: 0 var(--space-3);
     align-items: baseline;
   }
 }
 
 .section:last-child p {
-  max-width: 34rem;
+  max-width: var(--text-max);
 }
 
 .section:last-child .button {
-  margin-top: 1rem;
+  margin-top: var(--space-2);
 }

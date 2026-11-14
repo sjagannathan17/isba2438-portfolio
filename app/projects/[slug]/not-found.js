@@ -1,5 +1,4 @@
 import Link from "next/link";
-import CompassIcon from "@/components/CompassIcon";
 import styles from "./not-found.module.css";
 
 export const metadata = {
@@ -9,9 +8,6 @@ export const metadata = {
 export default function ProjectNotFound() {
   return (
     <section className={styles.wrap}>
-      <p className="pageIcon">
-        <CompassIcon />
-      </p>
       <h1>Project not found</h1>
       <p>
         This page is not on the map. The project may have been renamed, or the address

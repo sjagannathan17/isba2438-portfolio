@@ -1,49 +1,27 @@
-.tag {
-  color: var(--ink-soft);
-  font-size: 0.8rem;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  margin-bottom: 0.4rem;
-}
-
 .section {
-  margin-bottom: 2.25rem;
-  max-width: 34rem;
+  margin-top: var(--space-5);
+  max-width: var(--text-max);
 }
 
 .section h2 {
-  font-family: var(--font-body), system-ui, sans-serif;
-  font-size: 0.8rem;
+  font-family: var(--font-heading), Georgia, serif;
+  font-size: var(--text-l);
   font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--ink-soft);
-  margin-bottom: 0.5rem;
-}
-
-.section h2::before {
-  content: "";
-  display: inline-block;
-  width: 7px;
-  height: 7px;
-  background: var(--red);
-  transform: rotate(45deg);
-  margin-right: 0.55rem;
-  vertical-align: 1px;
+  margin-bottom: var(--space-2);
 }
 
 .coords {
   color: var(--ink-soft);
-  font-size: 0.9rem;
-  margin-top: 0.4rem;
+  font-size: var(--text-s);
+  margin-top: var(--space-2);
 }
 
 .techLine {
-  color: var(--ink);
-  max-width: 46rem;
+  color: var(--ink-soft);
+  max-width: var(--text-max);
 }
 
 .repoLink {
-  margin-top: 2rem;
+  margin-top: var(--space-4);
   font-weight: 500;
 }

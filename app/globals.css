@@ -7,6 +7,26 @@
   --red: #a63a2b;
   --red-dark: #872c20;
   --line: #e3dac6;
+
+  --space-1: 0.5rem;
+  --space-2: 1rem;
+  --space-3: 1.5rem;
+  --space-4: 2.5rem;
+  --space-5: 4rem;
+  --space-6: 6rem;
+  --space-7: 8rem;
+
+  --text-xs: 0.8125rem;
+  --text-s: 1rem;
+  --text-m: 1.25rem;
+  --text-l: 1.5625rem;
+  --text-xl: 1.9375rem;
+  --text-2xl: 2.4375rem;
+  --text-3xl: 3.0625rem;
+  --text-4xl: 3.8125rem;
+
+  --page-max: 1120px;
+  --text-max: 65ch;
 }
 
 * {
@@ -30,7 +50,6 @@ body {
   display: flex;
   flex-direction: column;
   background: var(--paper);
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='linear' slope='0.05'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)'/%3E%3C/svg%3E");
   color: var(--ink);
   font-family: var(--font-body), system-ui, -apple-system, sans-serif;
   line-height: 1.6;
@@ -50,15 +69,8 @@ h6 {
 }
 
 h1 {
-  font-size: clamp(2rem, 4vw, 2.6rem);
+  font-size: var(--text-2xl);
   font-weight: 700;
-}
-
-.lede {
-  color: var(--ink-soft);
-  max-width: 34rem;
-  margin-top: 0.75rem;
-  font-size: 1.05rem;
 }
 
 a {
@@ -77,9 +89,14 @@ a:hover {
 .page {
   flex: 1;
   width: 100%;
-  max-width: 1040px;
+  max-width: var(--page-max);
   margin: 0 auto;
-  padding: 3rem 1.25rem 4rem;
+  padding: var(--space-5) var(--space-2) var(--space-6);
+}
+
+.pageIcon {
+  margin: 0 0 var(--space-2);
+  color: var(--ink-soft);
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -96,9 +113,4 @@ a:hover {
       opacity: 1;
     }
   }
-}
-
-.pageIcon {
-  margin: 0 0 1rem;
-  color: var(--ink-soft);
 }

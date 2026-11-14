@@ -1,5 +1,6 @@
-import CompassIcon from "@/components/CompassIcon";
 import ButtonLink from "@/components/ButtonLink";
+import NextStep from "@/components/NextStep";
+import PageHeader from "@/components/PageHeader";
 import Reveal from "@/components/Reveal";
 import styles from "./about-me.module.css";
 
@@ -55,14 +56,10 @@ const skills = [
 export default function AboutMe() {
   return (
     <article>
-      <p className="pageIcon">
-        <CompassIcon />
-      </p>
-      <h1>About Me</h1>
-      <p className={styles.intro}>
+      <PageHeader label="About">
         Srinidhi Jagannathan, an AI builder and product manager, and an MS in Business
         Analytics student at Santa Clara University.
-      </p>
+      </PageHeader>
 
       <section className={styles.section}>
         <h2>Experience</h2>
@@ -111,6 +108,8 @@ export default function AboutMe() {
         </p>
         <ButtonLink href="/contact-me-server-form">Get in touch</ButtonLink>
       </section>
+
+      <NextStep href="/projects">Explore the projects</NextStep>
     </article>
   );
 }

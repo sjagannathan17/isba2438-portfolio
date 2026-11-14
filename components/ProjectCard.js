@@ -80,41 +80,8 @@ function CountValue({ impact }) {
 }
 
 export default function ProjectCard({ project }) {
-  const cardRef = useRef(null);
-  const tiltRef = useRef(false);
-
-  useEffect(() => {
-    tiltRef.current =
-      window.matchMedia("(hover: hover) and (pointer: fine)").matches &&
-      !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  }, []);
-
-  function handleMove(event) {
-    if (!tiltRef.current || !cardRef.current) {
-      return;
-    }
-    const rect = cardRef.current.getBoundingClientRect();
-    const x = (event.clientX - rect.left) / rect.width - 0.5;
-    const y = (event.clientY - rect.top) / rect.height - 0.5;
-    const rotateY = (x * 2 * 6).toFixed(2);
-    const rotateX = (-y * 2 * 6).toFixed(2);
-    cardRef.current.style.transform = `translateY(-2px) perspective(700px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
-  }
-
-  function handleLeave() {
-    if (cardRef.current) {
-      cardRef.current.style.transform = "";
-    }
-  }
-
   return (
-    <Link
-      ref={cardRef}
-      href={`/projects/${project.slug}`}
-      className={styles.card}
-      onMouseMove={handleMove}
-      onMouseLeave={handleLeave}
-    >
+    <Link href={`/projects/${project.slug}`} className={styles.card}>
       <span className={styles.stamp}>
         {project.year} · {project.place}
       </span>

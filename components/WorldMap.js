@@ -156,8 +156,6 @@ export default function WorldMap({ mapSvg, pins, pathD, viewBox }) {
           );
         })}
       </div>
-
-      <figcaption className={styles.mapCaption}>Seven places, one journey.</figcaption>
     </figure>
   );
 }
