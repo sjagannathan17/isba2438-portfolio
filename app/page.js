@@ -1,30 +1,21 @@
 import ButtonLink from "@/components/ButtonLink";
-import JourneyScroll from "@/components/JourneyScroll";
+import HeroPainting from "@/components/HeroPainting";
 import ProjectCard from "@/components/ProjectCard";
 import PaintedStroke from "@/components/PaintedStroke";
+import WorldMap from "@/components/WorldMap";
 import { projects } from "@/lib/projects";
 import { pins } from "@/lib/journeyPins";
-import {
-  dottedMapDots,
-  getJourneyFractions,
-  getJourneyPathD,
-  getPinPosition,
-  mapViewBox,
-} from "@/lib/dottedMap";
+import { dottedMapSvg, getPinPosition, getJourneyPathD, mapViewBox } from "@/lib/dottedMap";
 import styles from "./home.module.css";
-
-const journeyLatLngs = pins.map((pin) => ({
-  lat: pin.lat + (pin.nudgeLat ?? 0),
-  lng: pin.lon + (pin.nudgeLon ?? 0),
-}));
 
 const pinsWithPositions = pins.map((pin) => ({
   ...pin,
   position: getPinPosition(pin.lat + (pin.nudgeLat ?? 0), pin.lon + (pin.nudgeLon ?? 0)),
 }));
 
-const journeyPathD = getJourneyPathD(journeyLatLngs);
-const journeyFractions = getJourneyFractions(journeyLatLngs);
+const journeyPathD = getJourneyPathD(
+  pins.map((pin) => ({ lat: pin.lat + (pin.nudgeLat ?? 0), lng: pin.lon + (pin.nudgeLon ?? 0) }))
+);
 
 const stats = [
   { value: "2.5 years", label: "in fintech payments" },
@@ -32,46 +23,33 @@ const stats = [
     value: "3 countries",
     label: "where I helped launch RTGS and ACH payment systems (Fiji, Samoa, Vanuatu)",
   },
-  { value: "60+", label: "graduate students mentored as a TA" },
+  { value: "60+ graduate students", label: "mentored as a TA" },
 ];
 
 export default function Home() {
   return (
     <article>
       <section className={styles.hero}>
-        <h1 className={styles.heroName}>Srinidhi Jagannathan</h1>
-        <p className={styles.heroIntro}>
-          I build AI products and take them from prototype to launch.
-        </p>
-        <div className={styles.heroActions}>
-          <ButtonLink href="/projects" variant="primary">
-            View work
-          </ButtonLink>
-          <ButtonLink href="/contact-me-server-form" variant="secondary">
-            Get in touch
-          </ButtonLink>
+        <div className={styles.heroCopy}>
+          <h1 className={styles.heroName}>Srinidhi Jagannathan</h1>
+          <p className={styles.heroIntro}>
+            I build AI products and take them from prototype to launch.
+          </p>
+          <div className={styles.heroActions}>
+            <ButtonLink href="/projects" variant="primary">
+              View work
+            </ButtonLink>
+            <ButtonLink href="/contact-me-server-form" variant="secondary">
+              Get in touch
+            </ButtonLink>
+          </div>
         </div>
-        <p className={styles.scrollCue}>
-          Scroll to paint my journey <span aria-hidden="true">&darr;</span>
-        </p>
+        <div className={styles.heroPainting}>
+          <HeroPainting />
+        </div>
       </section>
 
-      <section className={styles.section}>
-        <p className={styles.label}>Journey</p>
-        <h2 className={styles.sectionHeading}>
-          <PaintedStroke color="var(--wc-teal)" />
-          Seven places, one journey
-        </h2>
-        <JourneyScroll
-          dots={dottedMapDots}
-          pins={pinsWithPositions}
-          pathD={journeyPathD}
-          viewBox={mapViewBox}
-          fractions={journeyFractions}
-        />
-      </section>
-
-      <section className={styles.section} aria-label="At a glance">
+      <section className={styles.proof} aria-label="At a glance">
         <p className={styles.label}>At a glance</p>
         <h2 className={styles.sectionHeading}>
           <PaintedStroke color="var(--wc-ochre)" />
@@ -97,6 +75,17 @@ export default function Home() {
           {projects.map((project) => (
             <ProjectCard key={project.slug} project={project} />
           ))}
+        </div>
+      </section>
+
+      <section className={styles.section}>
+        <p className={styles.label}>Journey</p>
+        <h2 className={styles.sectionHeading}>
+          <PaintedStroke color="var(--wc-teal)" />
+          Seven places, one journey
+        </h2>
+        <div className={styles.journeyMap}>
+          <WorldMap mapSvg={dottedMapSvg} pins={pinsWithPositions} pathD={journeyPathD} viewBox={mapViewBox} />
         </div>
       </section>
 

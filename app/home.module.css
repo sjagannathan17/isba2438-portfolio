@@ -1,8 +1,28 @@
 .hero {
   padding: var(--space-5) 0 0;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-4);
+  align-items: center;
+}
+
+.heroPainting {
+  min-width: 0;
+  max-width: 560px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+@media (min-width: 900px) {
+  .hero {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: var(--space-5);
+  }
+
+  .heroPainting {
+    margin: 0;
+    justify-self: end;
+  }
 }
 
 .heroName {
@@ -27,11 +47,8 @@
   gap: var(--space-2);
 }
 
-.scrollCue {
+.proof {
   margin-top: var(--space-6);
-  font-family: var(--font-hand), cursive;
-  font-size: var(--text-m);
-  color: var(--ink-soft);
 }
 
 .label {
@@ -47,10 +64,7 @@
   font-size: var(--text-2xl);
   font-weight: 600;
   margin-bottom: var(--space-4);
-}
-
-.section {
-  margin-top: var(--space-6);
+  position: relative;
 }
 
 .stats {
@@ -74,7 +88,7 @@
 
 .statValue {
   font-family: var(--font-heading), Georgia, serif;
-  font-size: var(--text-xl);
+  font-size: var(--text-l);
   font-weight: 600;
   color: var(--ink);
 }
@@ -82,7 +96,14 @@
 .statLabel {
   font-size: var(--text-s);
   color: var(--ink-soft);
-  max-width: 34ch;
+}
+
+.section {
+  margin-top: var(--space-6);
+}
+
+.journeyMap {
+  max-width: 800px;
 }
 
 .grid {

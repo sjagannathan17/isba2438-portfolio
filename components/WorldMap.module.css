@@ -1,0 +1,245 @@
+.mapWrap {
+  position: relative;
+  max-width: 800px;
+  margin: 0;
+}
+
+.mapCanvas {
+  position: relative;
+}
+
+.mapSvg svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.journeyPath {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.journeyPath path {
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 0.55;
+  stroke-dasharray: 2.2 2.2;
+  stroke-linecap: round;
+  opacity: 0.65;
+}
+
+.drawMask {
+  fill: none;
+  stroke: #fff;
+  stroke-width: 2;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: drawJourney 2.2s ease-out forwards 0.3s;
+}
+
+.routePaused .drawMask {
+  animation-play-state: paused;
+}
+
+@keyframes drawJourney {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.crosshair {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 3;
+}
+
+.crossV {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: rgba(33, 30, 27, 0.18);
+}
+
+.crossH {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: rgba(33, 30, 27, 0.18);
+}
+
+.crossLabel {
+  position: absolute;
+  transform: translate(10px, 12px);
+  white-space: nowrap;
+  font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  font-size: var(--text-xs);
+  color: var(--ink);
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 0.05rem 0.4rem;
+  box-shadow: 0 2px 8px rgba(33, 30, 27, 0.08);
+}
+
+.crossLabelLeft {
+  transform: translate(-10px, 12px) translateX(-100%);
+}
+
+.crossLabelBelow {
+  transform: translate(10px, -30px);
+}
+
+.crossLabelLeft.crossLabelBelow {
+  transform: translate(-10px, -30px) translateX(-100%);
+}
+
+.pinAnchor {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  animation: pinPop 0.45s ease backwards;
+  animation-delay: var(--pin-delay, 0s);
+  z-index: 2;
+}
+
+@keyframes pinPop {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.3);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+.pinButton {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+.pinDot {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: var(--accent);
+  border: 2px solid var(--paper);
+  box-shadow: 0 0 0 1px var(--accent);
+  transition: transform 0.15s ease, background 0.15s ease;
+}
+
+.pinButton:hover .pinDot,
+.pinButton:focus-visible .pinDot {
+  background: var(--accent-strong);
+  transform: scale(1.3);
+}
+
+.pinActive .pinDot {
+  background: var(--accent-strong);
+  transform: scale(1.3);
+}
+
+.tooltip {
+  position: absolute;
+  bottom: calc(100% + 6px);
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  font-family: var(--font-hand), cursive;
+  font-size: var(--text-m);
+  line-height: 1;
+  color: var(--ink);
+  background: var(--paper);
+  border: 1px solid var(--line);
+  padding: 0.15rem 0.55rem 0.25rem;
+  border-radius: 6px;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.15s ease;
+  z-index: 4;
+}
+
+.tooltipLeft {
+  left: auto;
+  right: 0;
+  transform: none;
+}
+
+.pinButton:hover .tooltip,
+.pinButton:focus-visible .tooltip {
+  opacity: 1;
+}
+
+.card {
+  position: absolute;
+  bottom: 24px;
+  width: 240px;
+  max-width: calc(100vw - 3.5rem);
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: var(--space-2);
+  box-shadow: 0 6px 18px rgba(33, 30, 27, 0.12);
+  z-index: 4;
+}
+
+.cardCenter {
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.cardLeft {
+  left: -6px;
+}
+
+.cardRight {
+  right: -6px;
+}
+
+.cardPlace {
+  font-weight: 650;
+  letter-spacing: -0.01em;
+  margin-bottom: 0.1rem;
+}
+
+.cardDates {
+  color: var(--accent);
+  font-size: var(--text-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+  margin-bottom: var(--space-1);
+}
+
+.cardText {
+  font-size: var(--text-s);
+  margin-bottom: var(--space-2);
+}
+
+.cardLink {
+  font-size: var(--text-s);
+  font-weight: 500;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .drawMask {
+    animation: none;
+    stroke-dashoffset: 0;
+  }
+
+  .pinAnchor {
+    animation: none;
+  }
+}
