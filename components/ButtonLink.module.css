@@ -4,19 +4,19 @@
   border-radius: 8px;
   font-size: var(--text-s);
   text-decoration: none;
-  border: 1.5px solid var(--red);
+  border: 1.5px solid var(--accent);
   transition: transform 0.15s ease, background 0.15s ease, color 0.15s ease,
     border-color 0.15s ease, box-shadow 0.15s ease;
 }
 
 .primary {
-  background: var(--red);
+  background: var(--accent);
   color: var(--paper);
 }
 
 .primary:hover {
-  background: var(--red-dark);
-  border-color: var(--red-dark);
+  background: var(--accent-strong);
+  border-color: var(--accent-strong);
   color: var(--paper);
   transform: translateY(-1px);
   box-shadow: 0 4px 12px rgba(166, 58, 43, 0.25);
@@ -25,17 +25,17 @@
 .primary:active {
   transform: translateY(1px);
   box-shadow: none;
-  background: var(--red-dark);
+  background: var(--accent-strong);
 }
 
 .secondary {
   background: transparent;
-  color: var(--red);
+  color: var(--accent);
 }
 
 .secondary:hover {
   background: var(--panel);
-  color: var(--red-dark);
+  color: var(--accent-strong);
   transform: translateY(-1px);
 }
 

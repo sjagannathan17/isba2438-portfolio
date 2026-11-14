@@ -2,6 +2,7 @@ import ButtonLink from "@/components/ButtonLink";
 import NextStep from "@/components/NextStep";
 import PageHeader from "@/components/PageHeader";
 import Reveal from "@/components/Reveal";
+import WashBlob from "@/components/WashBlob";
 import styles from "./about-me.module.css";
 
 export const metadata = {
@@ -62,7 +63,10 @@ export default function AboutMe() {
       </PageHeader>
 
       <section className={styles.section}>
-        <h2>Experience</h2>
+        <h2>
+          <WashBlob color="var(--wc-teal)" />
+          Experience
+        </h2>
         <div className={styles.timeline}>
           {experience.map((entry) => (
             <Reveal key={entry.role} className={styles.item}>
@@ -77,7 +81,10 @@ export default function AboutMe() {
       </section>
 
       <section className={styles.section}>
-        <h2>Education</h2>
+        <h2>
+          <WashBlob color="var(--wc-rose)" />
+          Education
+        </h2>
         <div className={styles.timeline}>
           {education.map((entry) => (
             <Reveal key={entry.school} className={styles.item}>
@@ -91,7 +98,10 @@ export default function AboutMe() {
       </section>
 
       <section className={styles.section}>
-        <h2>Skills</h2>
+        <h2>
+          <WashBlob color="var(--wc-ochre)" />
+          Skills
+        </h2>
         {skills.map((group) => (
           <div key={group.group} className={styles.skillGroup}>
             <h3>{group.group}</h3>
@@ -101,7 +111,10 @@ export default function AboutMe() {
       </section>
 
       <section className={styles.section}>
-        <h2>What I&rsquo;m looking for</h2>
+        <h2>
+          <WashBlob color="var(--wc-sage)" />
+          What I&rsquo;m looking for
+        </h2>
         <p>
           Associate or early-career Product Manager roles in AI and fintech, full-time,
           starting after December 2026. Open to relocating anywhere in the US.

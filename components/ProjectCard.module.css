@@ -1,47 +1,47 @@
 .card {
   display: block;
   position: relative;
-  background: #fffdf8;
-  border: 1px solid var(--line);
-  border-radius: 12px;
+  background: var(--paper);
+  border: 1px solid rgba(43, 42, 51, 0.4);
+  border-radius: 6px;
   padding: var(--space-3);
   text-decoration: none;
   color: var(--ink);
   transition: transform 0.15s ease, box-shadow 0.15s ease;
+  overflow: hidden;
 }
 
-.card::after {
-  content: "";
+.postmark {
   position: absolute;
-  inset: 7px;
-  border: 1.5px dashed rgba(166, 58, 43, 0.35);
-  border-radius: 8px;
-  pointer-events: none;
-}
-
-.stamp {
-  position: absolute;
-  top: -0.5rem;
+  top: var(--space-2);
   right: var(--space-2);
   z-index: 1;
-  font-size: var(--text-xs);
-  font-weight: 600;
-  letter-spacing: 0.07em;
-  text-transform: uppercase;
-  color: var(--red-dark);
-  background: #fffdf8;
-  border: 1.5px solid rgba(166, 58, 43, 0.5);
-  border-radius: 4px;
-  padding: 0.1rem 0.5rem;
-  transform: rotate(2.5deg);
-  box-shadow: 0 1px 4px rgba(33, 30, 27, 0.08);
+  font-family: var(--font-hand), cursive;
+  font-size: var(--text-m);
+  line-height: 1;
+  color: var(--ink);
+  opacity: 0.75;
+  border: 1.5px solid currentColor;
+  border-radius: 999px;
+  padding: 0.2rem 0.7rem;
+  transform: rotate(-5deg);
 }
 
 .card:hover,
 .card:focus-visible {
   color: var(--ink);
   transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(33, 30, 27, 0.08);
+  box-shadow: 0 8px 24px rgba(43, 42, 51, 0.1);
+}
+
+.wash {
+  position: absolute;
+  top: -1.25rem;
+  right: -1.25rem;
+  width: 190px;
+  height: 86px;
+  opacity: 0.3;
+  pointer-events: none;
 }
 
 .impact {
@@ -50,7 +50,7 @@
   font-weight: 600;
   letter-spacing: -0.01em;
   margin-bottom: var(--space-2);
-  padding-right: 3.5rem;
+  padding-right: 6.5rem;
 }
 
 .tag {
@@ -73,7 +73,7 @@
 
 .more {
   margin-top: var(--space-2);
-  color: var(--red);
+  color: var(--accent);
   font-weight: 500;
   font-size: var(--text-s);
 }

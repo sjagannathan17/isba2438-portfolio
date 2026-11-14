@@ -7,6 +7,7 @@
   font-size: var(--text-l);
   font-weight: 600;
   margin-bottom: var(--space-3);
+  position: relative;
 }
 
 .timeline {
@@ -44,9 +45,9 @@
   width: 11px;
   height: 11px;
   border-radius: 50%;
-  background: var(--red);
+  background: var(--accent);
   border: 2px solid #fff;
-  box-shadow: 0 0 0 1px var(--red);
+  box-shadow: 0 0 0 1px var(--accent);
 }
 
 .period {

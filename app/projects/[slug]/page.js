@@ -1,5 +1,6 @@
 import NextStep from "@/components/NextStep";
 import PageHeader from "@/components/PageHeader";
+import WashBlob from "@/components/WashBlob";
 import { projects, getProject } from "@/lib/projects";
 import { notFound } from "next/navigation";
 import styles from "./project.module.css";
@@ -31,22 +32,34 @@ export default async function ProjectPage({ params }) {
       </PageHeader>
 
       <section className={styles.section}>
-        <h2>What it does</h2>
+        <h2>
+          <WashBlob color="var(--wc-teal)" />
+          What it does
+        </h2>
         <p>{project.summary}</p>
       </section>
 
       <section className={styles.section}>
-        <h2>Why it matters</h2>
+        <h2>
+          <WashBlob color="var(--wc-rose)" />
+          Why it matters
+        </h2>
         <p>{project.why}</p>
       </section>
 
       <section className={styles.section}>
-        <h2>{project.roleLabel}</h2>
+        <h2>
+          <WashBlob color="var(--wc-ochre)" />
+          {project.roleLabel}
+        </h2>
         <p>{project.role}</p>
       </section>
 
       <section className={styles.section}>
-        <h2>Tech</h2>
+        <h2>
+          <WashBlob color="var(--wc-sage)" />
+          Tech
+        </h2>
         <p className={styles.techLine}>{project.tech.join(", ")}</p>
       </section>
 

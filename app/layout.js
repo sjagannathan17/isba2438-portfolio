@@ -1,6 +1,7 @@
 import { Suspense } from "react";
-import { Inter, Playfair_Display } from "next/font/google";
+import { Caveat, Cormorant_Garamond, Inter } from "next/font/google";
 import NavBar from "@/components/NavBar";
+import WatercolorDefs from "@/components/WatercolorDefs";
 import Footer from "@/components/Footer";
 import "./globals.css";
 
@@ -10,9 +11,17 @@ const inter = Inter({
   display: "swap",
 });
 
-const playfair = Playfair_Display({
+const cormorant = Cormorant_Garamond({
   variable: "--font-heading",
   subsets: ["latin"],
+  weight: ["500", "600"],
+  display: "swap",
+});
+
+const caveat = Caveat({
+  variable: "--font-hand",
+  subsets: ["latin"],
+  weight: ["500"],
   display: "swap",
 });
 
@@ -27,8 +36,9 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={`${inter.variable} ${playfair.variable}`}>
+    <html lang="en" className={`${inter.variable} ${cormorant.variable} ${caveat.variable}`}>
       <body>
+        <WatercolorDefs />
         <Suspense>
           <NavBar />
         </Suspense>

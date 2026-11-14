@@ -82,7 +82,10 @@ function CountValue({ impact }) {
 export default function ProjectCard({ project }) {
   return (
     <Link href={`/projects/${project.slug}`} className={styles.card}>
-      <span className={styles.stamp}>
+      <svg className={styles.wash} viewBox="0 0 200 90" aria-hidden="true" focusable="false">
+        <ellipse cx="100" cy="45" rx="88" ry="30" fill={project.color} filter="url(#wc-bleed)" />
+      </svg>
+      <span className={styles.postmark}>
         {project.year} · {project.place}
       </span>
       <p className={styles.impact}>

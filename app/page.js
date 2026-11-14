@@ -1,5 +1,6 @@
 import ButtonLink from "@/components/ButtonLink";
 import ProjectCard from "@/components/ProjectCard";
+import WashBlob from "@/components/WashBlob";
 import WorldMap from "@/components/WorldMap";
 import { projects } from "@/lib/projects";
 import { pins } from "@/lib/journeyPins";
@@ -42,7 +43,10 @@ export default function Home() {
 
       <section className={styles.proof} aria-label="Proof">
         <p className={styles.label}>Proof</p>
-        <h2 className={styles.sectionHeading}>In numbers</h2>
+        <h2 className={styles.sectionHeading}>
+          <WashBlob color="var(--wc-ochre)" />
+          In numbers
+        </h2>
         <div className={styles.stats}>
           {stats.map((stat) => (
             <p key={stat.label} className={styles.stat}>
@@ -55,7 +59,10 @@ export default function Home() {
 
       <section className={styles.section}>
         <p className={styles.label}>Work</p>
-        <h2 className={styles.sectionHeading}>Selected work</h2>
+        <h2 className={styles.sectionHeading}>
+          <WashBlob color="var(--wc-indigo)" />
+          Selected work
+        </h2>
         <div className={styles.grid}>
           {projects.map((project) => (
             <ProjectCard key={project.slug} project={project} />
@@ -65,7 +72,10 @@ export default function Home() {
 
       <section className={styles.section}>
         <p className={styles.label}>Journey</p>
-        <h2 className={styles.sectionHeading}>Seven places, one journey</h2>
+        <h2 className={styles.sectionHeading}>
+          <WashBlob color="var(--wc-teal)" />
+          Seven places, one journey
+        </h2>
         <div className={styles.journeyMap}>
           <WorldMap mapSvg={dottedMapSvg} pins={pinsWithPositions} pathD={journeyPathD} viewBox={mapViewBox} />
         </div>
@@ -73,7 +83,10 @@ export default function Home() {
 
       <section className={styles.section}>
         <p className={styles.label}>Next</p>
-        <h2 className={styles.sectionHeading}>Let&rsquo;s build something</h2>
+        <h2 className={styles.sectionHeading}>
+          <WashBlob color="var(--wc-rose)" />
+          Let&rsquo;s build something
+        </h2>
         <p className={styles.closingIntro}>
           I am looking for associate product manager roles in AI and fintech. If you
           are hiring or want to talk shop, my inbox is open.

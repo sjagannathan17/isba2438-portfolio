@@ -1,12 +1,19 @@
 :root {
-  --paper: #faf6ee;
-  --paper-soft: #f3ecdd;
-  --panel: #f6f0e2;
-  --ink: #211e1b;
-  --ink-soft: #6b6357;
-  --red: #a63a2b;
-  --red-dark: #872c20;
-  --line: #e3dac6;
+  --paper: #fbf8f2;
+  --paper-soft: #f5f0e5;
+  --panel: #f4efe4;
+  --ink: #2b2a33;
+  --ink-soft: #5b5866;
+  --accent: #3f4f8c;
+  --accent-strong: #35437a;
+  --error: #a63a2b;
+  --line: rgba(43, 42, 51, 0.14);
+
+  --wc-indigo: #5a6fa8;
+  --wc-teal: #4f9a94;
+  --wc-ochre: #d9a441;
+  --wc-rose: #c9746b;
+  --wc-sage: #8aa37b;
 
   --space-1: 0.5rem;
   --space-2: 1rem;
@@ -50,6 +57,8 @@ body {
   display: flex;
   flex-direction: column;
   background: var(--paper);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='p'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.55' numOctaves='3' seed='11' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='linear' slope='0.035'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='240' height='240' filter='url(%23p)' fill='%232b2a33'/%3E%3C/svg%3E");
+  background-attachment: fixed;
   color: var(--ink);
   font-family: var(--font-body), system-ui, -apple-system, sans-serif;
   line-height: 1.6;
@@ -62,27 +71,31 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: var(--font-body), system-ui, -apple-system, sans-serif;
-  letter-spacing: -0.02em;
-  line-height: 1.15;
+  font-family: var(--font-heading), Georgia, serif;
+  letter-spacing: -0.01em;
+  line-height: 1.12;
   color: var(--ink);
 }
 
 h1 {
   font-size: var(--text-2xl);
-  font-weight: 700;
+  font-weight: 600;
+}
+
+::selection {
+  background: rgba(90, 111, 168, 0.25);
 }
 
 a {
-  color: var(--red);
+  color: var(--accent);
 }
 
 a:hover {
-  color: var(--red-dark);
+  color: var(--accent-strong);
 }
 
 :focus-visible {
-  outline: 2px solid var(--red);
+  outline: 2px solid var(--accent);
   outline-offset: 2px;
 }
 

@@ -26,7 +26,7 @@
 .summary {
   background: var(--panel);
   border: 1px solid var(--line);
-  border-left: 4px solid var(--red);
+  border-left: 4px solid var(--error);
   color: var(--ink);
 }
 
@@ -44,7 +44,7 @@
 .field textarea {
   font: inherit;
   color: var(--ink);
-  background: #fffdf8;
+  background: var(--paper);
   border: 1px solid var(--line);
   border-radius: 8px;
   padding: var(--space-1) var(--space-2);
@@ -52,9 +52,9 @@
 
 .field input:focus,
 .field textarea:focus {
-  outline: 2px solid var(--red);
+  outline: 2px solid var(--accent);
   outline-offset: 1px;
-  border-color: var(--red);
+  border-color: var(--accent);
 }
 
 .field textarea {
@@ -62,7 +62,7 @@
 }
 
 .error {
-  color: var(--red);
+  color: var(--error);
   font-size: var(--text-s);
 }
 
@@ -71,21 +71,21 @@
   font: inherit;
   font-weight: 500;
   color: var(--paper);
-  background: var(--red);
-  border: 1.5px solid var(--red);
+  background: var(--accent);
+  border: 1.5px solid var(--accent);
   border-radius: 8px;
   padding: var(--space-1) var(--space-3);
   cursor: pointer;
 }
 
 .submit:hover:not(:disabled) {
-  background: var(--red-dark);
-  border-color: var(--red-dark);
+  background: var(--accent-strong);
+  border-color: var(--accent-strong);
 }
 
 .submit:active:not(:disabled) {
   transform: translateY(1px);
-  background: var(--red-dark);
+  background: var(--accent-strong);
 }
 
 .submit:disabled {

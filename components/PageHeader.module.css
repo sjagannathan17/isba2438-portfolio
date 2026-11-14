@@ -11,6 +11,7 @@
 }
 
 .title {
+  position: relative;
   font-size: var(--text-2xl);
 }
 
