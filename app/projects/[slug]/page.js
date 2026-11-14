@@ -1,6 +1,6 @@
 import NextStep from "@/components/NextStep";
 import PageHeader from "@/components/PageHeader";
-import WashBlob from "@/components/WashBlob";
+import PaintedStroke from "@/components/PaintedStroke";
 import { projects, getProject } from "@/lib/projects";
 import { notFound } from "next/navigation";
 import styles from "./project.module.css";
@@ -33,7 +33,7 @@ export default async function ProjectPage({ params }) {
 
       <section className={styles.section}>
         <h2>
-          <WashBlob color="var(--wc-teal)" />
+          <PaintedStroke color="var(--wc-teal)" />
           What it does
         </h2>
         <p>{project.summary}</p>
@@ -41,7 +41,7 @@ export default async function ProjectPage({ params }) {
 
       <section className={styles.section}>
         <h2>
-          <WashBlob color="var(--wc-rose)" />
+          <PaintedStroke color="var(--wc-rose)" />
           Why it matters
         </h2>
         <p>{project.why}</p>
@@ -49,7 +49,7 @@ export default async function ProjectPage({ params }) {
 
       <section className={styles.section}>
         <h2>
-          <WashBlob color="var(--wc-ochre)" />
+          <PaintedStroke color="var(--wc-ochre)" />
           {project.roleLabel}
         </h2>
         <p>{project.role}</p>
@@ -57,7 +57,7 @@ export default async function ProjectPage({ params }) {
 
       <section className={styles.section}>
         <h2>
-          <WashBlob color="var(--wc-sage)" />
+          <PaintedStroke color="var(--wc-sage)" />
           Tech
         </h2>
         <p className={styles.techLine}>{project.tech.join(", ")}</p>

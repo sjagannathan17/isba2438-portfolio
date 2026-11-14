@@ -36,11 +36,11 @@
 
 .wash {
   position: absolute;
-  top: -1.25rem;
-  right: -1.25rem;
-  width: 190px;
-  height: 86px;
-  opacity: 0.3;
+  top: -0.6rem;
+  right: -0.6rem;
+  width: 170px;
+  height: 72px;
+  opacity: 0.32;
   pointer-events: none;
 }
 

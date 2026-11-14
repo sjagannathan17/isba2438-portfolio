@@ -1,0 +1,10 @@
+.stroke {
+  position: absolute;
+  left: -0.75rem;
+  width: calc(100% + 1.5rem);
+  height: 0.62em;
+  bottom: -0.12em;
+  z-index: -1;
+  opacity: 0.32;
+  pointer-events: none;
+}

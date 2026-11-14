@@ -1,6 +1,7 @@
 import ButtonLink from "@/components/ButtonLink";
+import HeroPainting from "@/components/HeroPainting";
 import ProjectCard from "@/components/ProjectCard";
-import WashBlob from "@/components/WashBlob";
+import PaintedStroke from "@/components/PaintedStroke";
 import WorldMap from "@/components/WorldMap";
 import { projects } from "@/lib/projects";
 import { pins } from "@/lib/journeyPins";
@@ -18,33 +19,40 @@ const journeyPathD = getJourneyPathD(
 
 const stats = [
   { value: "2.5 years", label: "in fintech payments" },
-  { value: "MSBA", label: "December 2026" },
-  { value: "AI and analytics", label: "projects" },
+  {
+    value: "3 countries",
+    label: "where I helped launch RTGS and ACH payment systems (Fiji, Samoa, Vanuatu)",
+  },
+  { value: "60+ graduate students", label: "mentored as a TA" },
 ];
 
 export default function Home() {
   return (
     <article>
       <section className={styles.hero}>
-        <h1 className={styles.heroName}>Srinidhi Jagannathan</h1>
-        <p className={styles.heroIntro}>
-          AI builder and product manager, MS Business Analytics at Santa Clara
-          University.
-        </p>
-        <div className={styles.heroActions}>
-          <ButtonLink href="/projects" variant="primary">
-            View work
-          </ButtonLink>
-          <ButtonLink href="/contact-me-server-form" variant="secondary">
-            Get in touch
-          </ButtonLink>
+        <div className={styles.heroCopy}>
+          <h1 className={styles.heroName}>Srinidhi Jagannathan</h1>
+          <p className={styles.heroIntro}>
+            I build AI products and take them from prototype to launch.
+          </p>
+          <div className={styles.heroActions}>
+            <ButtonLink href="/projects" variant="primary">
+              View work
+            </ButtonLink>
+            <ButtonLink href="/contact-me-server-form" variant="secondary">
+              Get in touch
+            </ButtonLink>
+          </div>
+        </div>
+        <div className={styles.heroPainting}>
+          <HeroPainting />
         </div>
       </section>
 
-      <section className={styles.proof} aria-label="Proof">
-        <p className={styles.label}>Proof</p>
+      <section className={styles.proof} aria-label="At a glance">
+        <p className={styles.label}>At a glance</p>
         <h2 className={styles.sectionHeading}>
-          <WashBlob color="var(--wc-ochre)" />
+          <PaintedStroke color="var(--wc-ochre)" />
           In numbers
         </h2>
         <div className={styles.stats}>
@@ -60,7 +68,7 @@ export default function Home() {
       <section className={styles.section}>
         <p className={styles.label}>Work</p>
         <h2 className={styles.sectionHeading}>
-          <WashBlob color="var(--wc-indigo)" />
+          <PaintedStroke color="var(--wc-indigo)" />
           Selected work
         </h2>
         <div className={styles.grid}>
@@ -73,7 +81,7 @@ export default function Home() {
       <section className={styles.section}>
         <p className={styles.label}>Journey</p>
         <h2 className={styles.sectionHeading}>
-          <WashBlob color="var(--wc-teal)" />
+          <PaintedStroke color="var(--wc-teal)" />
           Seven places, one journey
         </h2>
         <div className={styles.journeyMap}>
@@ -84,7 +92,7 @@ export default function Home() {
       <section className={styles.section}>
         <p className={styles.label}>Next</p>
         <h2 className={styles.sectionHeading}>
-          <WashBlob color="var(--wc-rose)" />
+          <PaintedStroke color="var(--wc-rose)" />
           Let&rsquo;s build something
         </h2>
         <p className={styles.closingIntro}>
