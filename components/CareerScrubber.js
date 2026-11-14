@@ -43,6 +43,7 @@ export default function CareerScrubber({ pins, value, onChange }) {
   valueRef.current = value;
 
   const sliderValue = value === "all" ? ALL_VALUE : value;
+  const percent = ((sliderValue - ALL_VALUE) / (MAX_YEAR - ALL_VALUE)) * 100;
 
   function handleScrub(event) {
     setPlaying(false);
@@ -60,7 +61,13 @@ export default function CareerScrubber({ pins, value, onChange }) {
 
   return (
     <div className={styles.scrubber}>
-      <div className={styles.sliderRow}>
+      <div className={styles.trackWrap}>
+        <div className={styles.track} aria-hidden="true" />
+        <div
+          className={styles.trackFill}
+          style={{ width: `${percent}%` }}
+          aria-hidden="true"
+        />
         <input
           type="range"
           className={styles.slider}
@@ -72,6 +79,15 @@ export default function CareerScrubber({ pins, value, onChange }) {
           aria-valuetext={value === "all" ? "All years" : String(value)}
           onChange={handleScrub}
         />
+      </div>
+      <div className={styles.ticks} aria-hidden="true">
+        <span>All</span>
+        {Array.from({ length: MAX_YEAR - MIN_YEAR + 1 }, (_, i) => (
+          <span key={i}>{MIN_YEAR + i}</span>
+        ))}
+      </div>
+      <div className={styles.readout}>
+        <span className={styles.year}>{value === "all" ? "All years" : value}</span>
         <button
           type="button"
           className={styles.play}
@@ -80,16 +96,10 @@ export default function CareerScrubber({ pins, value, onChange }) {
         >
           {playing ? "Pause" : "Play"}
         </button>
+        <p className={styles.caption} aria-live="polite">
+          {caption}
+        </p>
       </div>
-      <div className={styles.ticks} aria-hidden="true">
-        <span>All</span>
-        {Array.from({ length: MAX_YEAR - MIN_YEAR + 1 }, (_, i) => (
-          <span key={i}>{MIN_YEAR + i}</span>
-        ))}
-      </div>
-      <p className={styles.caption} aria-live="polite">
-        {caption}
-      </p>
     </div>
   );
 }

@@ -157,10 +157,13 @@ export default function WorldMap({ mapSvg, pins, pathD, viewBox, activeYear = "a
         {pins.map((pin, index) => {
           const isActive = pin.id === activeId;
           const dimmed = activeIds ? !activeIds.has(pin.id) : false;
+          const yearActive = !highlightIds && activeYear !== "all" && activeIds && activeIds.has(pin.id);
           return (
             <div
               key={pin.id}
-              className={`${styles.pinAnchor} ${dimmed ? styles.pinDimmed : ""}`}
+              className={`${styles.pinAnchor} ${dimmed ? styles.pinDimmed : ""} ${
+                yearActive ? styles.pinActiveYear : ""
+              }`}
               style={{
                 left: `${pin.position.xPercent}%`,
                 top: `${pin.position.yPercent}%`,
@@ -177,7 +180,7 @@ export default function WorldMap({ mapSvg, pins, pathD, viewBox, activeYear = "a
               >
                 <span className={styles.pinDot} aria-hidden="true" />
                 <span
-                  className={`${styles.tooltip} ${pin.labelSide === "left" ? styles.tooltipLeft : ""}`}
+                  className={`${styles.pinLabel} ${pin.labelSide === "left" ? styles.pinLabelLeft : ""}`}
                   aria-hidden="true"
                 >
                   {pin.place}

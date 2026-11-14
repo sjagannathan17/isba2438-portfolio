@@ -31,8 +31,8 @@ const stats = [
     relatedPins: ["pacific"],
   },
   {
-    value: "60+ graduate students",
-    label: "mentored as a TA",
+    value: "60+",
+    label: "graduate students mentored as a TA",
     relatedPins: ["santa-clara"],
   },
 ];
@@ -114,7 +114,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className={styles.section}>
+      <section className={styles.closingBand}>
         <p className={styles.label}>Next</p>
         <h2 className={styles.sectionHeading}>
           Let&rsquo;s build something
@@ -124,7 +124,7 @@ export default function Home() {
           are hiring or want to talk shop, my inbox is open.
         </p>
         <div className={styles.heroActions}>
-          <ButtonLink href="/contact-me-server-form" variant="primary">
+          <ButtonLink href="/contact-me-server-form" variant="cream">
             Get in touch
           </ButtonLink>
         </div>

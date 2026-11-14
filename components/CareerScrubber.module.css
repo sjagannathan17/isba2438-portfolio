@@ -3,16 +3,86 @@
   margin-top: var(--space-3);
 }
 
-.sliderRow {
+.trackWrap {
+  position: relative;
+  height: 18px;
   display: flex;
   align-items: center;
-  gap: var(--space-3);
+}
+
+.track {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 4px;
+  border-radius: 2px;
+  background: rgba(43, 42, 51, 0.15);
+}
+
+.trackFill {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 4px;
+  border-radius: 2px;
+  background: var(--accent);
 }
 
 .slider {
-  flex: 1;
-  accent-color: var(--accent);
-  height: 1.25rem;
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  margin: 0;
+  appearance: none;
+  -webkit-appearance: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+.slider::-webkit-slider-runnable-track {
+  background: transparent;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--accent);
+  border: 2px solid var(--paper);
+  margin-top: 0;
+}
+
+.slider::-moz-range-track {
+  background: transparent;
+}
+
+.slider::-moz-range-thumb {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--accent);
+  border: 2px solid var(--paper);
+}
+
+.readout {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-3);
+  margin-top: var(--space-2);
+}
+
+.year {
+  font-family: var(--font-heading), Georgia, serif;
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--accent);
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
 }
 
 .play {
@@ -25,10 +95,18 @@
   padding: 0.3rem 1rem;
   min-width: 4.5rem;
   cursor: pointer;
+  align-self: center;
 }
 
 .play:hover {
   border-color: var(--ink-soft);
+}
+
+.caption {
+  font-size: var(--text-s);
+  color: var(--ink-soft);
+  flex: 1;
+  min-width: 12rem;
 }
 
 .ticks {
@@ -38,12 +116,6 @@
   color: var(--ink-soft);
   font-variant-numeric: tabular-nums;
   margin-top: 0.15rem;
-}
-
-.caption {
-  margin-top: var(--space-2);
-  font-size: var(--text-s);
-  color: var(--ink-soft);
 }
 
 @media (prefers-reduced-motion: reduce) {

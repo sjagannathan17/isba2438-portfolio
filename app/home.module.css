@@ -28,7 +28,11 @@
 }
 
 .proof {
-  margin-top: var(--space-5);
+  margin-top: var(--space-6);
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  background: var(--paper-deep);
+  padding: var(--space-6) calc(50vw - 50%) 0;
 }
 
 .label {
@@ -68,13 +72,16 @@
 
 .statValue {
   font-family: var(--font-heading), Georgia, serif;
-  font-size: var(--text-l);
+  font-size: clamp(2.25rem, 3.5vw, 4rem);
   font-weight: 600;
-  color: var(--ink);
+  line-height: 1;
+  color: var(--accent);
 }
 
 .statLabel {
-  font-size: var(--text-s);
+  font-size: var(--text-xs);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
   color: var(--ink-soft);
 }
 
@@ -99,8 +106,26 @@
   gap: var(--space-3);
 }
 
+.closingBand {
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  background: var(--accent);
+  color: var(--paper);
+  padding: var(--space-6) calc(50vw - 50%);
+  margin-top: var(--space-6);
+}
+
+.closingBand .label {
+  color: rgba(251, 248, 242, 0.7);
+}
+
+.closingBand .sectionHeading {
+  color: var(--paper);
+  margin-bottom: var(--space-3);
+}
+
 .closingIntro {
-  color: var(--ink-soft);
+  color: rgba(251, 248, 242, 0.85);
   font-size: var(--text-m);
   max-width: var(--text-max);
   margin-bottom: var(--space-4);
