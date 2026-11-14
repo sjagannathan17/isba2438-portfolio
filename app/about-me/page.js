@@ -57,7 +57,7 @@ const skills = [
 export default function AboutMe() {
   return (
     <article>
-      <PageHeader label="About">
+      <PageHeader label="About" title="About Me">
         Srinidhi Jagannathan, an AI builder and product manager, and an MS in Business
         Analytics student at Santa Clara University.
       </PageHeader>

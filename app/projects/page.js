@@ -11,7 +11,7 @@ export const metadata = {
 export default function Projects() {
   return (
     <section>
-      <PageHeader label="Work">
+      <PageHeader label="Work" title="Projects">
         Selected work in AI products and applied machine learning.
       </PageHeader>
       <div className={styles.grid}>

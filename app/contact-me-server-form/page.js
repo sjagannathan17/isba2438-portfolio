@@ -8,7 +8,7 @@ export const metadata = {
 export default function ContactMe() {
   return (
     <section>
-      <PageHeader label="Contact">
+      <PageHeader label="Contact" title="Contact Me">
         Want to talk about AI products, analytics, or a role? Send me a message and I
         will get back to you.
       </PageHeader>
