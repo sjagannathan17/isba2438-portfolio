@@ -81,6 +81,22 @@ a:hover {
   padding: 3rem 1.25rem 4rem;
 }
 
+@media (prefers-reduced-motion: no-preference) {
+  .page {
+    animation: pageIn 0.35s ease;
+  }
+
+  @keyframes pageIn {
+    from {
+      opacity: 0;
+    }
+
+    to {
+      opacity: 1;
+    }
+  }
+}
+
 .pageIcon {
   margin: 0 0 1rem;
   color: var(--ink-soft);

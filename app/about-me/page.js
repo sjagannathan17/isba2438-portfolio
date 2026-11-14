@@ -1,5 +1,6 @@
 import CompassIcon from "@/components/CompassIcon";
 import ButtonLink from "@/components/ButtonLink";
+import Reveal from "@/components/Reveal";
 import styles from "./about-me.module.css";
 
 export const metadata = {
@@ -67,13 +68,13 @@ export default function AboutMe() {
         <h2>Experience</h2>
         <div className={styles.timeline}>
           {experience.map((entry) => (
-            <div key={entry.role} className={styles.item}>
+            <Reveal key={entry.role} className={styles.item}>
               <span className={styles.dot} aria-hidden="true" />
               <p className={styles.period}>{entry.period}</p>
               <h3>{entry.role}</h3>
               <p className={styles.org}>{entry.org}</p>
               <p className={styles.detail}>{entry.detail}</p>
-            </div>
+            </Reveal>
           ))}
         </div>
       </section>
@@ -82,12 +83,12 @@ export default function AboutMe() {
         <h2>Education</h2>
         <div className={styles.timeline}>
           {education.map((entry) => (
-            <div key={entry.school} className={styles.item}>
+            <Reveal key={entry.school} className={styles.item}>
               <span className={styles.dot} aria-hidden="true" />
               <p className={styles.period}>{entry.period}</p>
               <h3>{entry.school}</h3>
               <p className={styles.detail}>{entry.detail}</p>
-            </div>
+            </Reveal>
           ))}
         </div>
       </section>

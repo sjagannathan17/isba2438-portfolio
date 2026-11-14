@@ -33,6 +33,25 @@
   display: flex;
   flex-wrap: wrap;
   gap: 0.25rem 1.25rem;
+  position: relative;
+}
+
+.indicator {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 2px;
+  background: var(--red);
+  border-radius: 1px;
+  pointer-events: none;
+}
+
+.indicator.animate {
+  transition: transform 0.25s ease, width 0.25s ease;
+}
+
+.linksMeasured .active {
+  border-bottom-color: transparent;
 }
 
 .link {
@@ -50,4 +69,10 @@
 .active {
   color: var(--ink);
   border-bottom-color: var(--red);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .indicator.animate {
+    transition: none;
+  }
 }

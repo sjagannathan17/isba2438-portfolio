@@ -9,7 +9,8 @@
   transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
 
-.card:hover {
+.card:hover,
+.card:focus-visible {
   color: var(--ink);
   transform: translateY(-2px);
   box-shadow: 0 8px 20px rgba(33, 30, 27, 0.08);

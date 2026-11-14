@@ -40,6 +40,10 @@
   animation: drawJourney 2.2s ease-out forwards 0.3s;
 }
 
+.routePaused .drawMask {
+  animation-play-state: paused;
+}
+
 @keyframes drawJourney {
   to {
     stroke-dashoffset: 0;
@@ -86,6 +90,7 @@
 }
 
 .pinDot {
+  position: relative;
   width: 11px;
   height: 11px;
   border-radius: 50%;
@@ -93,6 +98,26 @@
   border: 2px solid #fff;
   box-shadow: 0 0 0 1px var(--red);
   transition: transform 0.15s ease, background 0.15s ease;
+}
+
+.pinDot::after {
+  content: "";
+  position: absolute;
+  inset: -3px;
+  border-radius: 50%;
+  animation: pinPulse 2.6s ease-out infinite;
+  animation-delay: calc(var(--pin-delay, 0s) + 0.6s);
+}
+
+@keyframes pinPulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(166, 58, 43, 0.4);
+  }
+
+  70%,
+  100% {
+    box-shadow: 0 0 0 10px rgba(166, 58, 43, 0);
+  }
 }
 
 .pinButton:hover .pinDot,
@@ -192,6 +217,10 @@
   }
 
   .pinAnchor {
+    animation: none;
+  }
+
+  .pinDot::after {
     animation: none;
   }
 }

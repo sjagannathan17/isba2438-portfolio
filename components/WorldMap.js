@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import styles from "./WorldMap.module.css";
 
 function cardSide(xPercent) {
@@ -16,7 +16,29 @@ function cardSide(xPercent) {
 
 export default function WorldMap({ mapSvg, pins, pathD, viewBox }) {
   const [activeId, setActiveId] = useState(null);
+  const [routePaused, setRoutePaused] = useState(false);
+  const mapRef = useRef(null);
   const active = pins.find((pin) => pin.id === activeId);
+
+  useEffect(() => {
+    const node = mapRef.current;
+    if (!node || typeof IntersectionObserver === "undefined") {
+      return;
+    }
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries.some((entry) => entry.isIntersecting)) {
+          setRoutePaused(false);
+          observer.disconnect();
+        } else {
+          setRoutePaused(true);
+        }
+      },
+      { threshold: 0.35 }
+    );
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, []);
 
   function toggle(id) {
     setActiveId((current) => (current === id ? null : id));
@@ -29,7 +51,11 @@ export default function WorldMap({ mapSvg, pins, pathD, viewBox }) {
   }
 
   return (
-    <figure className={styles.mapWrap} onKeyDown={handleKeyDown}>
+    <figure
+      ref={mapRef}
+      className={`${styles.mapWrap} ${routePaused ? styles.routePaused : ""}`}
+      onKeyDown={handleKeyDown}
+    >
       <div className={styles.mapCanvas}>
         <div
           className={styles.mapSvg}

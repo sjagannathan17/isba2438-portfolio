@@ -5,6 +5,8 @@
   font-size: 1rem;
   text-decoration: none;
   border: 1.5px solid var(--red);
+  transition: transform 0.15s ease, background 0.15s ease, color 0.15s ease,
+    border-color 0.15s ease, box-shadow 0.15s ease;
 }
 
 .primary {
@@ -16,6 +18,14 @@
   background: var(--red-dark);
   border-color: var(--red-dark);
   color: var(--paper);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(166, 58, 43, 0.25);
+}
+
+.primary:active {
+  transform: translateY(1px);
+  box-shadow: none;
+  background: var(--red-dark);
 }
 
 .secondary {
@@ -26,4 +36,23 @@
 .secondary:hover {
   background: var(--panel);
   color: var(--red-dark);
+  transform: translateY(-1px);
+}
+
+.secondary:active {
+  transform: translateY(1px);
+  background: var(--paper-soft);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .button {
+    transition: none;
+  }
+
+  .primary:hover,
+  .primary:active,
+  .secondary:hover,
+  .secondary:active {
+    transform: none;
+  }
 }
