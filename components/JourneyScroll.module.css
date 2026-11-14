@@ -1,0 +1,147 @@
+.layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-4);
+}
+
+.mapColumn {
+  display: none;
+}
+
+.mapStage {
+  position: relative;
+}
+
+.map {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.washBlend {
+  mix-blend-mode: multiply;
+}
+
+.washBlob {
+  transform-box: fill-box;
+  transform-origin: center;
+  transform: scale(0);
+  transition: transform 1.2s ease-out;
+}
+
+.painted .washBlob {
+  transform: scale(1);
+}
+
+.route {
+  fill: none;
+  stroke: var(--ink);
+  stroke-width: 0.5;
+  stroke-dasharray: 2 2;
+  stroke-linecap: round;
+  opacity: 0.7;
+  transition: stroke-dasharray 1.2s ease;
+}
+
+.label {
+  font-family: var(--font-hand), cursive;
+  font-size: 4.2px;
+  fill: var(--ink);
+  transition: opacity 0.6s ease;
+}
+
+.labelHidden {
+  opacity: 0;
+}
+
+.labelShown {
+  opacity: 0.85;
+}
+
+.chapters {
+  display: flex;
+  flex-direction: column;
+}
+
+.chapter {
+  padding: var(--space-3) 0;
+}
+
+.crop {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 11;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  margin-bottom: var(--space-2);
+}
+
+.chapterIndex {
+  font-family: var(--font-hand), cursive;
+  font-size: var(--text-m);
+  color: var(--ink-soft);
+  margin-bottom: 0.1rem;
+}
+
+.chapterTitle {
+  font-size: var(--text-m);
+  font-weight: 600;
+  margin-bottom: 0.1rem;
+}
+
+.chapterDates {
+  font-size: var(--text-xs);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin-bottom: var(--space-1);
+}
+
+.chapterText {
+  font-size: var(--text-s);
+  max-width: var(--text-max);
+  margin-bottom: var(--space-1);
+}
+
+.chapterLink {
+  font-size: var(--text-s);
+  font-weight: 500;
+}
+
+@media (min-width: 900px) {
+  .layout {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: var(--space-5);
+  }
+
+  .mapColumn {
+    display: block;
+    position: sticky;
+    top: 96px;
+    align-self: start;
+  }
+
+  .crop {
+    display: none;
+  }
+
+  .chapter {
+    min-height: 55vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: var(--space-4) 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .washBlob {
+    transform: none;
+    transition: none;
+  }
+
+  .route,
+  .label {
+    transition: none;
+  }
+}
