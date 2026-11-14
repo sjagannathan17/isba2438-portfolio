@@ -10,7 +10,7 @@ const links = [
   { href: "/", label: "Home" },
   { href: "/about-me", label: "About Me" },
   { href: "/projects", label: "Projects" },
-  { href: "/contact-me-server-form", label: "Contact Me" },
+  { href: "/contact-me", label: "Contact Me" },
 ];
 
 function isActive(pathname, href) {

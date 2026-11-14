@@ -102,6 +102,17 @@ a:hover {
   outline: none;
 }
 
+.contactAlt {
+  margin-top: var(--space-3);
+  font-size: var(--text-s);
+  color: var(--ink-soft);
+}
+
+.contactAlt a {
+  color: var(--accent);
+  font-weight: 500;
+}
+
 .page {
   flex: 1;
   width: 100%;
