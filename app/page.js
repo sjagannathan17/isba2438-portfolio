@@ -1,20 +1,31 @@
 import Link from "next/link";
 import ButtonLink from "@/components/ButtonLink";
+import JourneyScroll from "@/components/JourneyScroll";
 import ProjectCard from "@/components/ProjectCard";
 import WorldMap from "@/components/WorldMap";
 import { projects } from "@/lib/projects";
 import { pins } from "@/lib/journeyPins";
-import { dottedMapSvg, getPinPosition, getJourneyPathD, mapViewBox } from "@/lib/dottedMap";
+import {
+  dottedMapSvg,
+  getJourneyFractions,
+  getJourneyPathD,
+  getPinPosition,
+  mapViewBox,
+} from "@/lib/dottedMap";
 import styles from "./home.module.css";
+
+const journeyLatLngs = pins.map((pin) => ({
+  lat: pin.lat + (pin.nudgeLat ?? 0),
+  lng: pin.lon + (pin.nudgeLon ?? 0),
+}));
 
 const pinsWithPositions = pins.map((pin) => ({
   ...pin,
   position: getPinPosition(pin.lat + (pin.nudgeLat ?? 0), pin.lon + (pin.nudgeLon ?? 0)),
 }));
 
-const journeyPathD = getJourneyPathD(
-  pins.map((pin) => ({ lat: pin.lat + (pin.nudgeLat ?? 0), lng: pin.lon + (pin.nudgeLon ?? 0) }))
-);
+const journeyPathD = getJourneyPathD(journeyLatLngs);
+const journeyFractions = getJourneyFractions(journeyLatLngs);
 
 export default function Home() {
   return (
@@ -53,6 +64,17 @@ export default function Home() {
           <span className={styles.statValue}>AI and analytics</span>
           <span className={styles.statLabel}>projects</span>
         </p>
+      </section>
+
+      <section className={styles.journey}>
+        <h2 className={styles.sectionHeading}>Journey</h2>
+        <JourneyScroll
+          mapSvg={dottedMapSvg}
+          pins={pinsWithPositions}
+          pathD={journeyPathD}
+          viewBox={mapViewBox}
+          fractions={journeyFractions}
+        />
       </section>
 
       <section className={styles.featured}>

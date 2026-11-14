@@ -72,6 +72,14 @@
   margin-bottom: 0.5rem;
 }
 
+.journey {
+  padding: 4.5rem 0 0;
+}
+
+.journey .sectionHeading {
+  margin-bottom: 1.5rem;
+}
+
 .featured {
   padding: 4.5rem 0 0;
 }
