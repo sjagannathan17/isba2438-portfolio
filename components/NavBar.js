@@ -104,6 +104,14 @@ export default function NavBar() {
             />
           )}
         </ul>
+        <a
+          className={styles.resumeLink}
+          href="/resume.pdf"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Resume
+        </a>
       </nav>
     </header>
   );

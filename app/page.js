@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import ButtonLink from "@/components/ButtonLink";
 import CareerScrubber from "@/components/CareerScrubber";
@@ -19,7 +20,7 @@ const journeyPathD = getJourneyPathD(
   pins.map((pin) => ({ lat: pin.lat + (pin.nudgeLat ?? 0), lng: pin.lon + (pin.nudgeLon ?? 0) }))
 );
 
-const firstSentence = (text) => `${text.split(". ")[0]}.`;
+const firstSentence = (text) => `${text.split(". ")[0].replace(/\.$/, "")}.`;
 
 const stats = [
   {
@@ -49,6 +50,10 @@ export default function Home() {
         <div className={styles.heroText}>
           <p className={styles.eyebrow}>Srinidhi Jagannathan</p>
           <h1 className={styles.headline}>From complex systems to products people can use.</h1>
+          <p className={styles.heroLine}>
+            Electrical engineer by training, I moved interbank settlement from up to 5
+            days to real time before coming to Santa Clara to build AI products.
+          </p>
           <p className={styles.heroIntro}>
             I have shipped payment systems across three island nations and AI products
             from prototype to launch.
@@ -60,6 +65,14 @@ export default function Home() {
             <ButtonLink href="/contact-me-server-form" variant="secondary">
               Get in touch
             </ButtonLink>
+            <a
+              className={styles.resumeLink}
+              href="/resume.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Resume
+            </a>
           </div>
         </div>
         <div className={styles.heroMap}>
@@ -88,8 +101,18 @@ export default function Home() {
             onFocus={() => setHighlight(project.relatedPins)}
             onBlur={() => setHighlight(null)}
           >
-            <div className={styles.featurePanel} aria-hidden="true">
-              <span className={styles.featureImpact}>{project.impact}</span>
+            <div className={styles.featureMedia}>
+              <div className={styles.featurePanel}>
+                <Image
+                  src={project.image}
+                  alt={project.imageAlt}
+                  fill
+                  sizes="(min-width: 900px) 50vw, 100vw"
+                  priority={index === 0}
+                  className={styles.featureImage}
+                />
+              </div>
+              <p className={styles.featureCaption}>{project.impact}</p>
             </div>
             <div className={styles.featureBody}>
               <h2 className={styles.featureName}>{project.name}</h2>
@@ -101,10 +124,13 @@ export default function Home() {
                 <span className={styles.featureLabel}>My role</span>
                 {firstSentence(project.role)}
               </p>
-              <p className={styles.featureRow}>
-                <span className={styles.featureLabel}>Result</span>
-                {project.impact}
-              </p>
+              {project.recognition ? (
+                <p className={styles.featureRow}>
+                  <span className={styles.featureLabel}>Recognition</span>
+                  {project.recognition}
+                </p>
+              ) : null}
+
               <span className={styles.featureLink}>
                 Explore case study{" "}
                 <span className={styles.arrow} aria-hidden="true">&rarr;</span>
