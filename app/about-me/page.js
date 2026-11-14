@@ -2,7 +2,6 @@ import ButtonLink from "@/components/ButtonLink";
 import NextStep from "@/components/NextStep";
 import PageHeader from "@/components/PageHeader";
 import Reveal from "@/components/Reveal";
-import PaintedStroke from "@/components/PaintedStroke";
 import styles from "./about-me.module.css";
 
 export const metadata = {
@@ -64,7 +63,6 @@ export default function AboutMe() {
 
       <section className={styles.section}>
         <h2>
-          <PaintedStroke color="var(--wc-teal)" />
           Experience
         </h2>
         <div className={styles.timeline}>
@@ -82,7 +80,6 @@ export default function AboutMe() {
 
       <section className={styles.section}>
         <h2>
-          <PaintedStroke color="var(--wc-rose)" />
           Education
         </h2>
         <div className={styles.timeline}>
@@ -99,7 +96,6 @@ export default function AboutMe() {
 
       <section className={styles.section}>
         <h2>
-          <PaintedStroke color="var(--wc-ochre)" />
           Skills
         </h2>
         {skills.map((group) => (
@@ -112,7 +108,6 @@ export default function AboutMe() {
 
       <section className={styles.section}>
         <h2>
-          <PaintedStroke color="var(--wc-sage)" />
           What I&rsquo;m looking for
         </h2>
         <p>

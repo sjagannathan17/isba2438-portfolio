@@ -1,6 +1,5 @@
 import ButtonLink from "@/components/ButtonLink";
 import ProjectCard from "@/components/ProjectCard";
-import PaintedStroke from "@/components/PaintedStroke";
 import WorldMap from "@/components/WorldMap";
 import { projects } from "@/lib/projects";
 import { pins } from "@/lib/journeyPins";
@@ -46,7 +45,6 @@ export default function Home() {
       <section className={styles.proof} aria-label="At a glance">
         <p className={styles.label}>At a glance</p>
         <h2 className={styles.sectionHeading}>
-          <PaintedStroke color="var(--wc-ochre)" />
           In numbers
         </h2>
         <div className={styles.stats}>
@@ -62,7 +60,6 @@ export default function Home() {
       <section className={styles.section}>
         <p className={styles.label}>Work</p>
         <h2 className={styles.sectionHeading}>
-          <PaintedStroke color="var(--wc-indigo)" />
           Selected work
         </h2>
         <div className={styles.grid}>
@@ -75,7 +72,6 @@ export default function Home() {
       <section className={styles.section}>
         <p className={styles.label}>Journey</p>
         <h2 className={styles.sectionHeading}>
-          <PaintedStroke color="var(--wc-teal)" />
           Seven places, one journey
         </h2>
         <div className={styles.journeyMap}>
@@ -86,7 +82,6 @@ export default function Home() {
       <section className={styles.section}>
         <p className={styles.label}>Next</p>
         <h2 className={styles.sectionHeading}>
-          <PaintedStroke color="var(--wc-rose)" />
           Let&rsquo;s build something
         </h2>
         <p className={styles.closingIntro}>
