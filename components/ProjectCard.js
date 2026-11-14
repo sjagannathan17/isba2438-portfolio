@@ -82,9 +82,6 @@ function CountValue({ impact }) {
 export default function ProjectCard({ project }) {
   return (
     <Link href={`/projects/${project.slug}`} className={styles.card}>
-      <span className={styles.postmark}>
-        {project.year} · {project.place}
-      </span>
       <p className={styles.impact}>
         <CountValue impact={project.impact} />
       </p>

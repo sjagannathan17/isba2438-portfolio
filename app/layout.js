@@ -1,5 +1,5 @@
 import { Suspense } from "react";
-import { Caveat, Cormorant_Garamond, Inter } from "next/font/google";
+import { Cormorant_Garamond, Inter } from "next/font/google";
 import NavBar from "@/components/NavBar";
 import WatercolorDefs from "@/components/WatercolorDefs";
 import Footer from "@/components/Footer";
@@ -18,13 +18,6 @@ const cormorant = Cormorant_Garamond({
   display: "swap",
 });
 
-const caveat = Caveat({
-  variable: "--font-hand",
-  subsets: ["latin"],
-  weight: ["500"],
-  display: "swap",
-});
-
 export const metadata = {
   title: {
     default: "Srinidhi Jagannathan",
@@ -36,7 +29,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={`${inter.variable} ${cormorant.variable} ${caveat.variable}`}>
+    <html lang="en" className={`${inter.variable} ${cormorant.variable}`}>
       <body>
         <WatercolorDefs />
         <Suspense>

@@ -158,8 +158,8 @@
   left: 50%;
   transform: translateX(-50%);
   white-space: nowrap;
-  font-family: var(--font-hand), cursive;
-  font-size: var(--text-m);
+  font-family: var(--font-body), sans-serif;
+  font-size: 0.75rem;
   line-height: 1;
   color: var(--ink);
   background: var(--paper);
