@@ -45,16 +45,15 @@
   font: inherit;
   color: var(--ink);
   background: var(--paper);
-  border: 1px solid var(--line);
+  border: 1px solid var(--indigo-100);
   border-radius: 8px;
   padding: var(--space-1) var(--space-2);
 }
 
 .field input:focus,
 .field textarea:focus {
-  outline: 2px solid var(--accent);
+  outline: 2px solid var(--indigo-700);
   outline-offset: 1px;
-  border-color: var(--accent);
 }
 
 .field textarea {

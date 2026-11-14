@@ -1,7 +1,6 @@
 import { Suspense } from "react";
 import { Cormorant_Garamond, Inter } from "next/font/google";
 import NavBar from "@/components/NavBar";
-import WatercolorDefs from "@/components/WatercolorDefs";
 import Footer from "@/components/Footer";
 import "./globals.css";
 
@@ -31,7 +30,6 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" className={`${inter.variable} ${cormorant.variable}`}>
       <body>
-        <WatercolorDefs />
         <Suspense>
           <NavBar />
         </Suspense>

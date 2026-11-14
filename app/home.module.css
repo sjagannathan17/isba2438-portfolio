@@ -31,7 +31,7 @@
   margin-top: var(--space-6);
   width: 100vw;
   margin-left: calc(50% - 50vw);
-  background: var(--paper-deep);
+  background: var(--indigo-50);
   padding: var(--space-6) calc(50vw - 50%) 0;
 }
 
@@ -75,7 +75,7 @@
   font-size: clamp(2.25rem, 3.5vw, 4rem);
   font-weight: 600;
   line-height: 1;
-  color: var(--accent);
+  color: var(--indigo-700);
 }
 
 .statLabel {

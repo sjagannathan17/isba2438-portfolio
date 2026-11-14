@@ -1,25 +1,25 @@
 .card {
   display: block;
   position: relative;
-  background: var(--paper);
-  border: 1px solid rgba(43, 42, 51, 0.4);
-  border-radius: 6px;
-  padding: var(--space-3);
+  border-top: 2px solid var(--indigo-100);
+  padding-top: var(--space-3);
   text-decoration: none;
   color: var(--ink);
+}
+
+.card:hover .impact,
+.card:focus-visible .impact {
+  color: var(--indigo-900);
+}
+
+.arrow {
+  display: inline-block;
   transition: transform 0.15s ease;
-  overflow: hidden;
 }
 
-.card:hover,
-.card:focus-visible {
-  color: var(--ink);
-  transform: translateY(-2px);
-}
-
-.cardTop {
-  margin: calc(-1 * var(--space-3)) calc(-1 * var(--space-3)) var(--space-3);
-  padding: var(--space-3);
+.card:hover .arrow,
+.card:focus-visible .arrow {
+  transform: translateX(4px);
 }
 
 .impact {
@@ -27,8 +27,10 @@
   font-size: clamp(1.75rem, 2vw, 2rem);
   font-weight: 600;
   letter-spacing: -0.01em;
-  color: var(--paper);
+  color: var(--indigo-700);
   line-height: 1.15;
+  margin-bottom: var(--space-2);
+  transition: color 0.15s ease;
 }
 
 .tag {

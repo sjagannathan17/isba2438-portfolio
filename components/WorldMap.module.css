@@ -140,6 +140,7 @@
 }
 
 .pinActiveYear .pinDot {
+  background: var(--accent-strong);
   transform: scale(1.5);
 }
 

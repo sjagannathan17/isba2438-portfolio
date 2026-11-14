@@ -21,6 +21,7 @@ function activePinForYear(pins, year) {
 
 export default function CareerScrubber({ pins, value, onChange }) {
   const [playing, setPlaying] = useState(false);
+  const [keyNav, setKeyNav] = useState(false);
   const timerRef = useRef(null);
 
   useEffect(() => {
@@ -70,7 +71,7 @@ export default function CareerScrubber({ pins, value, onChange }) {
         />
         <input
           type="range"
-          className={styles.slider}
+          className={`${styles.slider} ${keyNav ? styles.sliderKey : ""}`}
           min={ALL_VALUE}
           max={MAX_YEAR}
           step={1}
@@ -78,6 +79,9 @@ export default function CareerScrubber({ pins, value, onChange }) {
           aria-label="Explore my career year by year"
           aria-valuetext={value === "all" ? "All years" : String(value)}
           onChange={handleScrub}
+          onPointerDown={() => setKeyNav(false)}
+          onKeyDown={() => setKeyNav(true)}
+          onBlur={() => setKeyNav(false)}
         />
       </div>
       <div className={styles.ticks} aria-hidden="true">

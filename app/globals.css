@@ -1,21 +1,18 @@
 :root {
   --paper: #fbf8f2;
   --paper-deep: #efe9dd;
-  --sage-deep: #6f8a63;
   --paper-soft: #f5f0e5;
   --panel: #f4efe4;
   --ink: #2b2a33;
   --ink-soft: #5b5866;
-  --accent: #3f4f8c;
-  --accent-strong: #35437a;
+  --indigo-900: #2a3560;
+  --indigo-700: #3f4f8c;
+  --indigo-100: #dcdfeb;
+  --indigo-50: #eceef5;
+  --accent: var(--indigo-700);
+  --accent-strong: var(--indigo-900);
   --error: #a63a2b;
   --line: rgba(43, 42, 51, 0.14);
-
-  --wc-indigo: #5a6fa8;
-  --wc-teal: #4f9a94;
-  --wc-ochre: #d9a441;
-  --wc-rose: #c9746b;
-  --wc-sage: #8aa37b;
 
   --space-1: 0.5rem;
   --space-2: 1rem;
@@ -99,6 +96,10 @@ a:hover {
 :focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 2px;
+}
+
+:focus:not(:focus-visible) {
+  outline: none;
 }
 
 .page {

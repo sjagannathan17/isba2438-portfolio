@@ -82,15 +82,15 @@ function CountValue({ impact }) {
 export default function ProjectCard({ project }) {
   return (
     <Link href={`/projects/${project.slug}`} className={styles.card}>
-      <div className={styles.cardTop} style={{ background: project.color }}>
-        <p className={styles.impact}>
-          <CountValue impact={project.impact} />
-        </p>
-      </div>
+      <p className={styles.impact}>
+        <CountValue impact={project.impact} />
+      </p>
       <p className={styles.tag}>{project.tag}</p>
       <h3 className={styles.name}>{project.name}</h3>
       <p className={styles.blurb}>{project.blurb}</p>
-      <p className={styles.more}>Read more &rarr;</p>
+      <p className={styles.more}>
+        Read more <span className={styles.arrow} aria-hidden="true">&rarr;</span>
+      </p>
     </Link>
   );
 }
