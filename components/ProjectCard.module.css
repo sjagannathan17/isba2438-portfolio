@@ -1,5 +1,6 @@
 .card {
   display: block;
+  position: relative;
   background: #fffdf8;
   border: 1px solid var(--line);
   border-radius: 12px;
@@ -7,6 +8,33 @@
   text-decoration: none;
   color: var(--ink);
   transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.card::after {
+  content: "";
+  position: absolute;
+  inset: 7px;
+  border: 1.5px dashed rgba(166, 58, 43, 0.35);
+  border-radius: 8px;
+  pointer-events: none;
+}
+
+.stamp {
+  position: absolute;
+  top: -0.65rem;
+  right: 0.9rem;
+  z-index: 1;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--red-dark);
+  background: #fffdf8;
+  border: 1.5px solid rgba(166, 58, 43, 0.5);
+  border-radius: 4px;
+  padding: 0.12rem 0.5rem;
+  transform: rotate(2.5deg);
+  box-shadow: 0 1px 4px rgba(33, 30, 27, 0.08);
 }
 
 .card:hover,
@@ -21,6 +49,7 @@
   font-weight: 700;
   letter-spacing: -0.01em;
   margin-bottom: 0.75rem;
+  padding-right: 3.75rem;
 }
 
 .tag {
