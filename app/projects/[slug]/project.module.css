@@ -26,3 +26,40 @@
   margin-top: var(--space-4);
   font-weight: 500;
 }
+
+.explorerWrap {
+  margin-top: var(--space-3);
+}
+
+.contextRow {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-3);
+}
+
+.contextRow span {
+  display: block;
+  font-size: 0.6875rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin-bottom: 4px;
+}
+
+.contextRow p {
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.outcome {
+  font-family: var(--font-heading), Georgia, serif;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--indigo-700);
+}
+
+@media (max-width: 800px) {
+  .contextRow {
+    grid-template-columns: 1fr;
+  }
+}

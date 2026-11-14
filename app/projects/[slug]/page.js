@@ -1,5 +1,6 @@
 import NextStep from "@/components/NextStep";
 import PageHeader from "@/components/PageHeader";
+import ProductExplorer from "@/components/ProductExplorer";
 import { projects, getProject } from "@/lib/projects";
 import { notFound } from "next/navigation";
 import styles from "./project.module.css";
@@ -24,11 +25,38 @@ export default async function ProjectPage({ params }) {
   }
   const other = projects.find((candidate) => candidate.slug !== project.slug);
 
+  const roleSentences = project.role.split(". ").map((s) => s.replace(/\.$/, ""));
+  const kind = project.slug === "agri-intelligence-platform" ? "agri" : "flex";
+
   return (
     <article>
       <PageHeader label={project.tag} title={project.name}>
         {project.place} · {project.coords}
       </PageHeader>
+
+      <div className={styles.explorerWrap}>
+        <ProductExplorer kind={kind} />
+      </div>
+
+      <section className={styles.section}>
+        <h2>
+          Context
+        </h2>
+        <div className={styles.contextRow}>
+          <div>
+            <span>Role</span>
+            <p>{roleSentences[0]}.</p>
+          </div>
+          <div>
+            <span>Timeframe</span>
+            <p>{project.year}</p>
+          </div>
+          <div>
+            <span>Setting</span>
+            <p>{project.context}</p>
+          </div>
+        </div>
+      </section>
 
       <section className={styles.section}>
         <h2>
@@ -49,6 +77,13 @@ export default async function ProjectPage({ params }) {
           {project.roleLabel}
         </h2>
         <p>{project.role}</p>
+      </section>
+
+      <section className={styles.section}>
+        <h2>
+          Outcome
+        </h2>
+        <p className={styles.outcome}>{project.impact}</p>
       </section>
 
       <section className={styles.section}>

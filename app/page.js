@@ -3,50 +3,158 @@
 import { useState } from "react";
 import Link from "next/link";
 import ButtonLink from "@/components/ButtonLink";
+import ProductExplorer from "@/components/ProductExplorer";
 import { projects } from "@/lib/projects";
 import { pins } from "@/lib/journeyPins";
 import { dottedMapSvg, getPinPosition } from "@/lib/dottedMap";
 import styles from "./home.module.css";
 
-const stops = ["chennai", "bengaluru", "pacific", "santa-clara", "zambia"].map((id) =>
-  pins.find((p) => p.id === id)
-);
+const chapters = [
+  {
+    id: "chennai",
+    number: "01",
+    place: "Chennai",
+    kind: "Education",
+    dates: "2014 to 2018",
+    pins: ["chennai"],
+    text: "B.E. in Electrical & Electronics Engineering at SSN College of Engineering.",
+    href: "/about-me",
+    linkLabel: "Read more about me",
+  },
+  {
+    id: "bengaluru",
+    number: "02",
+    place: "Bengaluru",
+    kind: "Employment",
+    dates: "2021 to 2024",
+    pins: ["bengaluru"],
+    text: "About 2.5 years at iGreenData in fintech, payments and data.",
+    href: "/about-me",
+    linkLabel: "Read more about me",
+  },
+  {
+    id: "asia",
+    number: "03",
+    place: "Singapore and Australia",
+    kind: "Client collaborations",
+    dates: "2021 to 2024",
+    pins: ["singapore", "australia"],
+    text: "Worked with regional teams and clients from the Singapore delivery hub and across Australia on payment systems.",
+    href: "/about-me",
+    linkLabel: "Read more about me",
+  },
+  {
+    id: "pacific",
+    number: "04",
+    place: "Pacific islands",
+    kind: "Client go-lives",
+    dates: "2022 to 2024",
+    pins: ["pacific"],
+    text: "Led go-live of RTGS and ACH payment systems in Fiji, Samoa, and Vanuatu.",
+    href: "/about-me",
+    linkLabel: "Read more about me",
+  },
+  {
+    id: "santa-clara",
+    number: "05",
+    place: "Santa Clara",
+    kind: "Study and teaching",
+    dates: "2024 to present",
+    pins: ["santa-clara"],
+    text: "MS Business Analytics at SCU, Graduate TA, Flex practicum.",
+    href: "/projects/flex-competitive-intelligence",
+    linkLabel: "View the Flex project",
+  },
+  {
+    id: "zambia",
+    number: "06",
+    place: "Zambia",
+    kind: "Team project",
+    dates: "2026",
+    pins: ["zambia"],
+    text: "Agri-Intelligence Platform, a WhatsApp AI system for 22,000+ farmers (team project).",
+    href: "/projects/agri-intelligence-platform",
+    linkLabel: "View the Agri project",
+  },
+];
 
 function sentences(text) {
   return text.split(". ").map((s) => s.replace(/\.$/, ""));
 }
 
 export default function Home() {
-  const [stop, setStop] = useState(3);
-  const active = stops[stop];
+  const [chapter, setChapter] = useState(4);
+  const active = chapters[chapter];
 
   return (
     <article>
       <section className={styles.hero}>
-        <p className={styles.eyebrow}>
-          <span aria-hidden="true" /> Srinidhi Jagannathan / Product &amp; AI
-        </p>
-        <h1 className={styles.headline}>
-          Complex systems.
-          <br />
-          <em>Human outcomes.</em>
-        </h1>
-        <p className={styles.heroIntro}>
-          I turn complex requirements into products people can use, drawing on
-          experience delivering national payment systems and building AI-powered
-          analyst workflows.
-        </p>
-        <div className={styles.heroActions}>
-          <ButtonLink href="#selected-work" variant="primary">
-            Explore my work
-          </ButtonLink>
-          <ButtonLink href="/contact-me-server-form" variant="secondary">
-            Let&rsquo;s talk
-          </ButtonLink>
+        <div className={styles.heroText}>
+          <p className={styles.eyebrow}>
+            <span aria-hidden="true" /> Srinidhi Jagannathan / Product &amp; AI
+          </p>
+          <h1 className={styles.headline}>
+            Complex systems.
+            <br />
+            <em>Human outcomes.</em>
+          </h1>
+          <p className={styles.heroIntro}>
+            I turn complex requirements into products people can use, drawing on
+            experience delivering national payment systems and building AI-powered
+            analyst workflows.
+          </p>
+          <div className={styles.heroActions}>
+            <ButtonLink href="#selected-work" variant="primary">
+              Explore my work
+            </ButtonLink>
+            <ButtonLink href="/contact-me-server-form" variant="secondary">
+              Let&rsquo;s talk
+            </ButtonLink>
+          </div>
         </div>
-        <p className={styles.heroNote}>
-          Engineering roots · Product mindset · Santa Clara, CA
-        </p>
+
+        <div className={styles.heroMap}>
+          <div className={styles.map}>
+            <div dangerouslySetInnerHTML={{ __html: dottedMapSvg }} />
+            {pins.map((p) => {
+              const pos = getPinPosition(p.lat, p.lon);
+              const isActivePin = active.pins.includes(p.id);
+              return (
+                <button
+                  key={p.id}
+                  aria-label={`Show ${p.place}`}
+                  aria-pressed={isActivePin}
+                  onClick={() => setChapter(chapters.findIndex((c) => c.pins.includes(p.id)))}
+                  style={{ left: `${pos.xPercent}%`, top: `${pos.yPercent}%` }}
+                >
+                  <span />
+                </button>
+              );
+            })}
+          </div>
+          <div className={styles.story} aria-live="polite">
+            <p className={styles.storyLabel}>
+              Chapter {active.number} / {active.kind} · {active.dates}
+            </p>
+            <h2>{active.place}</h2>
+            <p className={styles.storyText}>{active.text}</p>
+            <Link href={active.href}>
+              {active.linkLabel} <span aria-hidden="true">&rarr;</span>
+            </Link>
+          </div>
+          <div className={styles.chapters} role="group" aria-label="Journey chapters">
+            {chapters.map((c, i) => (
+              <button
+                key={c.id}
+                aria-pressed={chapter === i}
+                onClick={() => setChapter(i)}
+              >
+                <span>{c.number}</span>
+                {c.id === "asia" ? "Asia-Pacific" : c.place}
+              </button>
+            ))}
+          </div>
+        </div>
       </section>
 
       <section className={styles.work} id="selected-work">
@@ -66,6 +174,10 @@ export default function Home() {
           const contribution = roleSentences[roleSentences.length - 1];
           return (
             <div key={p.slug} className={`${styles.feature} ${i === 1 ? styles.flip : ""}`}>
+              <div className={styles.featureMedia}>
+                <ProductExplorer kind={i === 0 ? "flex" : "agri"} />
+                <p className={styles.featureCaption}>{p.impact}</p>
+              </div>
               <div className={styles.featureBody}>
                 <p className={styles.label}>
                   {`0${i + 1}`} / {p.tag}
@@ -78,7 +190,7 @@ export default function Home() {
                 </p>
                 <div className={styles.projectFact}>
                   <span>Context</span>
-                  <p>{i === 0 ? "SCU industry practicum · Flex" : "Agricultural AI · Team project"}</p>
+                  <p>{p.context}</p>
                 </div>
                 <div className={styles.projectFact}>
                   <span>Contribution</span>
@@ -107,62 +219,6 @@ export default function Home() {
         <div>
           <strong>3</strong>
           <span>National payment-system launches</span>
-        </div>
-      </section>
-
-      <section className={styles.journey} id="journey">
-        <div className={styles.sectionTop}>
-          <div>
-            <p className={styles.label}>02 / The journey</p>
-            <h2>
-              Different places.
-              <br />
-              <em>A connected story.</em>
-            </h2>
-          </div>
-          <p>
-            Places I studied, worked, and built for.
-            <br />
-            Select a chapter to explore.
-          </p>
-        </div>
-        <div className={styles.journeyGrid}>
-          <div className={styles.map}>
-            <div dangerouslySetInnerHTML={{ __html: dottedMapSvg }} />
-            {stops.map((p, i) => {
-              const pos = getPinPosition(p.lat, p.lon);
-              return (
-                <button
-                  key={p.id}
-                  aria-label={`Show ${p.place}`}
-                  aria-pressed={i === stop}
-                  onClick={() => setStop(i)}
-                  style={{ left: `${pos.xPercent}%`, top: `${pos.yPercent}%` }}
-                >
-                  <span />
-                </button>
-              );
-            })}
-          </div>
-          <div className={styles.story} aria-live="polite">
-            <p className={styles.label}>
-              Chapter {`0${stop + 1}`} / {active.kind}
-            </p>
-            <h3>{active.place}</h3>
-            <p className={styles.storyDates}>{active.dates}</p>
-            <p>{active.text}</p>
-            <Link href={active.href}>
-              {active.linkLabel} <span aria-hidden="true">&rarr;</span>
-            </Link>
-          </div>
-        </div>
-        <div className={styles.milestones} role="group" aria-label="Journey chapters">
-          {stops.map((p, i) => (
-            <button key={p.id} aria-pressed={stop === i} onClick={() => setStop(i)}>
-              <span>{`0${i + 1}`}</span>
-              {p.shortName ?? p.place.split(",")[0]}
-            </button>
-          ))}
         </div>
       </section>
 
