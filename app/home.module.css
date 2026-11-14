@@ -16,7 +16,7 @@
 .heroIntro {
   font-size: 1.2rem;
   color: var(--ink-soft);
-  margin: 1rem 0 2rem;
+  margin: 1rem 0 0.75rem;
   max-width: 34rem;
 }
 
@@ -28,6 +28,7 @@
 
 .heroCopy {
   min-width: 0;
+  position: relative;
 }
 
 .heroMap {

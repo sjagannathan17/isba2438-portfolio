@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
+import { getLatLngFromPosition } from "@/lib/dottedMap";
 import styles from "./WorldMap.module.css";
 
 function cardSide(xPercent) {
@@ -17,8 +18,25 @@ function cardSide(xPercent) {
 export default function WorldMap({ mapSvg, pins, pathD, viewBox }) {
   const [activeId, setActiveId] = useState(null);
   const [routePaused, setRoutePaused] = useState(false);
+  const [hoverFine, setHoverFine] = useState(false);
+  const [cursor, setCursor] = useState(null);
   const mapRef = useRef(null);
   const active = pins.find((pin) => pin.id === activeId);
+
+  useEffect(() => {
+    const query = window.matchMedia("(hover: hover) and (pointer: fine)");
+    setHoverFine(query.matches);
+    const update = (event) => setHoverFine(event.matches);
+    query.addEventListener("change", update);
+    return () => query.removeEventListener("change", update);
+  }, []);
+
+  function handleMove(event) {
+    const rect = event.currentTarget.getBoundingClientRect();
+    const xPercent = ((event.clientX - rect.left) / rect.width) * 100;
+    const yPercent = ((event.clientY - rect.top) / rect.height) * 100;
+    setCursor({ xPercent, yPercent, ...getLatLngFromPosition(xPercent, yPercent) });
+  }
 
   useEffect(() => {
     const node = mapRef.current;
@@ -56,7 +74,11 @@ export default function WorldMap({ mapSvg, pins, pathD, viewBox }) {
       className={`${styles.mapWrap} ${routePaused ? styles.routePaused : ""}`}
       onKeyDown={handleKeyDown}
     >
-      <div className={styles.mapCanvas}>
+      <div
+        className={styles.mapCanvas}
+        onMouseMove={hoverFine ? handleMove : undefined}
+        onMouseLeave={hoverFine ? () => setCursor(null) : undefined}
+      >
         <div
           className={styles.mapSvg}
           dangerouslySetInnerHTML={{ __html: mapSvg }}
@@ -69,6 +91,23 @@ export default function WorldMap({ mapSvg, pins, pathD, viewBox }) {
           </mask>
           <path d={pathD} mask="url(#journey-draw-mask)" />
         </svg>
+
+        {hoverFine && cursor && (
+          <div className={styles.crosshair} aria-hidden="true">
+            <span className={styles.crossV} style={{ left: `${cursor.xPercent}%` }} />
+            <span className={styles.crossH} style={{ top: `${cursor.yPercent}%` }} />
+            <span
+              className={`${styles.crossLabel} ${cursor.xPercent > 65 ? styles.crossLabelLeft : ""} ${
+                cursor.yPercent < 18 ? styles.crossLabelBelow : ""
+              }`}
+              style={{ left: `${cursor.xPercent}%`, top: `${cursor.yPercent}%` }}
+            >
+              {`${Math.abs(cursor.lat).toFixed(1)}° ${cursor.lat >= 0 ? "N" : "S"}, ${Math.abs(
+                cursor.lng
+              ).toFixed(1)}° ${cursor.lng >= 0 ? "E" : "W"}`}
+            </span>
+          </div>
+        )}
 
         {pins.map((pin, index) => {
           const isActive = pin.id === activeId;

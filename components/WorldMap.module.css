@@ -57,6 +57,55 @@
   font-size: 0.9rem;
 }
 
+.crosshair {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.crossV {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: rgba(33, 30, 27, 0.18);
+}
+
+.crossH {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: rgba(33, 30, 27, 0.18);
+}
+
+.crossLabel {
+  position: absolute;
+  transform: translate(10px, 12px);
+  white-space: nowrap;
+  font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  font-size: 0.72rem;
+  color: var(--ink);
+  background: #fffdf8;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 0.05rem 0.4rem;
+  box-shadow: 0 2px 8px rgba(33, 30, 27, 0.08);
+}
+
+.crossLabelLeft {
+  transform: translate(-10px, 12px) translateX(-100%);
+}
+
+.crossLabelBelow {
+  transform: translate(10px, -30px);
+}
+
+.crossLabelLeft.crossLabelBelow {
+  transform: translate(-10px, -30px) translateX(-100%);
+}
+
 .pinAnchor {
   position: absolute;
   transform: translate(-50%, -50%);

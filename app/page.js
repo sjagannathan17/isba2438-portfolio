@@ -1,5 +1,7 @@
 import Link from "next/link";
 import ButtonLink from "@/components/ButtonLink";
+import HeroClock from "@/components/HeroClock";
+import HeroCompass from "@/components/HeroCompass";
 import JourneyScroll from "@/components/JourneyScroll";
 import ProjectCard from "@/components/ProjectCard";
 import WorldMap from "@/components/WorldMap";
@@ -32,11 +34,13 @@ export default function Home() {
     <article>
       <section className={styles.hero}>
         <div className={styles.heroCopy}>
+          <HeroCompass />
           <h1 className={styles.heroName}>Srinidhi Jagannathan</h1>
           <p className={styles.heroIntro}>
             AI builder and product manager, MS Business Analytics at Santa Clara
             University.
           </p>
+          <HeroClock />
           <div className={styles.heroActions}>
             <ButtonLink href="/projects" variant="primary">
               View projects
