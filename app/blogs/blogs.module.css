@@ -1,0 +1,122 @@
+.list {
+  display: flex;
+  flex-direction: column;
+  max-width: var(--text-max);
+}
+
+.item {
+  padding: var(--space-3) 0;
+  border-top: 1px solid var(--line);
+}
+
+.item:first-child {
+  border-top: none;
+  padding-top: 0;
+}
+
+.title {
+  font-family: var(--font-heading), Georgia, serif;
+  font-size: var(--text-l);
+  font-weight: 600;
+  margin-bottom: 2px;
+}
+
+.title a {
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.title a:hover {
+  color: var(--indigo-900);
+}
+
+.date {
+  font-size: var(--text-xs);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin-bottom: var(--space-1);
+}
+
+.description {
+  font-size: var(--text-s);
+  line-height: 1.7;
+  color: var(--ink-soft);
+  margin-bottom: var(--space-1);
+}
+
+.readMore {
+  font-size: 0.9375rem;
+  font-weight: 500;
+}
+
+.readMore span {
+  display: inline-block;
+  transition: transform 0.15s ease;
+}
+
+.readMore:hover span,
+.readMore:focus-visible span {
+  transform: translateX(4px);
+}
+
+.empty {
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: var(--space-4);
+  max-width: var(--text-max);
+  color: var(--ink-soft);
+  font-size: var(--text-s);
+  line-height: 1.7;
+}
+
+.empty a {
+  color: var(--accent);
+  font-weight: 500;
+}
+
+.retry {
+  margin-top: var(--space-2);
+  min-height: 44px;
+  padding: 10px 18px;
+  border: 1px solid var(--indigo-100);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--ink);
+  font-size: var(--text-s);
+  font-weight: 500;
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.retry:hover {
+  border-color: var(--accent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .readMore span {
+    transition: none;
+  }
+
+  .retry {
+    transition: none;
+  }
+}
+
+.content {
+  max-width: var(--text-max);
+}
+
+.content p {
+  font-size: var(--text-s);
+  line-height: 1.75;
+  color: var(--ink);
+  margin-bottom: var(--space-2);
+}
+
+.back {
+  margin-top: var(--space-4);
+}
+
+.back a {
+  font-weight: 500;
+}

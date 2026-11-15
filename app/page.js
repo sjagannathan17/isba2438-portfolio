@@ -3,240 +3,200 @@
 import { useState } from "react";
 import Link from "next/link";
 import ButtonLink from "@/components/ButtonLink";
-import ProductExplorer from "@/components/ProductExplorer";
+import ConceptualVisual from "@/components/ConceptualVisual";
+import WorldMap from "@/components/WorldMap";
 import { projects } from "@/lib/projects";
 import { pins } from "@/lib/journeyPins";
-import { dottedMapSvg, getPinPosition } from "@/lib/dottedMap";
+import { dottedMapSvg, getPinPosition, getJourneyPathD, mapViewBox } from "@/lib/dottedMap";
 import styles from "./home.module.css";
 
-const chapters = [
+const pinsWithPositions = pins.map((pin) => ({
+  ...pin,
+  position: getPinPosition(pin.lat + (pin.nudgeLat ?? 0), pin.lon + (pin.nudgeLon ?? 0)),
+}));
+
+const journeyPathD = getJourneyPathD(
+  pins.map((pin) => ({ lat: pin.lat + (pin.nudgeLat ?? 0), lng: pin.lon + (pin.nudgeLon ?? 0) }))
+);
+
+const firstSentence = (text) => `${text.split(". ")[0].replace(/\.$/, "")}.`;
+
+const visualVariants = {
+  "flex-competitive-intelligence": "flex",
+  "agri-intelligence-platform": "agri",
+};
+
+const stats = [
   {
-    id: "chennai",
-    number: "01",
-    place: "Chennai",
-    kind: "Education",
-    dates: "2014 to 2018",
-    pins: ["chennai"],
-    text: "B.E. in Electrical & Electronics Engineering at SSN College of Engineering.",
-    href: "/about-me",
-    linkLabel: "Read more about me",
+    value: "2.5 years",
+    label: "in fintech payments",
+    relatedPins: ["bengaluru", "singapore", "australia"],
   },
   {
-    id: "bengaluru",
-    number: "02",
-    place: "Bengaluru",
-    kind: "Employment",
-    dates: "2021 to 2024",
-    pins: ["bengaluru"],
-    text: "About 2.5 years at iGreenData in fintech, payments and data.",
-    href: "/about-me",
-    linkLabel: "Read more about me",
+    value: "3 countries",
+    label: "where I helped launch RTGS and ACH payment systems (Fiji, Samoa, Vanuatu)",
+    relatedPins: ["pacific"],
   },
   {
-    id: "asia",
-    number: "03",
-    place: "Singapore and Australia",
-    kind: "Client collaborations",
-    dates: "2021 to 2024",
-    pins: ["singapore", "australia"],
-    text: "Worked with regional teams and clients from the Singapore delivery hub and across Australia on payment systems.",
-    href: "/about-me",
-    linkLabel: "Read more about me",
-  },
-  {
-    id: "pacific",
-    number: "04",
-    place: "Pacific islands",
-    kind: "Client go-lives",
-    dates: "2022 to 2024",
-    pins: ["pacific"],
-    text: "Led go-live of RTGS and ACH payment systems in Fiji, Samoa, and Vanuatu.",
-    href: "/about-me",
-    linkLabel: "Read more about me",
-  },
-  {
-    id: "santa-clara",
-    number: "05",
-    place: "Santa Clara",
-    kind: "Study and teaching",
-    dates: "2024 to present",
-    pins: ["santa-clara"],
-    text: "MS Business Analytics at SCU, Graduate TA, Flex practicum.",
-    href: "/projects/flex-competitive-intelligence",
-    linkLabel: "View the Flex project",
-  },
-  {
-    id: "zambia",
-    number: "06",
-    place: "Zambia",
-    kind: "Team project",
-    dates: "2026",
-    pins: ["zambia"],
-    text: "Agri-Intelligence Platform, a WhatsApp AI system for 22,000+ farmers (team project).",
-    href: "/projects/agri-intelligence-platform",
-    linkLabel: "View the Agri project",
+    value: "60+",
+    label: "graduate students mentored as a TA",
+    relatedPins: ["santa-clara"],
   },
 ];
 
-function sentences(text) {
-  return text.split(". ").map((s) => s.replace(/\.$/, ""));
-}
-
 export default function Home() {
-  const [chapter, setChapter] = useState(4);
-  const active = chapters[chapter];
+  const [highlight, setHighlight] = useState(null);
+  const [selectedPin, setSelectedPin] = useState(null);
 
   return (
     <article>
       <section className={styles.hero}>
         <div className={styles.heroText}>
-          <p className={styles.eyebrow}>
-            <span aria-hidden="true" /> Srinidhi Jagannathan / Product &amp; AI
+          <p className={styles.eyebrow}>Srinidhi Jagannathan</p>
+          <h1 className={styles.headline}>From complex systems to products people can use.</h1>
+          <p className={styles.heroLine}>
+            Electrical engineer by training, I moved interbank settlement from up to 5
+            days to real time before coming to Santa Clara to build AI products.
           </p>
-          <h1 className={styles.headline}>
-            Complex systems.
-            <br />
-            <em>Human outcomes.</em>
-          </h1>
           <p className={styles.heroIntro}>
-            I turn complex requirements into products people can use, drawing on
-            experience delivering national payment systems and building AI-powered
-            analyst workflows.
+            I have shipped payment systems across three island nations and AI products
+            from prototype to launch.
           </p>
           <div className={styles.heroActions}>
-            <ButtonLink href="#selected-work" variant="primary">
+            <ButtonLink href="/contact-me" variant="primary">
+              Get in touch
+            </ButtonLink>
+            <ButtonLink href="/projects" variant="secondary">
               Explore my work
             </ButtonLink>
-            <ButtonLink href="/contact-me-server-form" variant="secondary">
-              Let&rsquo;s talk
-            </ButtonLink>
+            <a
+              className={styles.resumeLink}
+              href="/resume.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Resume
+            </a>
           </div>
         </div>
-
         <div className={styles.heroMap}>
-          <div className={styles.map}>
-            <div dangerouslySetInnerHTML={{ __html: dottedMapSvg }} />
-            {pins.map((p) => {
-              const pos = getPinPosition(p.lat, p.lon);
-              const isActivePin = active.pins.includes(p.id);
-              return (
-                <button
-                  key={p.id}
-                  aria-label={`Show ${p.place}`}
-                  aria-pressed={isActivePin}
-                  onClick={() => setChapter(chapters.findIndex((c) => c.pins.includes(p.id)))}
-                  style={{ left: `${pos.xPercent}%`, top: `${pos.yPercent}%` }}
-                >
-                  <span />
-                </button>
-              );
-            })}
-          </div>
-          <div className={styles.story} aria-live="polite">
-            <p className={styles.storyLabel}>
-              Chapter {active.number} / {active.kind} · {active.dates}
+          <WorldMap
+            mapSvg={dottedMapSvg}
+            pins={pinsWithPositions}
+            pathD={journeyPathD}
+            viewBox={mapViewBox}
+            selectedId={selectedPin}
+            onSelectPin={setSelectedPin}
+            highlightIds={highlight ?? (selectedPin ? [selectedPin] : null)}
+          />
+          <div className={styles.chaptersWrap}>
+            <p className={styles.mapHint} id="journey-instructions">
+              Select a location to explore my journey.
             </p>
-            <h2>{active.place}</h2>
-            <p className={styles.storyText}>{active.text}</p>
-            <Link href={active.href}>
-              {active.linkLabel} <span aria-hidden="true">&rarr;</span>
-            </Link>
-          </div>
-          <div className={styles.chapters} role="group" aria-label="Journey chapters">
-            {chapters.map((c, i) => (
-              <button
-                key={c.id}
-                aria-pressed={chapter === i}
-                onClick={() => setChapter(i)}
-              >
-                <span>{c.number}</span>
-                {c.id === "asia" ? "Asia-Pacific" : c.place}
-              </button>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className={styles.work} id="selected-work">
-        <div className={styles.sectionTop}>
-          <div>
-            <p className={styles.label}>01 / Selected work</p>
-            <h2>Ideas, made useful.</h2>
-          </div>
-          <p>
-            Two different contexts.
-            <br />
-            One focus on the people using the product.
-          </p>
-        </div>
-        {projects.map((p, i) => {
-          const roleSentences = sentences(p.role);
-          const contribution = roleSentences[roleSentences.length - 1];
-          return (
-            <div key={p.slug} className={`${styles.feature} ${i === 1 ? styles.flip : ""}`}>
-              <div className={styles.featureMedia}>
-                <ProductExplorer kind={i === 0 ? "flex" : "agri"} />
-                <p className={styles.featureCaption}>{p.impact}</p>
-              </div>
-              <div className={styles.featureBody}>
-                <p className={styles.label}>
-                  {`0${i + 1}`} / {p.tag}
-                </p>
-                <h3>{p.name}</h3>
-                <p className={styles.featureSummary}>
-                  {i === 0
-                    ? "Helping analysts spend less time gathering information and more time understanding it."
-                    : "Bringing agricultural information into a familiar, local-language conversation."}
-                </p>
-                <div className={styles.projectFact}>
-                  <span>Context</span>
-                  <p>{p.context}</p>
-                </div>
-                <div className={styles.projectFact}>
-                  <span>Contribution</span>
-                  <p>{contribution}.</p>
-                </div>
-                {p.recognition ? (
-                  <div className={styles.projectFact}>
-                    <span>Recognition</span>
-                    <p>{p.recognition}</p>
-                  </div>
-                ) : null}
-                <Link className={styles.caseLink} href={`/projects/${p.slug}`}>
-                  Inside the project <span aria-hidden="true">&rarr;</span>
-                </Link>
-              </div>
+            <div
+              className={styles.chapters}
+              role="group"
+              aria-labelledby="journey-instructions"
+            >
+              {pins.map((pin) => {
+                const selected = selectedPin === pin.id;
+                return (
+                  <button
+                    key={pin.id}
+                    type="button"
+                    className={
+                      selected ? `${styles.chapter} ${styles.chapterActive}` : styles.chapter
+                    }
+                    aria-pressed={selected}
+                    onClick={() => setSelectedPin(selected ? null : pin.id)}
+                  >
+                    {pin.place}
+                  </button>
+                );
+              })}
             </div>
-          );
-        })}
-      </section>
-
-      <section className={styles.stats} aria-label="Experience at a glance">
-        <div>
-          <strong>2.5</strong>
-          <span>Years in fintech payments</span>
-        </div>
-        <div>
-          <strong>3</strong>
-          <span>National payment-system launches</span>
+          </div>
         </div>
       </section>
 
-      <section className={styles.closing}>
-        <p className={styles.label}>Have something in mind?</p>
-        <h2>
-          Let&rsquo;s make
-          <br />
-          <em>something matter.</em>
+      <section className={styles.work} aria-label="Selected work">
+        <p className={styles.label}>Selected work</p>
+        {projects.map((project, index) => (
+          <Link
+            key={project.slug}
+            href={`/projects/${project.slug}`}
+            className={`${styles.feature} ${index % 2 === 1 ? styles.featureFlip : ""}`}
+            onMouseEnter={() => setHighlight(project.relatedPins)}
+            onMouseLeave={() => setHighlight(null)}
+            onFocus={() => setHighlight(project.relatedPins)}
+            onBlur={() => setHighlight(null)}
+          >
+            <div className={styles.featureMedia}>
+              <div className={styles.featurePanel}>
+                <ConceptualVisual variant={visualVariants[project.slug]} />
+              </div>
+              <p className={styles.featureCaption}>
+                {project.impact}. Conceptual illustration, not a product screenshot.
+              </p>
+            </div>
+            <div className={styles.featureBody}>
+              <h2 className={styles.featureName}>{project.name}</h2>
+              <p className={styles.featureRow}>
+                <span className={styles.featureLabel}>The problem</span>
+                {firstSentence(project.why)}
+              </p>
+              <p className={styles.featureRow}>
+                <span className={styles.featureLabel}>{project.roleLabel}</span>
+                {firstSentence(project.role)}
+              </p>
+              {project.recognition ? (
+                <p className={styles.featureRow}>
+                  <span className={styles.featureLabel}>Recognition</span>
+                  {project.recognition}
+                </p>
+              ) : null}
+
+              <span className={styles.featureLink}>
+                Explore case study{" "}
+                <span className={styles.arrow} aria-hidden="true">&rarr;</span>
+              </span>
+            </div>
+          </Link>
+        ))}
+      </section>
+
+      <section className={styles.impactBand} aria-label="At a glance">
+        <p className={styles.label}>At a glance</p>
+        <div className={styles.stats}>
+          {stats.map((stat) => (
+            <p
+              key={stat.label}
+              className={styles.stat}
+              tabIndex={0}
+              onMouseEnter={() => setHighlight(stat.relatedPins)}
+              onMouseLeave={() => setHighlight(null)}
+              onFocus={() => setHighlight(stat.relatedPins)}
+              onBlur={() => setHighlight(null)}
+            >
+              <span className={styles.statValue}>{stat.value}</span>
+              <span className={styles.statLabel}>{stat.label}</span>
+            </p>
+          ))}
+        </div>
+      </section>
+
+      <section className={styles.closingBand}>
+        <p className={styles.label}>Next</p>
+        <h2 className={styles.sectionHeading}>
+          Let&rsquo;s build something
         </h2>
-        <div>
-          <p>
-            Exploring early-career product opportunities
-            <br />
-            in AI and fintech.
-          </p>
-          <ButtonLink href="/contact-me-server-form" variant="cream">
-            Start a conversation
+        <p className={styles.closingIntro}>
+          I am looking for associate product manager roles in AI and fintech. If you
+          are hiring or want to talk shop, my inbox is open.
+        </p>
+        <div className={styles.heroActions}>
+          <ButtonLink href="/contact-me" variant="cream">
+            Get in touch
           </ButtonLink>
         </div>
       </section>

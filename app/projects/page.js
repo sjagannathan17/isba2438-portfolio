@@ -19,7 +19,7 @@ export default function Projects() {
           <ProjectCard key={project.slug} project={project} />
         ))}
       </div>
-      <NextStep href="/contact-me-server-form">Get in touch</NextStep>
+      <NextStep href="/contact-me">Get in touch</NextStep>
     </section>
   );
 }

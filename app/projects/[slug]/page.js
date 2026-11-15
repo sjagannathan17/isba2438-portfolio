@@ -1,6 +1,5 @@
 import NextStep from "@/components/NextStep";
 import PageHeader from "@/components/PageHeader";
-import ProductExplorer from "@/components/ProductExplorer";
 import { projects, getProject } from "@/lib/projects";
 import { notFound } from "next/navigation";
 import styles from "./project.module.css";
@@ -26,17 +25,12 @@ export default async function ProjectPage({ params }) {
   const other = projects.find((candidate) => candidate.slug !== project.slug);
 
   const roleSentences = project.role.split(". ").map((s) => s.replace(/\.$/, ""));
-  const kind = project.slug === "agri-intelligence-platform" ? "agri" : "flex";
 
   return (
     <article>
       <PageHeader label={project.tag} title={project.name}>
         {project.place} · {project.coords}
       </PageHeader>
-
-      <div className={styles.explorerWrap}>
-        <ProductExplorer kind={kind} />
-      </div>
 
       <section className={styles.section}>
         <h2>

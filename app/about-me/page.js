@@ -114,7 +114,7 @@ export default function AboutMe() {
           Associate or early-career Product Manager roles in AI and fintech, full-time,
           starting after December 2026. Open to relocating anywhere in the US.
         </p>
-        <ButtonLink href="/contact-me-server-form">Get in touch</ButtonLink>
+        <ButtonLink href="/contact-me">Get in touch</ButtonLink>
       </section>
 
       <NextStep href="/projects">Explore the projects</NextStep>

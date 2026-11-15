@@ -28,9 +28,10 @@ export default function ContactApiForm() {
   async function handleSubmit(event) {
     event.preventDefault();
     setPending(true);
+    setStatus("pending");
     setErrors({});
     try {
-      const response = await fetch("/api/contact", {
+      const response = await fetch("/api/contacts", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(values),
@@ -62,6 +63,11 @@ export default function ContactApiForm() {
 
   return (
     <form className={styles.form} noValidate onSubmit={handleSubmit}>
+      {status === "pending" && (
+        <p className={styles.pending} role="status">
+          Sending...
+        </p>
+      )}
       {status === "success" && (
         <p className={styles.success} role="status">
           Thanks, your message was sent! I will get back to you soon.

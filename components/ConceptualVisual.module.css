@@ -1,0 +1,39 @@
+.svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.label {
+  font-family: var(--font-body), sans-serif;
+  font-size: 22px;
+  font-weight: 600;
+  fill: var(--indigo-900);
+}
+
+.panelTitle {
+  font-family: var(--font-body), sans-serif;
+  font-size: 26px;
+  font-weight: 600;
+  fill: var(--paper);
+}
+
+.panelText {
+  font-family: var(--font-body), sans-serif;
+  font-size: 20px;
+  fill: var(--indigo-100);
+}
+
+.bubbleOn {
+  font-family: var(--font-body), sans-serif;
+  font-size: 22px;
+  font-weight: 600;
+  fill: var(--paper);
+}
+
+.bubbleOff {
+  font-family: var(--font-body), sans-serif;
+  font-size: 22px;
+  font-weight: 600;
+  fill: var(--indigo-900);
+}

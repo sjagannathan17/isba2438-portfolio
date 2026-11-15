@@ -1,0 +1,10 @@
+[
+  {
+    "id": "b1447e70-b704-4b7d-bed1-995729a08e84",
+    "slug": "building-my-portfolio-with-next-js-and-viber",
+    "title": "Building My Portfolio with Next.js and Viber",
+    "description": "How I turned my portfolio into a working web application with contact forms, API routes, and a blog.",
+    "content": "My portfolio started as a way to introduce myself and share my projects. For this assignment, I extended it with features that collect and display data.\n\nThe first addition was an API-based contact form. It sends a JSON request to a Next.js API route, validates the input, and saves valid submissions to a JSON file. The original Server Action form remains available, and both forms use the same validation and storage helpers.\n\nNext, I added this blog. The editor sends posts to an API that generates a unique ID, URL slug, and timestamp. Saved posts appear on the blog listing page, and each has its own detail page.\n\nI used Viber to build these features incrementally. Testing covered valid submissions, missing fields, invalid email addresses, duplicate blog titles, and unknown post URLs. One issue involved the temporary storage path used during testing. Another involved an old server still running on the test port. Both showed why checking the actual saved data and server state matters.\n\nThis project helped me connect what happens in the browser with what happens on the server. It also reminded me that a feature needs more than a successful submission. Clear errors, preserved input, useful empty states, and working navigation are part of the experience too.",
+    "createdAt": "2026-11-14T23:02:43.514Z"
+  }
+]

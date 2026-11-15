@@ -15,8 +15,27 @@ function cardSide(xPercent) {
   return styles.cardCenter;
 }
 
-export default function WorldMap({ mapSvg, pins, pathD, viewBox, activeYear = "all", highlightIds = null }) {
-  const [activeId, setActiveId] = useState(null);
+export default function WorldMap({
+  mapSvg,
+  pins,
+  pathD,
+  viewBox,
+  activeYear = "all",
+  highlightIds = null,
+  selectedId = null,
+  onSelectPin = null,
+}) {
+  const [internalId, setInternalId] = useState(null);
+  const controlled = onSelectPin != null;
+  const activeId = controlled ? selectedId : internalId;
+  function setActiveId(update) {
+    const next = typeof update === "function" ? update(activeId) : update;
+    if (controlled) {
+      onSelectPin(next);
+    } else {
+      setInternalId(next);
+    }
+  }
   const [hoverFine, setHoverFine] = useState(false);
   const [cursor, setCursor] = useState(null);
   const [revealed, setRevealed] = useState(false);
