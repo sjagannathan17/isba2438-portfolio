@@ -24,6 +24,11 @@ export default function WorldMap({
   highlightIds = null,
   selectedId = null,
   onSelectPin = null,
+  cardMode = "popover",
+  panelId = null,
+  showLabels = true,
+  pinsInteractive = null,
+  segments = null,
 }) {
   const [internalId, setInternalId] = useState(null);
   const controlled = onSelectPin != null;
@@ -37,6 +42,7 @@ export default function WorldMap({
     }
   }
   const [hoverFine, setHoverFine] = useState(false);
+  const [interactive, setInteractive] = useState(true);
   const [cursor, setCursor] = useState(null);
   const [revealed, setRevealed] = useState(false);
   const [loaded, setLoaded] = useState(false);
@@ -50,6 +56,18 @@ export default function WorldMap({
     query.addEventListener("change", update);
     return () => query.removeEventListener("change", update);
   }, []);
+
+  useEffect(() => {
+    if (pinsInteractive !== null) {
+      setInteractive(pinsInteractive);
+      return;
+    }
+    const query = window.matchMedia("(min-width: 900px)");
+    const update = () => setInteractive(query.matches);
+    update();
+    query.addEventListener("change", update);
+    return () => query.removeEventListener("change", update);
+  }, [pinsInteractive]);
 
   useEffect(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
@@ -153,7 +171,25 @@ export default function WorldMap({
               style={{ strokeDashoffset: routeOffset }}
             />
           </mask>
-          <path d={pathD} mask="url(#journey-draw-mask)" />
+          {segments ? (
+            <g mask="url(#journey-draw-mask)">
+              {segments.map((segment) => {
+                const [fromId, toId] = segment.id.split("-");
+                const related =
+                  !activeIds || (activeIds.has(fromId) && activeIds.has(toId));
+                return (
+                  <path
+                    key={segment.id}
+                    d={segment.d}
+                    mask="url(#journey-draw-mask)"
+                    className={related ? "" : styles.segmentDimmed}
+                  />
+                );
+              })}
+            </g>
+          ) : (
+            <path d={pathD} mask="url(#journey-draw-mask)" />
+          )}
         </svg>
 
         {hoverFine && cursor && (
@@ -193,19 +229,28 @@ export default function WorldMap({
                 type="button"
                 className={isActive ? `${styles.pinButton} ${styles.pinActive}` : styles.pinButton}
                 aria-expanded={isActive}
-                aria-controls={`pin-card-${pin.id}`}
+                aria-controls={cardMode === "none" && panelId ? panelId : `pin-card-${pin.id}`}
                 aria-label={`${pin.place}, ${pin.dates}`}
-                onClick={() => toggle(pin.id)}
+                tabIndex={interactive ? undefined : -1}
+                aria-hidden={interactive ? undefined : true}
+                onClick={() => {
+                  if (!interactive) {
+                    return;
+                  }
+                  toggle(pin.id);
+                }}
               >
                 <span className={styles.pinDot} aria-hidden="true" />
-                <span
-                  className={`${styles.pinLabel} ${pin.labelSide === "left" ? styles.pinLabelLeft : ""}`}
-                  aria-hidden="true"
-                >
-                  {pin.place}
-                </span>
+                {showLabels && (
+                  <span
+                    className={`${styles.pinLabel} ${pin.labelSide === "left" ? styles.pinLabelLeft : ""}`}
+                    aria-hidden="true"
+                  >
+                    {pin.mapLabel ?? pin.place}
+                  </span>
+                )}
               </button>
-              {isActive && (
+              {isActive && cardMode === "popover" && (
                 <div
                   id={`pin-card-${pin.id}`}
                   className={`${styles.card} ${cardSide(pin.position.xPercent)}`}

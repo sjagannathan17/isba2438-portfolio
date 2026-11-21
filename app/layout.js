@@ -1,19 +1,19 @@
 import { Suspense } from "react";
-import { Cormorant_Garamond, Inter } from "next/font/google";
+import { Archivo, Geist } from "next/font/google";
 import NavBar from "@/components/NavBar";
 import Footer from "@/components/Footer";
+import RecruiterAssistant from "@/components/RecruiterAssistant";
 import "./globals.css";
 
-const inter = Inter({
+const geist = Geist({
   variable: "--font-body",
   subsets: ["latin"],
   display: "swap",
 });
 
-const cormorant = Cormorant_Garamond({
+const archivo = Archivo({
   variable: "--font-heading",
   subsets: ["latin"],
-  weight: ["500", "600"],
   display: "swap",
 });
 
@@ -28,13 +28,14 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={`${inter.variable} ${cormorant.variable}`}>
+    <html lang="en" className={`${geist.variable} ${archivo.variable}`}>
       <body>
         <Suspense>
           <NavBar />
         </Suspense>
         <main className="page">{children}</main>
         <Footer />
+        <RecruiterAssistant />
       </body>
     </html>
   );

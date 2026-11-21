@@ -31,9 +31,13 @@
   opacity: 0.9;
 }
 
+.segmentDimmed {
+  opacity: 0.12;
+}
+
 .drawMask {
   fill: none;
-  stroke: #fff;
+  stroke: var(--paper);
   stroke-width: 2;
   stroke-dasharray: 1;
   transition: stroke-dashoffset 2.2s ease-out;
@@ -55,7 +59,7 @@
   top: 0;
   bottom: 0;
   width: 1px;
-  background: rgba(33, 30, 27, 0.18);
+  background: rgba(241, 244, 235, 0.16);
 }
 
 .crossH {
@@ -63,7 +67,7 @@
   left: 0;
   right: 0;
   height: 1px;
-  background: rgba(33, 30, 27, 0.18);
+  background: rgba(241, 244, 235, 0.16);
 }
 
 .crossLabel {
@@ -77,7 +81,7 @@
   border: 1px solid var(--line);
   border-radius: 6px;
   padding: 0.05rem 0.4rem;
-  box-shadow: 0 2px 8px rgba(33, 30, 27, 0.08);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
 }
 
 .crossLabelLeft {
@@ -92,8 +96,12 @@
   transform: translate(-10px, -30px) translateX(-100%);
 }
 
-.pinDimmed {
+.pinDimmed .pinDot {
   opacity: 0.25;
+}
+
+.pinDimmed .pinButton {
+  cursor: default;
 }
 
 .pinAnchor {
@@ -246,5 +254,15 @@
 @media (max-width: 639px) {
   .pinLabel {
     display: none;
+  }
+}
+
+@media (max-width: 899px) {
+  .pinAnchor {
+    pointer-events: none;
+  }
+
+  .pinButton {
+    cursor: default;
   }
 }

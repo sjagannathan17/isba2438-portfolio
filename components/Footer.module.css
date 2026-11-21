@@ -15,7 +15,7 @@
 }
 
 .name {
-  font-family: var(--font-heading), Georgia, serif;
+  font-family: var(--font-heading), system-ui, sans-serif;
   font-size: var(--text-s);
 }
 

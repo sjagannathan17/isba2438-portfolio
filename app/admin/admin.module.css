@@ -1,0 +1,39 @@
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px;
+  padding: 0 var(--space-5, 32px) var(--space-6, 48px);
+}
+
+.card {
+  display: block;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 22px;
+  text-decoration: none;
+}
+
+.card:hover {
+  border-color: var(--accent);
+}
+
+.cardTitle {
+  font-family: var(--font-heading), sans-serif;
+  font-weight: 700;
+  color: var(--accent);
+  margin: 0 0 8px;
+  font-size: 1.15rem;
+}
+
+.cardText {
+  color: var(--indigo-100);
+  line-height: 1.55;
+  margin: 0;
+}
+
+@media (max-width: 640px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}

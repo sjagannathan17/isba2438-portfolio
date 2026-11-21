@@ -10,6 +10,7 @@ const links = [
   { href: "/", label: "Home" },
   { href: "/about-me", label: "About Me" },
   { href: "/projects", label: "Projects" },
+  { href: "/workshops", label: "Workshops" },
   { href: "/blogs", label: "Blogs" },
   { href: "/contact-me", label: "Contact Me" },
 ];
@@ -28,7 +29,9 @@ export default function NavBar() {
   const pathname = usePathname();
   const listRef = useRef(null);
   const linkRefs = useRef([]);
+  const menuButtonRef = useRef(null);
   const [indicator, setIndicator] = useState(null);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
     function measure(animate) {
@@ -66,10 +69,43 @@ export default function NavBar() {
     };
   }, [pathname]);
 
+  useEffect(() => {
+    setMenuOpen(false);
+  }, [pathname]);
+
+  useEffect(() => {
+    const query = window.matchMedia("(min-width: 900px)");
+    const update = (event) => {
+      if (event.matches) {
+        setMenuOpen(false);
+      }
+    };
+    query.addEventListener("change", update);
+    return () => query.removeEventListener("change", update);
+  }, []);
+
+  useEffect(() => {
+    if (!menuOpen) {
+      return;
+    }
+    const handleKey = (event) => {
+      if (event.key === "Escape") {
+        setMenuOpen(false);
+        menuButtonRef.current?.focus();
+      }
+    };
+    document.addEventListener("keydown", handleKey);
+    return () => document.removeEventListener("keydown", handleKey);
+  }, [menuOpen]);
+
   return (
     <header className={styles.header}>
       <nav className={styles.nav} aria-label="Main navigation">
-        <Link href="/" className={styles.brand}>
+        <Link
+          href="/"
+          className={styles.brand}
+          onClick={() => setMenuOpen(false)}
+        >
           <PinGlyph />
           Srinidhi Jagannathan
         </Link>
@@ -105,15 +141,63 @@ export default function NavBar() {
             />
           )}
         </ul>
-        <a
-          className={styles.resumeLink}
-          href="/resume.pdf"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Resume
-        </a>
+        <div className={styles.navEnd}>
+          <a
+            className={styles.resumeLink}
+            href="/resume.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Resume
+          </a>
+          <button
+            type="button"
+            ref={menuButtonRef}
+            className={styles.menuButton}
+            aria-expanded={menuOpen}
+            aria-controls="site-menu"
+            onClick={() => setMenuOpen((open) => !open)}
+          >
+            {menuOpen ? "Close" : "Menu"}
+          </button>
+        </div>
       </nav>
+      {menuOpen && (
+        <div id="site-menu" className={styles.mobileMenu}>
+          <ul className={styles.mobileList}>
+            {links.map((link) => {
+              const active = isActive(pathname, link.href);
+              return (
+                <li key={link.href}>
+                  <Link
+                    href={link.href}
+                    className={
+                      active
+                        ? `${styles.mobileLink} ${styles.mobileLinkActive}`
+                        : styles.mobileLink
+                    }
+                    aria-current={active ? "page" : undefined}
+                    onClick={() => setMenuOpen(false)}
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              );
+            })}
+            <li>
+              <a
+                className={styles.mobileLink}
+                href="/resume.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => setMenuOpen(false)}
+              >
+                Resume
+              </a>
+            </li>
+          </ul>
+        </div>
+      )}
     </header>
   );
 }

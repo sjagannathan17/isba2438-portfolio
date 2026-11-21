@@ -28,18 +28,21 @@
 
 .secondary {
   background: transparent;
-  color: var(--accent);
+  color: var(--ink);
+  border-color: var(--indigo-100);
 }
 
 .secondary:hover {
-  background: var(--panel);
-  color: var(--accent-strong);
+  background: transparent;
+  border-color: var(--accent);
+  color: var(--accent);
   transform: translateY(-1px);
 }
 
 .secondary:active {
   transform: translateY(1px);
-  background: var(--paper-soft);
+  border-color: var(--accent-strong);
+  color: var(--accent-strong);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -53,21 +56,4 @@
   .secondary:active {
     transform: none;
   }
-}
-
-.cream {
-  background: var(--paper);
-  color: var(--accent);
-  border-color: var(--paper);
-}
-
-.cream:hover {
-  background: var(--paper-deep);
-  border-color: var(--paper-deep);
-  color: var(--accent-strong);
-  transform: translateY(-1px);
-}
-
-.cream:active {
-  transform: translateY(1px);
 }

@@ -1,49 +1,76 @@
 import NextStep from "@/components/NextStep";
 import PageHeader from "@/components/PageHeader";
-import { projects, getProject } from "@/lib/projects";
+import ButtonLink from "@/components/ButtonLink";
+import ConceptualVisual from "@/components/ConceptualVisual";
+import { readProjects, getProjectBySlug } from "@/lib/projects";
 import { notFound } from "next/navigation";
 import styles from "./project.module.css";
 
-export async function generateStaticParams() {
-  return projects.map((project) => ({ slug: project.slug }));
-}
+export const dynamic = "force-dynamic";
 
 export async function generateMetadata({ params }) {
   const { slug } = await params;
-  const project = getProject(slug);
+  let project = null;
+  try {
+    project = await getProjectBySlug(slug);
+  } catch {
+    project = null;
+  }
   return {
     title: project ? project.name : "Project not found",
   };
 }
 
+const visualVariants = {
+  "flex-competitive-intelligence": "flex",
+  "agri-intelligence-platform": "agri",
+};
+
 export default async function ProjectPage({ params }) {
   const { slug } = await params;
-  const project = getProject(slug);
+
+  let project = null;
+  let storageError = false;
+  try {
+    project = await getProjectBySlug(slug);
+  } catch {
+    storageError = true;
+  }
+
+  if (storageError) {
+    return (
+      <article>
+        <PageHeader label="Project" title="Project unavailable">
+          Project storage is temporarily unavailable. Please try again soon.
+        </PageHeader>
+      </article>
+    );
+  }
+
   if (!project) {
     notFound();
   }
-  const other = projects.find((candidate) => candidate.slug !== project.slug);
 
-  const roleSentences = project.role.split(". ").map((s) => s.replace(/\.$/, ""));
+  const others = (await readProjects()).filter(
+    (candidate) => candidate.slug !== project.slug
+  );
+  const other = others.length > 0 ? others[0] : null;
 
   return (
     <article>
       <PageHeader label={project.tag} title={project.name}>
-        {project.place} · {project.coords}
+        {project.blurb}
       </PageHeader>
 
-      <section className={styles.section}>
-        <h2>
-          Context
-        </h2>
-        <div className={styles.contextRow}>
+      <section className={styles.summary} aria-label="Role, timeframe, and setting">
+        <div className={styles.summaryRow}>
           <div>
             <span>Role</span>
-            <p>{roleSentences[0]}.</p>
+            <p>{project.roleSummary}</p>
           </div>
           <div>
             <span>Timeframe</span>
-            <p>{project.year}</p>
+            <p>{project.timeframe}</p>
           </div>
           <div>
             <span>Setting</span>
@@ -53,47 +80,45 @@ export default async function ProjectPage({ params }) {
       </section>
 
       <section className={styles.section}>
-        <h2>
-          What it does
-        </h2>
-        <p>{project.summary}</p>
-      </section>
-
-      <section className={styles.section}>
-        <h2>
-          Why it matters
-        </h2>
+        <h2>The problem</h2>
         <p>{project.why}</p>
       </section>
 
       <section className={styles.section}>
-        <h2>
-          {project.roleLabel}
-        </h2>
-        <p>{project.role}</p>
+        <h2>My contribution</h2>
+        <p>{project.contribution}</p>
       </section>
 
       <section className={styles.section}>
-        <h2>
-          Outcome
-        </h2>
-        <p className={styles.outcome}>{project.impact}</p>
+        <h2>How the product works</h2>
+        <p>{project.summary}</p>
+        <div className={styles.visualWrap}>
+          <div className={styles.visualPanel}>
+            <ConceptualVisual variant={visualVariants[project.slug]} />
+          </div>
+          <p className={styles.visualCaption}>
+            Conceptual illustration, not a product screenshot.
+          </p>
+        </div>
+        <p className={styles.techLine}>
+          <span>Built with</span> {project.tech.join(", ")}
+        </p>
       </section>
 
       <section className={styles.section}>
-        <h2>
-          Tech
-        </h2>
-        <p className={styles.techLine}>{project.tech.join(", ")}</p>
+        <h2>The outcome</h2>
+        <p className={styles.outcome}>{project.impact}.</p>
+        {project.recognition ? <p>{project.recognition}</p> : null}
+        <p className={styles.repoLink}>
+          <ButtonLink href={project.link.url} variant="secondary" target="_blank" rel="noreferrer">
+            {project.link.label}
+          </ButtonLink>
+        </p>
       </section>
 
-      <p className={styles.repoLink}>
-        <a href={project.link.url} target="_blank" rel="noreferrer">
-          {project.link.label}
-        </a>
-      </p>
-
-      <NextStep href={`/projects/${other.slug}`}>Next project: {other.name}</NextStep>
+      {other && (
+        <NextStep href={`/projects/${other.slug}`}>Next project: {other.name}</NextStep>
+      )}
       <NextStep href="/projects">All projects</NextStep>
     </article>
   );

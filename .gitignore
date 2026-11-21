@@ -42,3 +42,9 @@ next-env.d.ts
 
 # local contact form submissions (never commit)
 /data/contact-submissions.json
+
+# keep the placeholder env documentation committed
+!.env.example
+
+# local review screenshots (test artifacts, never commit)
+/*.png

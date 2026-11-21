@@ -1,0 +1,76 @@
+.login {
+  max-width: 420px;
+  margin: 0 auto;
+  padding: var(--space-6, 48px) var(--space-5, 32px);
+}
+
+.heading {
+  font-family: var(--font-heading), sans-serif;
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--ink);
+  margin: 0 0 12px;
+}
+
+.lede {
+  color: var(--indigo-100);
+  line-height: 1.6;
+  margin: 0 0 28px;
+}
+
+.field {
+  margin-bottom: 20px;
+}
+
+.label {
+  display: block;
+  font-size: 0.9rem;
+  color: var(--indigo-100);
+  margin-bottom: 6px;
+}
+
+.input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--paper-soft);
+  color: var(--ink);
+  font: inherit;
+}
+
+.input:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+  border-color: transparent;
+}
+
+.error {
+  background: var(--panel);
+  border: 1px solid var(--error);
+  border-radius: 8px;
+  color: var(--error);
+  padding: 10px 12px;
+  margin: 0 0 16px;
+}
+
+.submit {
+  background: var(--accent);
+  color: #202322;
+  border: none;
+  border-radius: 999px;
+  padding: 12px 28px;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.submit:hover {
+  background: var(--indigo-900);
+}
+
+.submit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}

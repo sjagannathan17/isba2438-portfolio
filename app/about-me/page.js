@@ -1,4 +1,5 @@
 import ButtonLink from "@/components/ButtonLink";
+import JourneySection from "@/components/JourneySection";
 import NextStep from "@/components/NextStep";
 import PageHeader from "@/components/PageHeader";
 import Reveal from "@/components/Reveal";
@@ -105,6 +106,8 @@ export default function AboutMe() {
           </div>
         ))}
       </section>
+
+      <JourneySection />
 
       <section className={styles.section}>
         <h2>

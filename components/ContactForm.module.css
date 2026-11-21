@@ -12,15 +12,15 @@
 }
 
 .success {
-  background: #e8f2e5;
-  border: 1px solid #b5d4ac;
-  color: #2c5a2e;
+  background: rgba(196, 237, 117, 0.12);
+  border: 1px solid rgba(196, 237, 117, 0.4);
+  color: var(--accent-strong);
 }
 
 .failure {
-  background: #f7e8dd;
-  border: 1px solid #dfb58f;
-  color: #8a4a1f;
+  background: rgba(255, 155, 132, 0.1);
+  border: 1px solid rgba(255, 155, 132, 0.4);
+  color: var(--error);
 }
 
 .summary {

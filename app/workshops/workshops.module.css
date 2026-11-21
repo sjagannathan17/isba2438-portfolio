@@ -1,0 +1,15 @@
+.placeholder {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--paper-soft);
+  padding: var(--space-4) var(--space-3);
+  max-width: var(--text-max);
+  color: var(--ink-soft);
+  font-size: var(--text-s);
+  line-height: 1.7;
+}
+
+.placeholder a {
+  color: var(--accent);
+  font-weight: 500;
+}

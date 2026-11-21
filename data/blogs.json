@@ -6,5 +6,13 @@
     "description": "How I turned my portfolio into a working web application with contact forms, API routes, and a blog.",
     "content": "My portfolio started as a way to introduce myself and share my projects. For this assignment, I extended it with features that collect and display data.\n\nThe first addition was an API-based contact form. It sends a JSON request to a Next.js API route, validates the input, and saves valid submissions to a JSON file. The original Server Action form remains available, and both forms use the same validation and storage helpers.\n\nNext, I added this blog. The editor sends posts to an API that generates a unique ID, URL slug, and timestamp. Saved posts appear on the blog listing page, and each has its own detail page.\n\nI used Viber to build these features incrementally. Testing covered valid submissions, missing fields, invalid email addresses, duplicate blog titles, and unknown post URLs. One issue involved the temporary storage path used during testing. Another involved an old server still running on the test port. Both showed why checking the actual saved data and server state matters.\n\nThis project helped me connect what happens in the browser with what happens on the server. It also reminded me that a feature needs more than a successful submission. Clear errors, preserved input, useful empty states, and working navigation are part of the experience too.",
     "createdAt": "2026-11-14T23:02:43.514Z"
+  },
+  {
+    "id": "5c55bc3a-ad26-4df7-8c8c-2eaa1cd32dc6",
+    "slug": "what-i-learned-about-api-forms",
+    "title": "What I Learned About API Forms",
+    "description": "How my portfolio sends form data to the server and uses the response to show what happened.",
+    "content": "Building the contact form helped me see how the browser and server work together. When I submit the form, the browser sends the name, email, and message to the API as JSON. If the server finds an invalid email, the form shows what needs fixing and keeps what I typed. If the submission is valid, the server saves it and the form clears. I used the same pattern in the blog editor, where a successful submission gives me a link to the new post.",
+    "createdAt": "2026-11-15T02:42:43.771Z"
   }
 ]

@@ -3,3 +3,12 @@
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: var(--space-3);
 }
+
+.storageError {
+  color: var(--error);
+  border: 1px solid var(--error);
+  border-radius: 8px;
+  padding: 14px 16px;
+  margin: 0 var(--space-5, 32px) var(--space-6, 48px);
+  line-height: 1.5;
+}

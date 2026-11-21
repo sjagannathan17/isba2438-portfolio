@@ -1,43 +1,18 @@
-.section {
-  margin-top: var(--space-5);
-  max-width: var(--text-max);
+.summary {
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--accent);
+  border-radius: 8px;
+  background: var(--paper-soft);
+  padding: var(--space-2) var(--space-3);
 }
 
-.section h2 {
-  font-family: var(--font-heading), Georgia, serif;
-  font-size: var(--text-l);
-  font-weight: 600;
-  margin-bottom: var(--space-2);
-  position: relative;
-}
-
-.coords {
-  color: var(--ink-soft);
-  font-size: var(--text-s);
-  margin-top: var(--space-2);
-}
-
-.techLine {
-  color: var(--ink-soft);
-  max-width: var(--text-max);
-}
-
-.repoLink {
-  margin-top: var(--space-4);
-  font-weight: 500;
-}
-
-.explorerWrap {
-  margin-top: var(--space-3);
-}
-
-.contextRow {
+.summaryRow {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: var(--space-3);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-2) var(--space-3);
 }
 
-.contextRow span {
+.summaryRow span {
   display: block;
   font-size: 0.6875rem;
   letter-spacing: 0.06em;
@@ -46,20 +21,76 @@
   margin-bottom: 4px;
 }
 
-.contextRow p {
-  font-size: 1rem;
+.summaryRow p {
+  font-size: var(--text-s);
   line-height: 1.6;
 }
 
+.section {
+  margin-top: var(--space-4);
+  max-width: var(--text-max);
+}
+
+.section h2 {
+  font-family: var(--font-heading), system-ui, sans-serif;
+  font-size: var(--text-l);
+  font-weight: 700;
+  margin-bottom: var(--space-2);
+  position: relative;
+}
+
+.section p {
+  font-size: var(--text-s);
+  line-height: 1.7;
+}
+
+.visualWrap {
+  margin-top: var(--space-3);
+}
+
+.visualPanel {
+  background: var(--indigo-50);
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.visualCaption {
+  margin-top: var(--space-1);
+  color: var(--ink-soft);
+}
+
+.techLine {
+  margin-top: var(--space-3);
+  color: var(--ink-soft);
+}
+
+.techLine span {
+  display: block;
+  font-size: 0.6875rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin-bottom: 4px;
+}
+
+.techLine {
+  font-size: var(--text-s);
+}
+
 .outcome {
-  font-family: var(--font-heading), Georgia, serif;
-  font-size: 1.5rem;
-  font-weight: 600;
+  font-family: var(--font-heading), system-ui, sans-serif;
+  font-size: var(--text-m);
+  font-weight: 700;
   color: var(--indigo-700);
+  line-height: 1.35;
+}
+
+.repoLink {
+  margin-top: var(--space-3);
 }
 
 @media (max-width: 800px) {
-  .contextRow {
+  .summaryRow {
     grid-template-columns: 1fr;
   }
 }

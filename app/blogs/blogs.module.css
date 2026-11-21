@@ -15,9 +15,9 @@
 }
 
 .title {
-  font-family: var(--font-heading), Georgia, serif;
+  font-family: var(--font-heading), system-ui, sans-serif;
   font-size: var(--text-l);
-  font-weight: 600;
+  font-weight: 700;
   margin-bottom: 2px;
 }
 

@@ -6,7 +6,7 @@
 .nav {
   max-width: var(--page-max);
   margin: 0 auto;
-  padding: var(--space-2) var(--space-2);
+  padding: var(--space-2);
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -17,9 +17,9 @@
   display: inline-flex;
   align-items: center;
   gap: var(--space-1);
-  font-family: var(--font-heading), Georgia, serif;
+  font-family: var(--font-heading), system-ui, sans-serif;
   font-size: var(--text-s);
-  font-weight: 600;
+  font-weight: 700;
   color: var(--ink);
   text-decoration: none;
 }
@@ -71,13 +71,12 @@
   border-bottom-color: var(--accent);
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .indicator.animate {
-    transition: none;
-  }
+.navEnd {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin-left: auto;
 }
-
-
 
 .resumeLink {
   display: inline-block;
@@ -91,4 +90,86 @@
 
 .resumeLink:hover {
   border-color: var(--accent);
+}
+
+.menuButton {
+  display: none;
+  align-items: center;
+  min-height: 44px;
+  padding: 8px 16px;
+  border: 1px solid var(--indigo-100);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--ink);
+  font-family: var(--font-body), system-ui, sans-serif;
+  font-size: var(--text-s);
+  font-weight: 500;
+  cursor: pointer;
+  transition: border-color 0.15s ease;
+}
+
+.menuButton:hover {
+  border-color: var(--accent);
+}
+
+.mobileMenu {
+  display: none;
+  border-top: 1px solid var(--line);
+  background: var(--paper);
+}
+
+.mobileList {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  padding: 0 var(--space-2) var(--space-2);
+}
+
+.mobileList li:last-child .mobileLink {
+  border-bottom: none;
+}
+
+.mobileLink {
+  display: block;
+  min-height: 44px;
+  padding: 12px 4px;
+  border-bottom: 1px solid var(--line);
+  color: var(--ink-soft);
+  text-decoration: none;
+  font-size: var(--text-s);
+  font-weight: 500;
+}
+
+.mobileLink:hover {
+  color: var(--accent);
+}
+
+.mobileLinkActive {
+  color: var(--accent);
+}
+
+@media (max-width: 899px) {
+  .links,
+  .resumeLink {
+    display: none;
+  }
+
+  .menuButton {
+    display: inline-flex;
+  }
+
+  .mobileMenu {
+    display: block;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .indicator.animate {
+    transition: none;
+  }
+
+  .menuButton,
+  .resumeLink {
+    transition: none;
+  }
 }

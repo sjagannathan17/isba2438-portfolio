@@ -23,17 +23,33 @@ Runs the unit tests for the contact form validation rules (Node's built-in test 
 
 | Page | Address |
 |---|---|
-| Home (hero, journey map, featured projects) | `/` |
+| Home (hero, journey map, featured projects, recruiter assistant) | `/` |
 | About Me (journey timeline, skills) | `/about-me` |
 | Projects index | `/projects` |
 | Project detail (one per project) | `/projects/flex-competitive-intelligence`, `/projects/agri-intelligence-platform` |
+| Blog index and posts | `/blogs` |
+| Workshops public board | `/workshops` |
 | Contact Me (server-validated form) | `/contact-me-server-form` |
+| Contact Me (client form via the API) | `/contact-me` |
+| Admin (sign-in required) | `/admin`, `/admin/contacts`, `/admin/projects`, `/admin/workshops`, `/admin/blogs` |
 
-Unknown project addresses show a friendly "Project not found" page with a link back to Projects.
+Unknown project or blog addresses show a friendly "not found" page with a link back to the index.
+
+Every page also has a recruiter assistant: a guided chat that answers questions from the portfolio, links to case studies, and submits an enquiry through the same validated contact backend.
 
 ## Contact form
 
 Messages are checked on the server: name and message can't be blank, and the email needs one @, text before it, a valid domain, and no whitespace. Valid messages are saved to `data/contact-submissions.json`, which is git-ignored and created automatically on the first save.
+
+## Admin access
+
+The admin pages (`/admin`, `/admin/contacts`, `/admin/projects`, `/admin/workshops`, `/admin/blogs`) and all mutating API endpoints require server-verified admin sign-in. Configure it before running:
+
+1. Copy `.env.example` to `.env.local` (both are git-ignored except `.env.example`, which holds placeholders only).
+2. Fill in `ADMIN_USERNAME`, `ADMIN_PASSWORD`, and `ADMIN_SESSION_SECRET` (generate a secret with `openssl rand -base64 32`). Never commit real values.
+3. Restart the dev server and sign in at `/admin`.
+
+Data files: `data/blogs.json` and `data/projects.json` are committed portfolio content; `data/contact-submissions.json` holds personal enquiries and is git-ignored, created automatically on first save. Workshop data (`data/workshops.json`) is created automatically on first use. Public pages read these JSON files directly on the server; the admin pages and all mutations go through the `/api/*` endpoints, which require the admin session.
 
 ## License
 

@@ -1,4 +1,5 @@
 import ContactForm from "@/components/ContactForm";
+import Link from "next/link";
 import PageHeader from "@/components/PageHeader";
 
 export const metadata = {
@@ -13,6 +14,10 @@ export default function ContactMe() {
         will get back to you.
       </PageHeader>
       <ContactForm />
+      <p className="contactAlt">
+        This form posts through a server action. The API-backed version is the main
+        one: <Link href="/contact-me">use the main contact form</Link>.
+      </p>
     </section>
   );
 }
